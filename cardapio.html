@@ -1,0 +1,144 @@
+<div class="container">
+    <h2>Cardápio</h2>
+    <div class="card cardapio-color">
+        <div class="card-header">
+            <ul class="nav nav-tabs card-header-tabs" id="myTabs" role="tablist">
+                <li class="nav-item li-active" role="presentation">
+                    <button class="nav-link tab-color active" id="entrada-tab" data-bs-toggle="tab"
+                        data-bs-target="#entrada" type="button" role="tab" aria-controls="entrada"
+                        aria-selected="true">Entrada</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link tab-color" id="principal-tab" data-bs-toggle="tab"
+                        data-bs-target="#principal" type="button" role="tab" aria-controls="principal"
+                        aria-selected="false">Prato
+                        Principal</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link tab-color" id="sobremesas-tab" data-bs-toggle="tab"
+                        data-bs-target="#sobremesas" type="button" role="tab" aria-controls="sobremesas"
+                        aria-selected="false">Sobremesas</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link tab-color" id="bebidas-tab" data-bs-toggle="tab" data-bs-target="#bebidas"
+                        type="button" role="tab" aria-controls="bebidas" aria-selected="false">Bebidas</button>
+                </li>
+            </ul>
+        </div>
+        <div class="card-body mb-3 mb-sm-0">
+            <div class="tab-content" id="myTabsContent">
+                <div class="tab-pane fade show active" id="entrada" role="tabpanel" aria-labelledby="entrada-tab">
+                    <div class="row">
+                        <div class="col-sm-4 mb-3">
+                            <div class="card">
+                                <img src="img/pratosEntrada/imagem1.jpg" class="card-img-top custom-image" alt="Item 1">
+                                <div class="card-body">
+                                    <h5 class="card-title">Item 1</h5>
+                                    <p class="card-text">Descrição do item 1</p>
+                                    <div class="text-center">
+                                        <button class="btn btn-primary" data-bs-toggle="modal"
+                                            data-bs-target="#modalItem1">Adicionar ao Pedido</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 mb-3">
+                            <div class="card">
+                                <img src="img/pratosEntrada/imagem2.jpg" class="card-img-top custom-image" alt="Item 2">
+                                <div class="card-body">
+                                    <h5 class="card-title">Item 2</h5>
+                                    <p class="card-text">Descrição do item 2</p>
+                                    <a href="#" class="btn btn-primary">Adicionar ao Pedido</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 mb-3">
+                            <div class="card">
+                                <img src="img/pratosEntrada/imagem3.jpg" class="card-img-top custom-image" alt="Item 3">
+                                <div class="card-body">
+                                    <h5 class="card-title">Item 3</h5>
+                                    <p class="card-text">Descrição do item 3</p>
+                                    <a href="#" class="btn btn-primary">Adicionar ao Pedido</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 mb-3">
+                            <div class="card">
+                                <img src="img/pratosEntrada/imagem4.jpg" class="card-img-top custom-image" alt="Item 4">
+                                <div class="card-body">
+                                    <h5 class="card-title">Item 4</h5>
+                                    <p class="card-text">Descrição do item 4</p>
+                                    <a href="#" class="btn btn-primary">Adicionar ao Pedido</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 mb-3">
+                            <div class="card">
+                                <img src="img/pratosEntrada/imagem5.jpg" class="card-img-top custom-image" alt="Item 5">
+                                <div class="card-body">
+                                    <h5 class="card-title">Item 5</h5>
+                                    <p class="card-text">Descrição do item 5</p>
+                                    <a href="#" class="btn btn-primary">Adicionar ao Pedido</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 mb-3">
+                            <div class="card">
+                                <img src="img/pratosEntrada/imagem6.jpg" class="card-img-top custom-image" alt="Item 5">
+                                <div class="card-body">
+                                    <h5 class="card-title">Item 5</h5>
+                                    <p class="card-text">Descrição do item 5</p>
+                                    <a href="#" class="btn btn-primary">Adicionar ao Pedido</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Adicione mais colunas de acordo com a quantidade de itens do cardápio -->
+                    </div>
+                </div>
+
+                <div class="tab-pane fade" id="principal" role="tabpanel" aria-labelledby="principal-tab">
+                    <!-- Conteúdo da aba de Prato Principal -->
+                </div>
+                <div class="tab-pane fade" id="sobremesas" role="tabpanel" aria-labelledby="sobremesas-tab">
+                    <!-- Conteúdo da aba de Sobremesas -->
+                </div>
+                <div class="tab-pane fade" id="bebidas" role="tabpanel" aria-labelledby="bebidas-tab">
+                    <!-- Conteúdo da aba de Bebidas -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalItem1" tabindex="-1" aria-labelledby="modalItem1Label" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalItem1Label">Detalhes do Item 1</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    <span class="sr-only">Fechar</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Conteúdo do modal - detalhes do item -->
+                <p>Aqui estão os detalhes do Item 1.</p>
+                
+                <!-- Campos de observação -->
+                <div class="mb-3">
+                    <label for="observacaoItem1" class="form-label">Observação:</label>
+                    <textarea class="form-control" id="observacaoItem1" rows="3"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger rounded-pill">
+                    <i class="bi bi-dash"></i>
+                </button>
+                <span class="modal-quantidade">0</span>
+                <button type="button" class="btn btn-primary rounded-pill">
+                    <i class="bi bi-plus"></i>
+                </button>
+                <a href="#" class="btn btn-primary" data-bs-dismiss="modal">Adicionar ao Pedido</a>
+            </div>
+        </div>
+    </div>
+</div>

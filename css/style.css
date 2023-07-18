@@ -30,6 +30,10 @@ hr.h-color{
   color: #000;
 }
 
+h1, h2, h3, h4 {
+  color: #FFDA85;
+}
+
 .sidebar li a{
   color: #FFDA85;
 }
@@ -41,6 +45,30 @@ hr.h-color{
 .img {
   width: 24px;
   height: 24px;
+}
+
+.cardapio-color {
+  background: #725d5d;
+}
+
+.card-header-tabs .nav-link.active{
+  background: #FFDA85;
+  border-color: transparent;
+}
+
+.nav-link:hover{
+  color: #fff;
+  border-color: transparent;
+}
+
+.tab-color{
+  color: #FFDA85;
+}
+
+.custom-image {
+  width: auto; /* Defina o valor desejado para a largura */
+  height: 100px; /* Defina o valor desejado para a altura */
+  object-fit: cover; /* Mantém a proporção da imagem */
 }
 
 .sidebar {

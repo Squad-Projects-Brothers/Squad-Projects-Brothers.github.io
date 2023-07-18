@@ -20,50 +20,43 @@
 <body>
     <div class="main-container d-flex bg-dark">
         <div class="sidebar sidebar-content" id="side_nav">
-            <div class="header-box px-3 pt-3 pb-4 d-flex justify-content-between">
-                <h1 class="fs-4"><span class="bg-white text-dark rounded shadow px-2 me-2">Ravin</span>
-                    <span class="text-white">Ristorant</span>
-                </h1>
-                <button class="btn d-md-none d-block close-btn text-white"><i
-                        class="fa-solid fa-bars-staggered"></i></button>
-            </div>
             <div class="text-center p-2 mx-1">
-                <img src="img/Ravin.png"
-                    alt=" Logo do restaurante ravin" class="img-fluid rounded-circle my-4 p-1 d-md-block shadow" />
+                <img src="img/Ravin.png" alt=" Logo do restaurante ravin"
+                    class="img-fluid rounded-circle my-2 p-1 d-md-block shadow" />
             </div>
             <ul class="list-unstyled px-2">
-                <li class="active"><a href="#" class="text-decoration-none px-3 py-2 d-block"
-                        onclick="loadContent('profile')"><i class="bi bi-graph-up me-2"></i>Dashboard</a></li>
-                <li class="">
-                    <a href="#" class="text-decoration-none px-3 py-2 d-block d-flex justify-content-between">
-                        <span><i class="bi bi-clipboard-check-fill me-2"></i>Pedidos</span>
-                        <span class="bg-dark rounded-pill text-white py-0 px-2">12</span>
-                    </a>
+                <li class=""><a href="#" onclick="loadContent('cardapio')"
+                        class="text-decoration-none px-3 py-2 d-block"><i class="bi bi-card-list me-2"></i>Cardapio</a>
                 </li>
                 <li class="">
                     <a href="#" class="text-decoration-none px-3 py-2 d-block accordion-button collapsed"
-                        onclick="loadContent('activity')" type="button" data-bs-toggle="collapse"
+                        onclick="loadContent('comanda')" type="button" data-bs-toggle="collapse"
                         data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne"><i
-                            class="bi bi-journal-arrow-up me-2"></i>Comandas</a>
-                </li>
-                <li class="">
-                    <a href="#challenge" class="text-decoration-none px-3 py-2 d-block accordion-button collapsed"
-                        onclick="loadContent('challenge')" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne"><i
-                            class="bi bi-calendar-check-fill me-2"></i>Agendamento</a>
-                </li>
-                <li class=""><a href="#" onclick="loadContent('services')" class="text-decoration-none px-3 py-2 d-block"><i
-                 class="bi bi-envelope-paper me-2"></i>Services</a></li>
-                <li class=""><a href="#" class="text-decoration-none px-3 py-2 d-block"><i
-                            class="bi bi-people me-2"></i>Customers</a>
+                            class="bi bi-journal-arrow-up me-2"></i>Comanda</a>
                 </li>
             </ul>
 
             <hr class="h-color mx-3">
 
             <ul class="list-unstyled px-2">
-                <li class=""><a href="#Settings" class="text-decoration-none px-3 py-2 d-block"><i
-                            class="bi bi-gear me-2"></i>Settings</a></li>
+                <li class="active">
+                    <a href="#" class="text-decoration-none px-3 py-2 d-block" onclick="loadContent('profile')">
+                        <i class="bi bi-graph-up me-2"></i>Dashboard</a>
+                </li>
+                <li class="">
+                    <a href="#challenge" class="text-decoration-none px-3 py-2 d-block d-block"
+                        onclick="loadContent('challenge')" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                        <i class="bi bi-calendar-check-fill me-2"></i>Agendamento</a>
+                </li>
+                <li class="">
+                    <a href="#" onclick="loadContent('services')" class="text-decoration-none px-3 py-2 d-block">
+                        <i class="bi bi-envelope-paper me-2"></i>Services</a>
+                </li>
+                <li class="">
+                    <a href="#Settings" class="text-decoration-none px-3 py-2 d-block">
+                        <i class="bi bi-gear me-2"></i>Settings</a>
+                </li>
                 <li class="">
                     <a href="#" class="text-decoration-none px-3 py-2 d-block d-flex justify-content-between">
                         <span><i class="bi bi-bell me-2"></i>Notificaions</span>
