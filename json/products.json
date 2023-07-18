@@ -1,0 +1,84 @@
+{
+    "categorias": {
+        "bebida": {
+            "refrigerantes": {
+                "Coca-Cola": [
+                    "1",
+                    " ",
+
+                ],
+                "Pepsi": [],
+                "Guaraná": []
+            },
+            "suco": [
+                "laranja",
+                "uva",
+                "abacaxi"
+            ],
+            "café": [
+                "expresso",
+                "cappuccino",
+                "latte"
+            ],
+            "chá": [
+                "preto",
+                "verde",
+                "de camomila"
+            ]
+        },
+        "comida": {
+            "pizzas": [
+                "margherita",
+                "calabresa",
+                "quatro queijos"
+            ],
+            "hambúrgueres": [
+                "tradicional",
+                "cheddar",
+                "vegetariano"
+            ],
+            "massas": [
+                "espaguete",
+                "lasanha",
+                "ravióli"
+            ],
+            "saladas": [
+                "grega",
+                "ceasar",
+                "caprese"
+            ],
+            "sopas": [
+                "tomate",
+                "cebola",
+                "legumes"
+            ]
+        },
+        "sobremesa": {
+            "bolos": [
+                "chocolate",
+                "morango",
+                "cenoura"
+            ],
+            "sorvetes": [
+                "baunilha",
+                "chocolate",
+                "morango"
+            ],
+            "frutas": [
+                "maçã",
+                "banana",
+                "manga"
+            ],
+            "pudins": [
+                "leite",
+                "chocolate",
+                "baunilha"
+            ],
+            "cookies": [
+                "gotas de chocolate",
+                "aveia e passas",
+                "castanhas"
+            ]
+        }
+    }
+}
