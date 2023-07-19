@@ -34,7 +34,7 @@
 
     <script>
 
-        function pegaItens() {
+    
             const url = `http://187.85.120.57:5500/Squad-Projects-Brothers.github.io/json/server-itens.php`;
 
             fetch(url)
@@ -43,11 +43,11 @@
                     montarHtml(data)
                     console.log(data)
                 })
-        }
+        
 
         function montarHtml(itensMenu) {
             const divInitial = document.getElementById("main-containers");
-            var textHtml;
+            var textHtml = '';
 
             for (itemMenu of itensMenu) {
 
