@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Listagem de Produtos</title>
+</head>
+<body>
+    <script>
+        // Cria um objeto WebSocket e se conecta ao servidor socket
+        var socket = new WebSocket("ws://localhost:1234");
+
+        // Evento chamado quando a conexão é estabelecida
+        socket.onopen = function(event) {
+            console.log("Conexão com o servidor socket estabelecida");
+            
+            // Envia uma mensagem para solicitar os dados dos produtos
+            socket.send("getProdutos");
+        };
+
+        // Evento chamado quando uma mensagem é recebida do servidor socket
+        socket.onmessage = function(event) {
+            var data = event.data;
+
+            // Verifica se a mensagem contém os dados dos produtos
+            if (data.startsWith("produtos:")) {
+                // Remove o prefixo "produtos:" da mensagem
+                var produtosData = data.replace("produtos:", "");
+
+                // Converte a string recebida em um objeto JavaScript
+                var produtos = JSON.parse(produtosData);
+
+                // Exibe os dados dos produtos no console
+                console.log(produtos);
+            }
+        };
+
+        // Evento chamado quando ocorre um erro na conexão
+        socket.onerror = function(event) {
+            console.log("Erro na conexão com o servidor socket");
+        };
+
+        // Evento chamado quando a conexão é fechada
+        socket.onclose = function(event) {
+            console.log("Conexão com o servidor socket fechada");
+        };
+    </script>
+</body>
+</html>
