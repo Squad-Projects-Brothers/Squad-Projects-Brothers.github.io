@@ -84,6 +84,16 @@ h1, h2, h3, h4 {
   }
 }
 
+.card-custom {
+  height: 620px;
+}
+
+.bar-scroll {
+  display: block;
+  height: 716px;
+  overflow-y: auto;
+  z-index: 999;
+}
 
 @media(max-width: 767px){
   #side_nav{

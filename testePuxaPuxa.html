@@ -85,6 +85,23 @@
             divInitial.innerHTML = textHtml;
         }
 
+        function filtrarItensMenu(){
+            const elementosAtivos = document.getElementsByClassName("active");
+            for(elementoAtivo of elementosAtivos){
+                elementoAtivo.classList.remove("active");
+            }
+            elemento.parentNode.classList.add("active");
+
+            const itensMenu = documente.getElementsByClassName("itens-menu");
+            for(itemMenu of itens){
+                if(itemMenu.getAttribute("data-category") === categoria){
+                    itemMenu.classList.remove("inactive");
+                }else{
+                    itemMenu.classList.add("inactive");
+                }
+            }
+        }
+
     </script>
 </body>
 
