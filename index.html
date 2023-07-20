@@ -81,9 +81,22 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                         <ul class="navbar-nav mb-2 mb-lg-0">
-                            <li class="nav-item">
-                                <a class="nav-link active text-center" aria-current="page" href="#">Menu</a>
-                            </li>
+                            <div class="d-flex align-items-center">
+                                <button class="bg-danger rounded-pill text-white py-1 px-3" data-test-id="header-cart"
+                                    aria-label="checkout-label">
+                                    <div class="d-flex align-items-center">
+                                        <!-- Usamos flexbox para posicionar os elementos lado a lado -->
+                                        <div class="mr-2">
+                                            <i class="fas fa-utensils fa-lg"></i>
+                                            <!-- Ícone do Font Awesome com classe de tamanho fa-lg -->
+                                        </div>
+                                        <div>
+                                            <span class="d-block header-cart__cost">R$ 0,00</span>
+                                            <span class="d-block header-cart__items">0 itens</span>
+                                        </div>
+                                    </div>
+                                </button>
+                            </div>
                         </ul>
                     </div>
                 </div>
@@ -146,7 +159,7 @@
                             // Atualiza o conteúdo principal
                             document.getElementById('main-content').innerHTML = response;
                             pegaritens();
-                            
+
 
                             if ($("#cep").length > 0) {
                                 $("#cep").inputmask("99999-999");
@@ -205,7 +218,7 @@
                 sidebar.removeClass('active');
             }
         });
-        
+
     </script>
 </body>
 
