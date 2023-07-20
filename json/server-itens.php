@@ -46,7 +46,7 @@ echo json_encode(
       array(
         "id" => "5", 
         "categoria" =>"sobremesa", 
-        "nome" => "Bolo-de-Amendoim", 
+        "nome" => "Bolo d'Amendoin", 
         "descricao" => "Bolo de Amendoim. Um bolo irresistível, feito com uma generosa quantidade de amendoim triturado. Para os amantes desse saboroso ingrediente!", 
         "valor" => "13,00", 
         "medida" => "fatia", 
