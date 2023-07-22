@@ -1,6 +1,6 @@
 
 function pegaritens() {
-    url = "http://187.85.120.57:5500/Squad-Projects-Brothers.github.io/json/server-itens.php";
+    url = "https://ravinristorant.000webhostapp.com/json/server-itens.php";
 
     fetch(url)
         .then((dados) => {

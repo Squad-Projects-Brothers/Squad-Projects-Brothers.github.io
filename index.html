@@ -10,10 +10,11 @@
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="utils/fontawesome-free-6.4.0-web/css/all.min.css" />
     <link rel="alternate icon" class="js-site-favicon" type="svg+xml" href="favicons/favicon.svg">
+    <script src="https://unpkg.com/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.6/jquery.inputmask.min.js"></script>
-    <script src="https://unpkg.com/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+
     <script src="js/cardapio.js"></script>
 
     <title>Ravin Ristorant</title>
@@ -82,14 +83,12 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                         <ul class="navbar-nav mb-2 mb-lg-0">
-                            <div class="d-flex align-items-center">
-                                <button class="rounded-pill text-dark py-1 px-3" data-bs-toggle="collapse"
-                                    data-bs-target="#cartModal" aria-label="checkout-label">
+                            <li class="nav-item">
+                                <!-- Botão que abre o modal -->
+                                <button class="btn btn-primary" type="button" id="openPedidoModal">
                                     <div class="d-flex align-items-center">
-                                        <!-- Usamos flexbox para posicionar os elementos lado a lado -->
                                         <div class="mr-2">
                                             <i class="fas fa-utensils fa-lg me-2"></i>
-                                            <!-- Ícone do Font Awesome com classe de tamanho fa-lg -->
                                         </div>
                                         <div>
                                             <span class="d-block header-cart__cost">R$ 0,00</span>
@@ -97,9 +96,157 @@
                                         </div>
                                     </div>
                                 </button>
-                            </div>
 
+                            </li>
                         </ul>
+                    </div>
+                    <!-- Modal -->
+                    <div class="modal modal-backdrop-pedido" tabindex="-1" id="pedidoModal"
+                        aria-labelledby="pedidoModalLabel">
+                        <div
+                            class="modal-dialog modal-dialog-pedido modal-dialog-slidein-pedido  modal-md modal-bottom">
+                            <div class="modal-content modal-content-pedido">
+                                <!-- Conteúdo do modal aqui -->
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="cartModalLabel">Seus Pedidos</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body sidebar-pedido-wrapper--scroll">
+                                    <!-- Coloque aqui o conteúdo do seu pedido, como os itens selecionados -->
+                                    <div class="sidebar-pedido-item sidebar-pedido-line">
+                                        <div class="idebar-pedido-item-description sidebar-pedido-justify"><span>4x
+                                                Chopp Pet 1litro</span><span>R$ 51,60</span></div>
+                                        <div class="sidebar-pedido-item-tags"></div>
+                                        <div class="sidebar-pedido-item-buttons-wrapper"><button type="button"
+                                                role="button"
+                                                class="btn btn-link-edit btn-size-m sidebar-pedido-button-item-button"
+                                                theme="link" variant="sidebar-pedido-button-item-button" label="Editar"
+                                                data-test-id="restaurant-cart-item__edit-button" color="primary"
+                                                target="" rel=""><span class="btn-label">Editar</span></button><button
+                                                type="button" role="button"
+                                                class="btn btn-link-edit btn-gray btn-size-m sidebar-pedido-button-item-button"
+                                                theme="link" color="gray" variant="sidebar-pedido-button-item-button"
+                                                label="Remover" data-test-id="restaurant-cart-item__remove-button"
+                                                target="" rel=""><span class="btn-label">Remover</span></button></div>
+                                    </div>
+                                    <div class="restaurant-cart-item sidebar-pedido-line">
+                                        <div class="idebar-pedido-item-description sidebar-pedido-justify"><span>4x
+                                                Chopp Pet 1litro</span><span>R$ 51,60</span></div>
+                                        <div class="sidebar-pedido-item-tags"></div>
+                                        <div class="sidebar-pedido-item-buttons-wrapper"><button type="button"
+                                                role="button"
+                                                class="btn btn-link-edit btn-size-m sidebar-pedido-button-item-button"
+                                                theme="link" variant="sidebar-pedido-button-item-button" label="Editar"
+                                                data-test-id="restaurant-cart-item__edit-button" color="primary"
+                                                target="" rel=""><span class="btn-label">Editar</span></button><button
+                                                type="button" role="button"
+                                                class="btn btn-link-edit btn-gray btn-size-m sidebar-pedido-button-item-button"
+                                                theme="link" color="gray" variant="sidebar-pedido-button-item-button"
+                                                label="Remover" data-test-id="restaurant-cart-item__remove-button"
+                                                target="" rel=""><span class="btn-label">Remover</span></button></div>
+                                    </div>
+                                    <div class="restaurant-cart-item sidebar-pedido-line">
+                                        <div class="idebar-pedido-item-description sidebar-pedido-justify"><span>4x
+                                                Chopp Pet 1litro</span><span>R$ 51,60</span></div>
+                                        <div class="sidebar-pedido-item-tags"></div>
+                                        <div class="sidebar-pedido-item-buttons-wrapper"><button type="button"
+                                                role="button"
+                                                class="btn btn-link-edit btn-size-m sidebar-pedido-button-item-button"
+                                                theme="link" variant="sidebar-pedido-button-item-button" label="Editar"
+                                                data-test-id="restaurant-cart-item__edit-button" color="primary"
+                                                target="" rel=""><span class="btn-label">Editar</span></button><button
+                                                type="button" role="button"
+                                                class="btn btn-link-edit btn-gray btn-size-m sidebar-pedido-button-item-button"
+                                                theme="link" color="gray" variant="sidebar-pedido-button-item-button"
+                                                label="Remover" data-test-id="restaurant-cart-item__remove-button"
+                                                target="" rel=""><span class="btn-label">Remover</span></button></div>
+                                    </div>
+                                    <div class="restaurant-cart-item sidebar-pedido-line">
+                                        <div class="idebar-pedido-item-description sidebar-pedido-justify"><span>4x
+                                                Chopp Pet 1litro</span><span>R$ 51,60</span></div>
+                                        <div class="sidebar-pedido-item-tags"></div>
+                                        <div class="sidebar-pedido-item-buttons-wrapper"><button type="button"
+                                                role="button"
+                                                class="btn btn-link-edit btn-size-m sidebar-pedido-button-item-button"
+                                                theme="link" variant="sidebar-pedido-button-item-button" label="Editar"
+                                                data-test-id="restaurant-cart-item__edit-button" color="primary"
+                                                target="" rel=""><span class="btn-label">Editar</span></button><button
+                                                type="button" role="button"
+                                                class="btn btn-link-edit btn-gray btn-size-m sidebar-pedido-button-item-button"
+                                                theme="link" color="gray" variant="sidebar-pedido-button-item-button"
+                                                label="Remover" data-test-id="restaurant-cart-item__remove-button"
+                                                target="" rel=""><span class="btn-label">Remover</span></button></div>
+                                    </div>
+                                    <div class="restaurant-cart-item sidebar-pedido-line">
+                                        <div class="idebar-pedido-item-description sidebar-pedido-justify"><span>4x
+                                                Chopp Pet 1litro</span><span>R$ 51,60</span></div>
+                                        <div class="sidebar-pedido-item-tags"></div>
+                                        <div class="sidebar-pedido-item-buttons-wrapper"><button type="button"
+                                                role="button"
+                                                class="btn btn-link-edit btn-size-m sidebar-pedido-button-item-button"
+                                                theme="link" variant="sidebar-pedido-button-item-button" label="Editar"
+                                                data-test-id="restaurant-cart-item__edit-button" color="primary"
+                                                target="" rel=""><span class="btn-label">Editar</span></button><button
+                                                type="button" role="button"
+                                                class="btn btn-link-edit btn-gray btn-size-m sidebar-pedido-button-item-button"
+                                                theme="link" color="gray" variant="sidebar-pedido-button-item-button"
+                                                label="Remover" data-test-id="restaurant-cart-item__remove-button"
+                                                target="" rel=""><span class="btn-label">Remover</span></button></div>
+                                    </div>
+                                    <div class="restaurant-cart-item sidebar-pedido-line">
+                                        <div class="idebar-pedido-item-description sidebar-pedido-justify"><span>4x
+                                                Chopp Pet 1litro</span><span>R$ 51,60</span></div>
+                                        <div class="sidebar-pedido-item-tags"></div>
+                                        <div class="sidebar-pedido-item-buttons-wrapper"><button type="button"
+                                                role="button"
+                                                class="btn btn-link-edit btn-size-m sidebar-pedido-button-item-button"
+                                                theme="link" variant="sidebar-pedido-button-item-button" label="Editar"
+                                                data-test-id="restaurant-cart-item__edit-button" color="primary"
+                                                target="" rel=""><span class="btn-label">Editar</span></button><button
+                                                type="button" role="button"
+                                                class="btn btn-link-edit btn-gray btn-size-m sidebar-pedido-button-item-button"
+                                                theme="link" color="gray" variant="sidebar-pedido-button-item-button"
+                                                label="Remover" data-test-id="restaurant-cart-item__remove-button"
+                                                target="" rel=""><span class="btn-label">Remover</span></button></div>
+                                    </div>
+                                    <div class="restaurant-cart-item sidebar-pedido-line">
+                                        <div class="idebar-pedido-item-description sidebar-pedido-justify"><span>1x
+                                                X-Chesse Eggs Burguer</span>
+                                            <span>R$ 27,90</span>
+                                        </div>
+                                        <div class="sidebar-pedido-item-obs">Obs.: Tirar tudo</div>
+                                        <div class="sidebar-pedido-item-tags"></div>
+                                        <div class="sidebar-pedido-item-buttons-wrapper"><button type="button"
+                                                role="button"
+                                                class="btn btn-link-edit btn-size-m sidebar-pedido-button-item-button"
+                                                theme="link" variant="sidebar-pedido-button-item-button" label="Editar"
+                                                data-test-id="restaurant-cart-item__edit-button" color="primary"
+                                                target="" rel=""><span class="btn-label">Editar</span></button><button
+                                                type="button" role="button"
+                                                class="btn btn-link-edit btn-gray btn-size-m sidebar-pedido-button-item-button"
+                                                theme="link" color="gray" variant="sidebar-pedido-button-item-button"
+                                                label="Remover" data-test-id="restaurant-cart-item__remove-button"
+                                                target="" rel=""><span class="btn-label">Remover</span></button></div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer-pedido">
+                                    <div class="sidebar-item-footer">
+                                        <div class="sidebar-pedido-footer__total sidebar-pedido-justify">
+                                            <span class="sidebar-pedido-footer__info-description">Total</span>
+                                            <span data-test-id="total-price">R$ 130,23</span>
+                                        </div>
+                                        <div class="sidebar-pedido-footer-button-wrapper">
+                                            <a class="btn btn--default btn-size-m btn--full-width restaurant-cart-footer__button"
+                                                role="button" target="" rel="" href="#modal-footer">
+                                                <span class="btn-label">Realizar pedido</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
                     </div>
                 </div>
             </nav>
@@ -109,27 +256,6 @@
     </div>
 
 
-    <!-- Modal Colapsável -->
-    <div class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="cartModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-slideout modal-md">
-            <div class="modal-content">
-                <!-- Conteúdo do seu modal aqui -->
-                <div class="modal-header">
-                    <h5 class="modal-title" id="cartModalLabel">Seu Carrinho</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <!-- Coloque aqui o conteúdo do carrinho, como os itens selecionados -->
-                </div>
-                <div class="modal-footer">
-                    <!-- Coloque aqui os botões de ação do modal -->
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                    <button type="button" class="btn btn-primary">Finalizar Pedido</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
 
     <script>
@@ -244,6 +370,11 @@
                 sidebar.removeClass('active');
             }
         });
+
+        document.getElementById('openPedidoModal').addEventListener('click', function () {
+            $('#pedidoModal').modal('show');
+        });
+
 
     </script>
 </body>

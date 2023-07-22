@@ -2,40 +2,44 @@ body {
   background: #373131;
 }
 
-#side_nav{
+#side_nav {
   background: #644E4E;
   min-width: 250px;
   max-width: 250px;
   transition: all 0.3s;
 }
 
-.content{
+.content {
   z-index: 1;
   min-height: 100vh;
   width: 100%;
   background: #373131;
 }
 
-hr.h-color{
+hr.h-color {
   background: #eee;
   height: 2px;
 }
 
-.sidebar li.active{
+.sidebar li.active {
   background: #FFDA85;
   border-radius: 8px;
   transition: all 0.3s;
 }
 
-.sidebar li.active a, .sidebar li.active a:hover{
+.sidebar li.active a,
+.sidebar li.active a:hover {
   color: #000;
 }
 
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
   color: #FFDA85;
 }
 
-.sidebar li a{
+.sidebar li a {
   color: #FFDA85;
 }
 
@@ -52,24 +56,27 @@ h1, h2, h3, h4 {
   background: #725d5d;
 }
 
-.card-header-tabs .nav-link.active{
+.card-header-tabs .nav-link.active {
   background: #FFDA85;
   border-color: transparent;
 }
 
-.nav-link:hover{
+.nav-link:hover {
   color: #fff;
   border-color: transparent;
 }
 
-.tab-color{
+.tab-color {
   color: #FFDA85;
 }
 
 .custom-image {
-  width: auto; /* Defina o valor desejado para a largura */
-  height: 100px; /* Defina o valor desejado para a altura */
-  object-fit: cover; /* Mantém a proporção da imagem */
+  width: auto;
+  /* Defina o valor desejado para a largura */
+  height: 100px;
+  /* Defina o valor desejado para a altura */
+  object-fit: cover;
+  /* Mantém a proporção da imagem */
 }
 
 .sidebar {
@@ -85,6 +92,7 @@ h1, h2, h3, h4 {
   }
 }
 
+
 .card-custom {
   height: 620px;
 }
@@ -93,17 +101,18 @@ h1, h2, h3, h4 {
   display: block;
   height: 716px;
   overflow-y: auto;
-  z-index: 999;
+  z-index: 5;
 }
 
-@media(max-width: 767px){
-  #side_nav{
+@media(max-width: 767px) {
+  #side_nav {
     margin-left: -250px;
     position: fixed;
     min-height: 100vh;
     z-index: 1;
   }
-  #side_nav.active{
+
+  #side_nav.active {
     margin-left: 0;
   }
 }
@@ -134,7 +143,6 @@ h1, h2, h3, h4 {
 
 .custom-button::before {
   background-color: #4e17e6;
-  z-index: -1;
 }
 
 .custom-button:hover::before {
@@ -143,11 +151,232 @@ h1, h2, h3, h4 {
 
 .custom-button::after {
   background-color: #993c06;
-  z-index: -2;
   opacity: 0;
   transition: opacity 0.3s ease;
 }
 
 .custom-button:active::after {
   opacity: 1;
+}
+
+/* Remover as bordas semi-redondas do modal */
+
+.modal-backdrop {
+  --bs-backdrop-zindex: 0;
+  --bs-backdrop-bg: #00000000;
+  --bs-backdrop-opacity: 0.5;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: var(--bs-backdrop-zindex);
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--bs-backdrop-bg);
+}
+
+
+/* CSS para animação do novo modal */
+.modal-dialog-slideout-pedido {
+  transform: translateX(100%);
+  transition: transform 1.3s;
+}
+
+.modal-dialog-slidein-pedido {
+  transform: translateX(100%);
+  transition: transform 0.3s;
+}
+
+.modal.show .modal-dialog-slidein-pedido {
+  transform: translateX(0);
+}
+
+.modal.show .modal-dialog-slideout-pedido {
+  transform: translateX(-100%);
+}
+
+/* CSS para posicionar o novo modal abaixo do navbar */
+.modal-dialog-pedido {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 60%;
+  /* Defina a largura desejada para o modal */
+  height: 89.8vh;
+  /* Defina a altura desejada para o modal */
+  top: auto;
+  margin: 0;
+  /* Remova a margem */
+}
+
+/* CSS para ajustar a largura do novo modal */
+.modal-content-pedido {
+  height: 100%;
+  /* Defina a altura como 100% para ocupar todo o espaço disponível */
+  border-radius: 0;
+  /* Remova o arredondamento das bordas */
+}
+
+.modal-dialog-slideout-close-pedido {
+  transform: translateX(100%);
+  transition: transform 0.3s;
+}
+
+/* =========== Estilo para o menu-pedidos ==========
+   O código abaixo refere-se ao menu lateral do pedido.
+   ================================================ */
+.sidebar-pedido {
+  border-top: 1px solid #dcdcdc;
+  margin: 0 30px;
+  padding: 12px 0 16px;
+}
+
+.sidebar-pedido-line {
+  border-top: 1px solid #dcdcdc;
+  margin: 0 30px;
+  padding: 12px 0 16px;
+}
+
+.sidebar-pedido-menu {
+  display: flex;
+  flex-flow: nowrap column;
+  position: sticky;
+  top: 0;
+}
+
+.sidebar-pedido-item {
+  font-size: 1rem;
+}
+
+.sidebar-pedido-item-description {
+  margin: 0.5em 0;
+  line-height: 1.4;
+  grid-gap: 50px;
+  gap: 50px;
+}
+
+.sidebar-pedido-justify {
+  display: flex;
+  flex-flow: row nowrap;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+
+.sidebar-pedido-item-tags {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: flex-start;
+}
+
+.sidebar-pedido-item-buttons-wrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.btn-link-edit {
+  background: transparent;
+  color: #ea1d2c;
+}
+
+.sidebar-pedido-button .btn-label {
+  text-align: left;
+  font-size: .875rem;
+}
+
+.btn-pedido .btn-label {
+  font-size: 1rem;
+  line-height: 1em;
+  flex-grow: 1;
+  position: relative;
+  top: 1px;
+  text-align: center;
+}
+
+.btn-pedido {
+  background: transparent;
+  text-decoration: none;
+  color: #ea1d2c;
+  border: none;
+  padding: 0 20px;
+  border-radius: 4px;
+  margin: 3px 0;
+  height: 50px;
+  font-weight: 500;
+  transition: .1s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  cursor: default;
+}
+
+.sidebar-pedido-button-item-button {
+  height: 100%;
+  font-size: .875rem;
+  padding: 0;
+  width: 70px;
+  margin-right: 10px;
+}
+
+.sidebar-pedido-item-obs {
+  font-size: .875rem;
+  font-weight: 300;
+  color: #717171;
+  margin: 0.5em 0;
+  line-height: 1.3;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.sidebar-pedido-wrapper--scroll {
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 100%;
+}
+
+.sidebar-pedido-footer__total {
+  font-weight: 500;
+}
+
+.sidebar-pedido-footer__total .sidebar-pedido-footer__info-description {
+  color: #3f3e3e;
+  font-size: 1.125rem;
+}
+
+.sidebar-pedido-footer-button-wrapper {
+  margin: 10px 0 0;
+}
+
+.btn.btn--full-width {
+  width: 100%;
+}
+
+/* Estilos padrão do botão */
+.btn--default {
+  background: #ea1d2c;
+  color: #fff;
+  transition: background-color 0.2s; /* Adiciona uma transição suave para a mudança de cor */
+}
+
+/* Estilo quando o botão está ativo (quando clicado) */
+.btn--default:active {
+  background-color: #d0192b; /* Cor vermelha mais escura para indicar que o botão está ativo */
+}
+
+
+
+.modal-footer-pedido {
+  display: flex;
+  align-items: stretch;
+  flex-direction: column-reverse;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: stretch;
+  padding: 10px 45px;
+  border-top-width: 1px;
+  border-top: solid 1px;
+  border-top-color: #dadadb48;
 }
