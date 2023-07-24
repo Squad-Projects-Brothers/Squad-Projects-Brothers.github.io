@@ -24,7 +24,7 @@ function montadorHtml(itensMenu) {
                                     <h5 class="card-title">${itensMenu.nome}</h5>
                                     <div class="text-center">
                                         <button class="btn btn-primary" data-bs-toggle="modal"
-                                            data-bs-target="#modalItem1">Adicionar ao Pedido</button>
+                                            data-bs-target="#modalItem1" id="${itensMenu.id}">Adicionar ao Pedido</button>
                                     </div>
                                 </div>
                             </div>
