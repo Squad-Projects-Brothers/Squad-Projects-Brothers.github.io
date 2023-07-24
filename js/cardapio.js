@@ -1,6 +1,7 @@
 
 function pegaritens() {
-    url = "https://ravinristorant.000webhostapp.com/json/server-itens.php";
+    //url = "https://ravinristorant.000webhostapp.com/json/server-itens.php";
+   url = "http://localhost/ravin/server-itens.php";
 
     fetch(url)
         .then((dados) => {
@@ -13,8 +14,10 @@ function pegaritens() {
 
 function montadorHtml(itensMenu) {
     const divInitial = document.getElementById("cardapio");
-    const descricao = document.getElementById("descricao-produto");
+    //const modalItem1 = document.getElementById("modalItem1");
+    const descricao = document.getElementById(observacaoItem1);
     var textHtml = "";
+
     for (itensMenu of itensMenu) {
         textHtml += `
                     <div class="col-sm-4 mb-3" data-category="${itensMenu.categoria}"> 
@@ -29,6 +32,7 @@ function montadorHtml(itensMenu) {
                                 </div>
                             </div>
                         </div>`;
+        
         divInitial.innerHTML = textHtml;
         descricao.innerText = itensMenu.descricao;
     }
@@ -42,7 +46,7 @@ function fazerPedido(item) {
     const itensClassName = document.getElementsByName(`qtd-${item.id}`);
     const qtdItem = itensClassName[0].value;
     item['quantidade'] = qtdItem;
-    
+
     //enviar pedido pra web
 
     salvarUltimoPedido(item);
