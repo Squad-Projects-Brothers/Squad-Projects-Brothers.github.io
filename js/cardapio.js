@@ -72,32 +72,11 @@ function addItensCarrinho() {
       });
     }
 }*/
-function lista() {
-    const listaItensNumero = [1, 2, 3];
-    const listaItens = document.getElementById("listaItens");
-    var textHtml = "";
-    // Para cada número na lista de itens, crie um novo elemento div e preencha-o com o conteúdo desejado
-    listaItensNumero.forEach((itemNumero) => {
-         textHtml += `
-            <div class="sidebar-pedido-item sidebar-pedido-line">
-                <div class="sidebar-pedido-item-description sidebar-pedido-justify"><span>ewqewqewqe</span><span>R$ 51,60</span></div>
-                <div class="sidebar-pedido-item-tags"></div>
-                <div class="sidebar-pedido-item-buttons-wrapper">
-                    <button type="button" role="button" class="btn btn-link-edit btn-size-m sidebar-pedido-button-item-button" theme="link" variant="sidebar-pedido-button-item-button" label="Editar" data-test-id="restaurant-cart-item__edit-button" color="primary" target="" rel="">
-                        <span class="btn-label">Editar</span>
-                    </button>
-                    <button type="button" role="button" class="btn btn-link-edit btn-gray btn-size-m sidebar-pedido-button-item-button" theme="link" color="gray" variant="sidebar-pedido-button-item-button" label="Remover" data-test-id="restaurant-cart-item__remove-button" target="" rel="">
-                        <span class="btn-label">Remover</span>
-                    </button>
-                </div>
-            </div>`;
-        
-        // Crie um novo elemento div para o item do pedido
-        const novoItemPedido = document.createElement('div');
-        novoItemPedido.innerHTML = textHtml;
-        
-        // Adicione o novo item do pedido como um filho do elemento listaItens
-        listaItens.appendChild(novoItemPedido);
-    });
+function removerDiv(button) {
+    // Obtém o elemento pai do botão clicado, que é a div com a classe "restaurant-cart-item sidebar-pedido-line"
+    var divItem = button.closest(".restaurant-cart-item");
+    
+    // Remove a div inteira do DOM
+    divItem.remove();
 }
 

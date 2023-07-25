@@ -113,9 +113,9 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>
-                                <div class="modal-body sidebar-pedido-wrapper--scroll">
+                                <div class="modal-body sidebar-pedido-wrapper--scroll" id="listaItens">
                                     <!-- Coloque aqui o conteúdo do seu pedido, como os itens selecionados -->
-                                    <div class="sidebar-pedido-item sidebar-pedido-line" id="listaItens" >
+                                    <div class="restaurant-cart-item sidebar-pedido-line">
                                         <div class="idebar-pedido-item-description sidebar-pedido-justify"><span>4x
                                                 Chopp Pet 1litro</span><span>R$ 51,60</span></div>
                                         <div class="sidebar-pedido-item-tags"></div>
@@ -129,7 +129,7 @@
                                                 class="btn btn-link-edit btn-gray btn-size-m sidebar-pedido-button-item-button"
                                                 theme="link" color="gray" variant="sidebar-pedido-button-item-button"
                                                 label="Remover" data-test-id="restaurant-cart-item__remove-button"
-                                                target="" rel=""><span class="btn-label">Remover</span></button></div>
+                                                target="" rel="" onclick="removerDiv(this)"><span class="btn-label">Remover</span></button></div>
                                     </div>
                                     <div class="restaurant-cart-item sidebar-pedido-line">
                                         <div class="idebar-pedido-item-description sidebar-pedido-justify"><span>4x
@@ -145,7 +145,7 @@
                                                 class="btn btn-link-edit btn-gray btn-size-m sidebar-pedido-button-item-button"
                                                 theme="link" color="gray" variant="sidebar-pedido-button-item-button"
                                                 label="Remover" data-test-id="restaurant-cart-item__remove-button"
-                                                target="" rel=""><span class="btn-label">Remover</span></button></div>
+                                                target="" rel="" onclick="removerDiv(this)"><span class="btn-label">Remover</span></button></div>
                                     </div>
                                     <div class="restaurant-cart-item sidebar-pedido-line">
                                         <div class="idebar-pedido-item-description sidebar-pedido-justify"><span>4x
@@ -161,7 +161,7 @@
                                                 class="btn btn-link-edit btn-gray btn-size-m sidebar-pedido-button-item-button"
                                                 theme="link" color="gray" variant="sidebar-pedido-button-item-button"
                                                 label="Remover" data-test-id="restaurant-cart-item__remove-button"
-                                                target="" rel=""><span class="btn-label">Remover</span></button></div>
+                                                target="" rel="" onclick="removerDiv(this)"><span class="btn-label">Remover</span></button></div>
                                     </div>
                                     <div class="restaurant-cart-item sidebar-pedido-line">
                                         <div class="idebar-pedido-item-description sidebar-pedido-justify"><span>4x
@@ -177,7 +177,7 @@
                                                 class="btn btn-link-edit btn-gray btn-size-m sidebar-pedido-button-item-button"
                                                 theme="link" color="gray" variant="sidebar-pedido-button-item-button"
                                                 label="Remover" data-test-id="restaurant-cart-item__remove-button"
-                                                target="" rel=""><span class="btn-label">Remover</span></button></div>
+                                                target="" rel="" onclick="removerDiv(this)"><span class="btn-label">Remover</span></button></div>
                                     </div>
                                     <div class="restaurant-cart-item sidebar-pedido-line">
                                         <div class="idebar-pedido-item-description sidebar-pedido-justify"><span>4x
@@ -193,7 +193,7 @@
                                                 class="btn btn-link-edit btn-gray btn-size-m sidebar-pedido-button-item-button"
                                                 theme="link" color="gray" variant="sidebar-pedido-button-item-button"
                                                 label="Remover" data-test-id="restaurant-cart-item__remove-button"
-                                                target="" rel=""><span class="btn-label">Remover</span></button></div>
+                                                target="" rel="" onclick="removerDiv(this)"><span class="btn-label">Remover</span></button></div>
                                     </div>
                                     <div class="restaurant-cart-item sidebar-pedido-line">
                                         <div class="idebar-pedido-item-description sidebar-pedido-justify"><span>4x
@@ -209,7 +209,7 @@
                                                 class="btn btn-link-edit btn-gray btn-size-m sidebar-pedido-button-item-button"
                                                 theme="link" color="gray" variant="sidebar-pedido-button-item-button"
                                                 label="Remover" data-test-id="restaurant-cart-item__remove-button"
-                                                target="" rel=""><span class="btn-label">Remover</span></button></div>
+                                                target="" rel="" onclick="removerDiv(this)"><span class="btn-label">Remover</span></button></div>
                                     </div>
                                     <div class="restaurant-cart-item sidebar-pedido-line">
                                         <div class="idebar-pedido-item-description sidebar-pedido-justify"><span>1x
@@ -228,10 +228,13 @@
                                                 class="btn btn-link-edit btn-gray btn-size-m sidebar-pedido-button-item-button"
                                                 theme="link" color="gray" variant="sidebar-pedido-button-item-button"
                                                 label="Remover" data-test-id="restaurant-cart-item__remove-button"
-                                                target="" rel=""><span class="btn-label">Remover</span></button></div>
-                                                <button onclick="lista()">teste</button>
+                                                target="" rel="" onclick="removerDiv(this)"><span
+                                                    class="btn-label">Remover</span></button></div>
                                     </div>
                                 </div>
+                                <script>
+                                    
+                                </script>
                                 <div class="modal-footer-pedido">
                                     <div class="sidebar-item-footer">
                                         <div class="sidebar-pedido-footer__total sidebar-pedido-justify">
@@ -241,12 +244,12 @@
                                         <div class="sidebar-pedido-footer-button-wrapper">
                                             <a class="btn btn--default btn-size-m btn--full-width restaurant-cart-footer__button"
                                                 role="button" target="" rel="" href="#modal-footer">
-                                                <span class="btn-label" onclick="lista">Realizar pedido</span>
+                                                <span class="btn-label" >Realizar pedido</span>
                                             </a>
                                         </div>
                                     </div>
                                 </div>
-                                
+
                             </div>
                         </div>
                     </div>
