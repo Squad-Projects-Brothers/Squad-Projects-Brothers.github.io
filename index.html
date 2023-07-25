@@ -16,6 +16,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.6/jquery.inputmask.min.js"></script>
 
     <script src="js/cardapio.js"></script>
+    <script src="js/sidebar-carrinho.js"></script>
 
     <title>Ravin Ristorant</title>
 </head>
@@ -114,7 +115,7 @@
                                 </div>
                                 <div class="modal-body sidebar-pedido-wrapper--scroll">
                                     <!-- Coloque aqui o conteúdo do seu pedido, como os itens selecionados -->
-                                    <div class="sidebar-pedido-item sidebar-pedido-line">
+                                    <div class="sidebar-pedido-item sidebar-pedido-line" id="listaItens" >
                                         <div class="idebar-pedido-item-description sidebar-pedido-justify"><span>4x
                                                 Chopp Pet 1litro</span><span>R$ 51,60</span></div>
                                         <div class="sidebar-pedido-item-tags"></div>
@@ -228,6 +229,7 @@
                                                 theme="link" color="gray" variant="sidebar-pedido-button-item-button"
                                                 label="Remover" data-test-id="restaurant-cart-item__remove-button"
                                                 target="" rel=""><span class="btn-label">Remover</span></button></div>
+                                                <button onclick="lista()">teste</button>
                                     </div>
                                 </div>
                                 <div class="modal-footer-pedido">
@@ -239,7 +241,7 @@
                                         <div class="sidebar-pedido-footer-button-wrapper">
                                             <a class="btn btn--default btn-size-m btn--full-width restaurant-cart-footer__button"
                                                 role="button" target="" rel="" href="#modal-footer">
-                                                <span class="btn-label">Realizar pedido</span>
+                                                <span class="btn-label" onclick="lista">Realizar pedido</span>
                                             </a>
                                         </div>
                                     </div>

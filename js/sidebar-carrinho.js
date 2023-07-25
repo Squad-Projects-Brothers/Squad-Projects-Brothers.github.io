@@ -1,6 +1,4 @@
 //consts
-
-
 function addItensCarrinho(){
-
+    
 }

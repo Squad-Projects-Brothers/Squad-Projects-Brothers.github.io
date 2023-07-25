@@ -64,13 +64,13 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger rounded-pill">
-                    <i class="bi bi-dash"></i>
+                    <i onclick="removeNumeroDeItens()" id="i-remove-item" class="bi bi-dash"></i>
                 </button>
-                <span class="modal-quantidade">0</span>
+                <span class="modal-quantidade" id="numberItem">0</span>
                 <button type="button" class="btn btn-primary rounded-pill">
-                    <i class="bi bi-plus"></i>
+                    <i onclick="addNumeroDeItens()" id="i-add-item" class="bi bi-plus"></i>
                 </button>
-                <a href="#" onclick="addItensCarrinho()" class="btn btn-primary" data-bs-dismiss="modal" data-id-item="${itensMenu.id}">Adicionar ao Pedido</a>
+                <a href="#" onclick="addItensCarrinho()" class="btn btn-primary"  data-bs-dismiss="modal" >Adicionar ao Pedido</a>
             </div>
         </div>
     </div>
