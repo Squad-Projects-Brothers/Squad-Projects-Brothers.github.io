@@ -124,7 +124,7 @@
                                                 class="btn btn-link-edit btn-size-m sidebar-pedido-button-item-button"
                                                 theme="link" variant="sidebar-pedido-button-item-button" label="Editar"
                                                 data-test-id="restaurant-cart-item__edit-button" color="primary"
-                                                target="" rel=""><span class="btn-label">Editar</span></button><button
+                                                target="" rel="" onclick="editarDiv(this)"><span class="btn-label">Editar</span></button><button
                                                 type="button" role="button"
                                                 class="btn btn-link-edit btn-gray btn-size-m sidebar-pedido-button-item-button"
                                                 theme="link" color="gray" variant="sidebar-pedido-button-item-button"
@@ -140,7 +140,7 @@
                                                 class="btn btn-link-edit btn-size-m sidebar-pedido-button-item-button"
                                                 theme="link" variant="sidebar-pedido-button-item-button" label="Editar"
                                                 data-test-id="restaurant-cart-item__edit-button" color="primary"
-                                                target="" rel=""><span class="btn-label">Editar</span></button><button
+                                                target="" rel="" onclick="editarDiv(this)"><span class="btn-label">Editar</span></button><button
                                                 type="button" role="button"
                                                 class="btn btn-link-edit btn-gray btn-size-m sidebar-pedido-button-item-button"
                                                 theme="link" color="gray" variant="sidebar-pedido-button-item-button"
@@ -156,7 +156,7 @@
                                                 class="btn btn-link-edit btn-size-m sidebar-pedido-button-item-button"
                                                 theme="link" variant="sidebar-pedido-button-item-button" label="Editar"
                                                 data-test-id="restaurant-cart-item__edit-button" color="primary"
-                                                target="" rel=""><span class="btn-label">Editar</span></button><button
+                                                target="" rel="" onclick="editarDiv(this)"><span class="btn-label">Editar</span></button><button
                                                 type="button" role="button"
                                                 class="btn btn-link-edit btn-gray btn-size-m sidebar-pedido-button-item-button"
                                                 theme="link" color="gray" variant="sidebar-pedido-button-item-button"
@@ -172,7 +172,7 @@
                                                 class="btn btn-link-edit btn-size-m sidebar-pedido-button-item-button"
                                                 theme="link" variant="sidebar-pedido-button-item-button" label="Editar"
                                                 data-test-id="restaurant-cart-item__edit-button" color="primary"
-                                                target="" rel=""><span class="btn-label">Editar</span></button><button
+                                                target="" rel="" onclick="editarDiv(this)"><span class="btn-label">Editar</span></button><button
                                                 type="button" role="button"
                                                 class="btn btn-link-edit btn-gray btn-size-m sidebar-pedido-button-item-button"
                                                 theme="link" color="gray" variant="sidebar-pedido-button-item-button"
@@ -188,7 +188,7 @@
                                                 class="btn btn-link-edit btn-size-m sidebar-pedido-button-item-button"
                                                 theme="link" variant="sidebar-pedido-button-item-button" label="Editar"
                                                 data-test-id="restaurant-cart-item__edit-button" color="primary"
-                                                target="" rel=""><span class="btn-label">Editar</span></button><button
+                                                target="" rel="" onclick="editarDiv(this)"><span class="btn-label">Editar</span></button><button
                                                 type="button" role="button"
                                                 class="btn btn-link-edit btn-gray btn-size-m sidebar-pedido-button-item-button"
                                                 theme="link" color="gray" variant="sidebar-pedido-button-item-button"
@@ -204,7 +204,7 @@
                                                 class="btn btn-link-edit btn-size-m sidebar-pedido-button-item-button"
                                                 theme="link" variant="sidebar-pedido-button-item-button" label="Editar"
                                                 data-test-id="restaurant-cart-item__edit-button" color="primary"
-                                                target="" rel=""><span class="btn-label">Editar</span></button><button
+                                                target="" rel="" onclick="editarDiv(this)"><span class="btn-label">Editar</span></button><button
                                                 type="button" role="button"
                                                 class="btn btn-link-edit btn-gray btn-size-m sidebar-pedido-button-item-button"
                                                 theme="link" color="gray" variant="sidebar-pedido-button-item-button"
@@ -223,7 +223,7 @@
                                                 class="btn btn-link-edit btn-size-m sidebar-pedido-button-item-button"
                                                 theme="link" variant="sidebar-pedido-button-item-button" label="Editar"
                                                 data-test-id="restaurant-cart-item__edit-button" color="primary"
-                                                target="" rel=""><span class="btn-label">Editar</span></button><button
+                                                target="" rel="" onclick="editarDiv(this)"><span class="btn-label">Editar</span></button><button
                                                 type="button" role="button"
                                                 class="btn btn-link-edit btn-gray btn-size-m sidebar-pedido-button-item-button"
                                                 theme="link" color="gray" variant="sidebar-pedido-button-item-button"
@@ -231,6 +231,13 @@
                                                 target="" rel="" onclick="removerDiv(this)"><span
                                                     class="btn-label">Remover</span></button></div>
                                     </div>
+                                    <div class="modal-form-edit" style="display: none;">
+    <h3>Editar Item</h3>
+    <label for="quantidade">Quantidade:</label>
+    <input type="number" id="quantidade" name="quantidade" min="1" value="4">
+    <button type="button" onclick="salvarEdicao()">Salvar</button>
+    <button type="button" onclick="cancelarEdicao()">Cancelar</button>
+</div>
                                 </div>
                                 <script>
                                     
