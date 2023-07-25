@@ -72,11 +72,60 @@ function addItensCarrinho() {
       });
     }
 }*/
-function removerDiv(button) {
+function editarDiv(button) {
     // Obtém o elemento pai do botão clicado, que é a div com a classe "restaurant-cart-item sidebar-pedido-line"
     var divItem = button.closest(".restaurant-cart-item");
-    
-    // Remove a div inteira do DOM
-    divItem.remove();
+
+    // Verifica se o elemento pai foi encontrado corretamente
+    if (!divItem) {
+        console.error("Elemento com a classe 'restaurant-cart-item' não encontrado.");
+        return;
+    }
+
+    // Obtém o elemento filho com a classe "sidebar-pedido-item-description"
+    var itemDescription = divItem.querySelector(".sidebar-pedido-item-description");
+
+    // Verifica se o elemento filho foi encontrado corretamente
+    if (!itemDescription) {
+        console.error("Elemento com a classe 'sidebar-pedido-item-description' não encontrado dentro de 'restaurant-cart-item'.");
+        return;
+    }
+
+    // Obtém o texto do item do pedido e o preço
+    var itemTexto = itemDescription.querySelector("span:first-child").innerText;
+    var itemPreco = itemDescription.querySelector("span:last-child").innerText;
+
+        // Preenche o formulário de edição com os detalhes do item
+        document.getElementById("quantidade").value = parseInt(itemTexto);
+        
+        // Exibe o formulário de edição
+        document.querySelector(".modal-form-edit").style.display = "block";
+        
+        // Armazena o item em edição para posterior atualização
+        itemEmEdicao = divItem;
+    }
+
+    function salvarEdicao() {
+        var novaQuantidade = document.getElementById("quantidade").value;
+
+        // Atualiza o texto do item com a nova quantidade
+        var descricaoItem = itemEmEdicao.querySelector(".sidebar-pedido-item-description span:first-child");
+        descricaoItem.innerText = novaQuantidade + "x Chopp Pet 1litro";
+
+        // Fecha o formulário de edição
+        document.querySelector(".modal-form-edit").style.display = "none";
+        
+        // Limpa a variável de item em edição
+        itemEmEdicao = null;
+    }
+
+    function cancelarEdicao() {
+        // Fecha o formulário de edição
+        document.querySelector(".modal-form-edit").style.display = "none";
+
+        // Limpa a variável de item em edição
+        itemEmEdicao = null;
+    }
+
 }
 
