@@ -38,16 +38,19 @@ function montadorHtml(itensMenu) {
     }
 }
 function atualizarModal(id, nome, categoria, descricao, valor) {
-    let ddescricao = document.getElementById("descricao-produto");
+    let addDescricao = document.getElementById("descricao-produto");
     let titulo = document.getElementById("modalItem1Label");
     let valorProduto = document.getElementById("valorItem");
     let addItem = document.getElementById("addItem");
     titulo.innerText = nome;
-    ddescricao.innerText = descricao;
+    addDescricao.innerText = descricao;
     valorProduto.innerText = 'R$' + valor;
-    addItem.hasAttribute('onclick', addItem(id))
+    let função = `adicionarProdutoNoCarrinho(${id})`;
+    addItem.setAttribute('onclick', função)
 }
+function adicionarProdutoNoCarrinho(idProduto){
 
+}
 // função de quantidade de itens no model de cada produto
 
 const itemEmEdicao = null; // Variável para armazenar o item em edição
