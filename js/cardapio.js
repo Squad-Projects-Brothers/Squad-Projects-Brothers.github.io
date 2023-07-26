@@ -12,35 +12,40 @@ function pegaritens() {
             montadorHtml(data);
         });
 }
+
 //função de adicionar listar os itens do json
 function montadorHtml(itensMenu) {
     let divInitial = document.getElementById("cardapio");
-    let descricao = document.getElementById("descricao-produto");
-    let titulo = document.getElementById("modalItem1Label");
-    let valorProduto = document.getElementById("ValorItem");
     var textHtml = "";
 
     for (itemMenu of itensMenu) {
         textHtml += `
-                    <div class="col-sm-4 mb-3 itens-menu"  data-category="${itemMenu.categoria}"> 
-                            <div class="card">
-                                <img src="${itemMenu.imagem}" class="card-img-top custom-image" alt="Item 1">
-                                <div class="card-body">
-                                    <h5 class="card-title">${itemMenu.nome}</h5>
-                                    <div class="text-center">
-                                        <button class="btn btn-primary" 
-                                             onclick="chamarModelAddCarrinho('${itemMenu.id}','${itemMenu.nome}','${itemMenu.valor}','${itemMenu.descricao}')" id="${itemMenu.id}">Adicionar ao Pedido</button>
-                                    </div>
+        <div class="col-sm-4 mb-3 itens-menu"  data-category="${itemMenu.categoria}"> 
+                <div class="card">
+                    <img src="${itemMenu.imagem}" class="card-img-top custom-image" alt="Item 1">
+                    <div class="card-body">
+                        <h5 class="card-title">${itemMenu.nome}</h5>
+                        <div class="text-center">
+                            <button class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#modalItem1" onclick="atualizarModal('${itemMenu.id}','${itemMenu.nome}','${itemMenu.categoria}','${itemMenu.descricao}','${itemMenu.valor}')" id="${itemMenu.id}">Adicionar ao Pedido</button>
                                 </div>
-                            </div>
-                        </div>`;
-        valorProduto.innerText = "R$" + itemMenu.valor;
-        titulo.innerText = itemMenu.nome;
-        descricao.innerText = itemMenu.descricao;
+                    </div>
+                </div>
+            </div>`;
         divInitial.innerHTML = textHtml;
 
 
     }
+}
+function atualizarModal(id, nome, categoria, descricao, valor) {
+    let ddescricao = document.getElementById("descricao-produto");
+    let titulo = document.getElementById("modalItem1Label");
+    let valorProduto = document.getElementById("valorItem");
+    let addItem = document.getElementById("addItem");
+    titulo.innerText = nome;
+    ddescricao.innerText = descricao;
+    valorProduto.innerText = 'R$' + valor;
+    addItem.hasAttribute('onclick', addItem(id))
 }
 
 // função de quantidade de itens no model de cada produto

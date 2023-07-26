@@ -5,13 +5,13 @@
             <ul class="nav nav-tabs card-header-tabs" id="myTabs" role="tablist">
                 <li class="nav-item " role="presentation">
                     <button class="nav-link tab-color menu-itens" id="entrada-tab" data-bs-toggle="tab"
-                        data-bs-target="#entrada" type="button" role="tab" aria-controls="entrada"
-                        aria-selected="false" onclick="selecionarTodosItens(this, 'todos')">Todos</button>
+                        data-bs-target="#entrada" type="button" role="tab" aria-controls="entrada" aria-selected="false"
+                        onclick="selecionarTodosItens(this, 'todos')">Todos</button>
                 </li>
                 <li class="nav-item " role="presentation">
                     <button class="nav-link tab-color menu-itens" id="comida-tab" data-bs-toggle="tab"
-                        data-bs-target="#comida" type="button" role="tab" aria-controls="comida"
-                        aria-selected="false" onclick="activeModel(this, 'comida')">Comidas</button>
+                        data-bs-target="#comida" type="button" role="tab" aria-controls="comida" aria-selected="false"
+                        onclick="activeModel(this, 'comida')">Comidas</button>
                 </li>
                 <li class="nav-item " role="presentation">
                     <button class="nav-link tab-color menu-itens" id="sobremesas-tab" data-bs-toggle="tab"
@@ -20,65 +20,64 @@
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="nav-link tab-color menu-itens" id="bebidas-tab" data-bs-toggle="tab"
-                        data-bs-target="#bebidas" type="button" role="tab" aria-controls="bebidas"
-                        aria-selected="false" onclick="activeModel(this, 'bebida')">Bebidas</button>
+                        data-bs-target="#bebidas" type="button" role="tab" aria-controls="bebidas" aria-selected="false"
+                        onclick="activeModel(this, 'bebida')">Bebidas</button>
                 </li>
             </ul>
         </div>
-            <div class="card-body mb-3 mb-sm-0 bar-scroll">
+        <div class="card-body mb-3 mb-sm-0 bar-scroll">
 
-                <div class="tab-content" id="myTabsContent">
-                    <div class="tab-pane fade show active" id="entrada" role="tabpanel" aria-labelledby="entrada-tab">
+            <div class="tab-content" id="myTabsContent">
+                <div class="tab-pane fade show active" id="entrada" role="tabpanel" aria-labelledby="entrada-tab">
 
-                        <div class="row" id="cardapio"> <!-- Criar nova linha -->
-                            <!-- Adicione mais colunas de acordo com a quantidade de itens do cardápio -->
-                        </div>
-
+                    <div class="row" id="cardapio"> <!-- Criar nova linha -->
+                        <!-- Adicione mais colunas de acordo com a quantidade de itens do cardápio -->
                     </div>
 
-                    <div class="tab-pane fade" id="principal" role="tabpanel" aria-labelledby="principal-tab">
-                        <!-- Conteúdo da aba de Prato Principal -->
-                    </div>
-                    <div class="tab-pane fade" id="sobremesas" role="tabpanel" aria-labelledby="sobremesas-tab">
-                        <!-- Conteúdo da aba de Sobremesas -->
-                    </div>
+                </div>
+
+                <div class="tab-pane fade" id="principal" role="tabpanel" aria-labelledby="principal-tab">
+                    <!-- Conteúdo da aba de Prato Principal -->
+                </div>
+                <div class="tab-pane fade" id="sobremesas" role="tabpanel" aria-labelledby="sobremesas-tab">
+                    <!-- Conteúdo da aba de Sobremesas -->
                 </div>
             </div>
         </div>
     </div>
-<!-- NÃO APAGAR ESSA DIV A BAIXO, POR ALGUM MOTIVO BUGA TUDO SE APAGA ELA -->
-    <div class="modal fade modal-custom" id="modalItem1" tabindex="-1" aria-labelledby="modalItem1Label"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalItem1Label">Detalhes do Item 1</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                        <span class="sr-only">Fechar</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <!-- Conteúdo do modal - detalhes do item -->
-                    <p id="descricao-produto">Aqui estão os detalhes do Item 1.</p>
+</div>
+<div class="modal fade modal-custom" id="modalItem1" tabindex="-1" aria-labelledby="modalItem1Label" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalItem1Label">Detalhes do Item 1</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    <span class="sr-only">Fechar</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Conteúdo do modal - detalhes do item -->
+                <p id="descricao-produto">Aqui estão os detalhes do Item 1.</p>
 
-                    <!-- Campos de observação -->
-                    <div class="mb-3">
-                        <label for="observacaoItem1" class="form-label">Observação:</label>
-                        <textarea class="form-control" id="observacaoItem1" rows="3"></textarea>
-                    </div>
+                <!-- Campos de observação -->
+                <div class="mb-3">
+                    <label for="observacaoItem1" class="form-label">Observação:</label>
+                    <textarea class="form-control" id="observacaoItem1" rows="3"></textarea>
                 </div>
-                <div class="modal-footer">
-                    <span class="modal-quantidade" id="ValorItem">R$50,00</span>
-                    <button type="button" class="btn btn-danger rounded-pill">
-                        <i onclick="removeNumeroDeItens()" id="i-remove-item" class="bi bi-dash"></i>
-                    </button>
-                    <span class="modal-quantidade" id="numberItem">0</span>
-                    <button type="button" class="btn btn-primary rounded-pill">
-                        <i onclick="addNumeroDeItens()" id="i-add-item" class="bi bi-plus"></i>
-                    </button>
-                    <a href="#" onclick="addItensCarrinho()" class="btn btn-primary" id="addItem"
-                        data-bs-dismiss="modal">Adicionar ao Pedido</a>
-                </div>
+            </div>
+            <div class="modal-footer">
+                <span class="modal-quantidade" id="valorItem">R$50,00</span>
+                <button type="button" class="btn btn-danger rounded-pill">
+                    <i onclick="removeNumeroDeItens()" id="i-remove-item" class="bi bi-dash"></i>
+                </button>
+                <span class="modal-quantidade" id="numberItem">1</span>
+                <button type="button" class="btn btn-primary rounded-pill">
+                    <i onclick="addNumeroDeItens()" id="i-add-item" class="bi bi-plus"></i>
+                </button>
+                <a href="#" onclick="addItensCarrinho()" class="btn btn-primary" id="addItem"
+                    data-bs-dismiss="modal">Adicionar ao Pedido</a>
             </div>
         </div>
     </div>
+</div>
+</div>

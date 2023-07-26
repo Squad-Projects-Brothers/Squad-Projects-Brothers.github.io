@@ -40,7 +40,7 @@ function chamarModelAddCarrinho(id, nome, valor, descricao) {
     filhoDiv.innerHTML = textHtml;
 }
 //função de adiconar os produtos em uma array que fica no localStorage(desenvolvendo ainda)
-function addNaArray(a,b,c){
+/*function addNaArray(a,b,c){
     let valor = a.substring(2, 6);
     if (localStorage.getItem("orderHistory") === null) {
         historicoPedidos = { itens: [] };
@@ -49,7 +49,7 @@ function addNaArray(a,b,c){
     }
     historicoPedidos.itens.push('nome: ' + c + ',quantidade: '+ b + ',valor: ' + valor);
     localStorage.setItem("orderHistory", JSON.stringify(historicoPedidos));
-}
+}*/
 //fechar o model de confirma add itens
 function fecharModel() {
     let modelItemPro = document.getElementById("modelItemPro")
