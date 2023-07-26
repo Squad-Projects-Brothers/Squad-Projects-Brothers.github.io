@@ -3,75 +3,82 @@
     <div class="card cardapio-color card-custom">
         <div class="card-header">
             <ul class="nav nav-tabs card-header-tabs" id="myTabs" role="tablist">
-                <li class="nav-item li-active" role="presentation">
-                    <button class="nav-link tab-color active" id="entrada-tab" data-bs-toggle="tab"
+                <li class="nav-item " role="presentation">
+                    <button class="nav-link tab-color menu-itens" id="entrada-tab" data-bs-toggle="tab"
                         data-bs-target="#entrada" type="button" role="tab" aria-controls="entrada"
-                        aria-selected="true">Prato Principal</button>
+                        aria-selected="false" onclick="selecionarTodosItens(this, 'todos')">Todos</button>
+                </li>
+                <li class="nav-item " role="presentation">
+                    <button class="nav-link tab-color menu-itens" id="comida-tab" data-bs-toggle="tab"
+                        data-bs-target="#comida" type="button" role="tab" aria-controls="comida"
+                        aria-selected="false" onclick="activeModel(this, 'comida')">Comidas</button>
+                </li>
+                <li class="nav-item " role="presentation">
+                    <button class="nav-link tab-color menu-itens" id="sobremesas-tab" data-bs-toggle="tab"
+                        data-bs-target="#sobremesas" type="button" role="tab" aria-controls="sobremesa"
+                        aria-selected="false" onclick="activeModel(this, 'sobremesa')">Sobremesas</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link tab-color" id="principal-tab" data-bs-toggle="tab"
-                        data-bs-target="#principal" type="button" role="tab" aria-controls="principal"
-                        aria-selected="false">Sobremesas</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link tab-color" id="sobremesas-tab" data-bs-toggle="tab"
-                        data-bs-target="#sobremesas" type="button" role="tab" aria-controls="sobremesas"
-                        aria-selected="false">Bebidas</button>
+                    <button class="nav-link tab-color menu-itens" id="bebidas-tab" data-bs-toggle="tab"
+                        data-bs-target="#bebidas" type="button" role="tab" aria-controls="bebidas"
+                        aria-selected="false" onclick="activeModel(this, 'bebida')">Bebidas</button>
                 </li>
             </ul>
         </div>
+            <div class="card-body mb-3 mb-sm-0 bar-scroll">
 
-        <div class="card-body mb-3 mb-sm-0 bar-scroll">
+                <div class="tab-content" id="myTabsContent">
+                    <div class="tab-pane fade show active" id="entrada" role="tabpanel" aria-labelledby="entrada-tab">
 
-            <div class="tab-content" id="myTabsContent">
-                <div class="tab-pane fade show active" id="entrada" role="tabpanel" aria-labelledby="entrada-tab">
-                    
-                    <div class="row" id="cardapio"> <!-- Criar nova linha -->
-                        <!-- Adicione mais colunas de acordo com a quantidade de itens do cardápio -->
+                        <div class="row" id="cardapio"> <!-- Criar nova linha -->
+                            <!-- Adicione mais colunas de acordo com a quantidade de itens do cardápio -->
+                        </div>
+
                     </div>
 
-                </div>
-
-                <div class="tab-pane fade" id="principal" role="tabpanel" aria-labelledby="principal-tab">
-                    <!-- Conteúdo da aba de Prato Principal -->
-                </div>
-                <div class="tab-pane fade" id="sobremesas" role="tabpanel" aria-labelledby="sobremesas-tab">
-                    <!-- Conteúdo da aba de Sobremesas -->
+                    <div class="tab-pane fade" id="principal" role="tabpanel" aria-labelledby="principal-tab">
+                        <!-- Conteúdo da aba de Prato Principal -->
+                    </div>
+                    <div class="tab-pane fade" id="sobremesas" role="tabpanel" aria-labelledby="sobremesas-tab">
+                        <!-- Conteúdo da aba de Sobremesas -->
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-
-<div class="modal fade modal-custom" id="modalItem1" tabindex="-1" aria-labelledby="modalItem1Label" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modalItem1Label">Detalhes do Item 1</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                    <span class="sr-only">Fechar</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <!-- Conteúdo do modal - detalhes do item -->
-                <p id="descricao-produto">Aqui estão os detalhes do Item 1.</p>
-
-                <!-- Campos de observação -->
-                <div class="mb-3">
-                    <label for="observacaoItem1" class="form-label">Observação:</label>
-                    <textarea class="form-control" id="observacaoItem1" rows="3"></textarea>
+<!-- NÃO APAGAR ESSA DIV A BAIXO, POR ALGUM MOTIVO BUGA TUDO SE APAGA ELA -->
+    <div class="modal fade modal-custom" id="modalItem1" tabindex="-1" aria-labelledby="modalItem1Label"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalItem1Label">Detalhes do Item 1</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                        <span class="sr-only">Fechar</span>
+                    </button>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger rounded-pill">
-                    <i onclick="removeNumeroDeItens()" id="i-remove-item" class="bi bi-dash"></i>
-                </button>
-                <span class="modal-quantidade" id="numberItem">0</span>
-                <button type="button" class="btn btn-primary rounded-pill">
-                    <i onclick="addNumeroDeItens()" id="i-add-item" class="bi bi-plus"></i>
-                </button>
-                <a href="#" onclick="addItensCarrinho()" class="btn btn-primary"  data-bs-dismiss="modal" >Adicionar ao Pedido</a>
+                <div class="modal-body">
+                    <!-- Conteúdo do modal - detalhes do item -->
+                    <p id="descricao-produto">Aqui estão os detalhes do Item 1.</p>
+
+                    <!-- Campos de observação -->
+                    <div class="mb-3">
+                        <label for="observacaoItem1" class="form-label">Observação:</label>
+                        <textarea class="form-control" id="observacaoItem1" rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <span class="modal-quantidade" id="ValorItem">R$50,00</span>
+                    <button type="button" class="btn btn-danger rounded-pill">
+                        <i onclick="removeNumeroDeItens()" id="i-remove-item" class="bi bi-dash"></i>
+                    </button>
+                    <span class="modal-quantidade" id="numberItem">0</span>
+                    <button type="button" class="btn btn-primary rounded-pill">
+                        <i onclick="addNumeroDeItens()" id="i-add-item" class="bi bi-plus"></i>
+                    </button>
+                    <a href="#" onclick="addItensCarrinho()" class="btn btn-primary" id="addItem"
+                        data-bs-dismiss="modal">Adicionar ao Pedido</a>
+                </div>
             </div>
         </div>
     </div>
-</div>
