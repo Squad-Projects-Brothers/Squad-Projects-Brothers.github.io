@@ -4,11 +4,11 @@
         <div class="card-header">
             <ul class="nav nav-tabs card-header-tabs" id="myTabs" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link tab-color menu-itens" id="todos-tab" data-bs-toggle="tab"
+                    <button class="nav-link tab-color menu-itens " id="todos-tab" data-bs-toggle="tab"
                         data-bs-target="#todos" type="button" role="tab" aria-controls="todos" aria-selected="false"
                         onclick="selecionarTodosItens(this, 'todos')">Todos</button>
                 </li>
-                <li class="nav-item" role="presentation">
+                <li class="nav-item activo" role="presentation">
                     <button class="nav-link tab-color menu-itens" id="comida-tab" data-bs-toggle="tab"
                         data-bs-target="#comida" type="button" role="tab" aria-controls="comida" aria-selected="false"
                         onclick="activeModel(this, 'comida')">Comidas</button>
@@ -47,18 +47,18 @@
         </div>
     </div>
 </div>
-<div class="modal fade modal-custom" id="modalItem1" tabindex="-1" aria-labelledby="modalItem1Label" aria-hidden="true">
+<div class="modal fade modal-custom" id="modalItem1" data-id-produto-modal="modalItemIdAux" name="modalItem" tabindex="-1" aria-labelledby="modalItem1Label" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="modalItem1Label">Detalhes do Item 1</h5>
+                <h5 class="modal-title" id="modalItem1Label">Nome do item</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                     <span class="sr-only">Fechar</span>
                 </button>
             </div>
             <div class="modal-body">
                 <!-- Conteúdo do modal - detalhes do item -->
-                <p id="descricao-produto">Nome do produto</p>
+                <p id="descricao-produto">descrição do produto</p>
                 <!-- Campos de observação -->
                 <div class="mb-3">
                     <label for="observacaoItem1" class="form-label">Observação:</label>

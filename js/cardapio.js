@@ -27,7 +27,9 @@ function montadorHtml(itensMenu) {
                         <h5 class="card-title">${itemMenu.nome}</h5>
                         <div class="text-center">
                             <button class="btn btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#modalItem${itemMenu.id}" onclick="atualizarModal('${itemMenu.id}','${itemMenu.nome}','${itemMenu.categoria}','${itemMenu.descricao}','${itemMenu.valor}', mudarIdModal(${itemMenu.id}))" id="${itemMenu.id}">Adicionar ao Pedido</button>
+                            <button data-bs-target="#modalItem1"
+                            onclick="atualizarModalEChamarOutraFuncao(${itemMenu.id},'${itemMenu.nome}','${itemMenu.categoria}','${itemMenu.descricao}','${itemMenu.valor}')"
+                            id="${itemMenu.id}">Adicionar ao Pedido</button>
                                 </div>
                     </div>
                 </div>
@@ -37,6 +39,11 @@ function montadorHtml(itensMenu) {
 
     }
 }
+function atualizarModalEChamarOutraFuncao(id, nome, categoria, descricao, valor) {
+    atualizarModal(id, nome, categoria, descricao, valor);
+    mudarIdModal(id);
+}
+
 function atualizarModal(id, nome, categoria, descricao, valor) {
     let addDescricao = document.getElementById("descricao-produto");
     let titulo = document.getElementById("modalItem1Label");
@@ -46,12 +53,15 @@ function atualizarModal(id, nome, categoria, descricao, valor) {
     titulo.innerText = nome;
     addDescricao.innerText = descricao;
     valorProduto.innerText = 'R$' + valor;
-    let função = `adicionarProdutoNoCarrinho(${id})`;
+    let função = `adicionarProdutoNoCarrinho(${id},'${nome}','${categoria}','${descricao}','${valor}')`;
     addItem.setAttribute('onclick', função);
-}/*
-function mudarIdModal(idM){
-    document.getElementById('modalItem1').classList.replace('modalItem1','modalItem'+idM);
-}*/
+}
+function mudarIdModal(id){
+    let getModalId = document.getElementById('modalItem1')//.classList.replace('modalItem','modalItem'+id);
+    let nomeModal = getModalId.getAttribute('name')
+    let getModalT = document.getElementsByName(nomeModal)//.classList.replace('modalItem','modalItem'+id);
+    getModalT[0].setAttribute('name', 'modalItem'+id)
+}
 // função de quantidade de itens no model de cada produto
 
 const itemEmEdicao = null; // Variável para armazenar o item em edição

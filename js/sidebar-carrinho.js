@@ -1,7 +1,6 @@
 //função para chamar o model de confirmar adcionar item
 function chamarModelAddCarrinho(id, nome, valor, descricao) {
     let divInicial = document.getElementById("cardapio");
-    let filhoDiv = divInicial;
     var textHtml = ""
     //add div model confirmação
     textHtml += `
@@ -37,61 +36,93 @@ function chamarModelAddCarrinho(id, nome, valor, descricao) {
                 </div>
             </div>
         </div>`;
-    filhoDiv.innerHTML = textHtml;
+    divInicial.innerHTML = textHtml;
 }
 //função de adiconar os produtos em uma array que fica no localStorage(desenvolvendo ainda)
-function addNaArray(a,b,c){
+function addNaArray(a, b, c) {
     let valor = a.substring(2, 6);
     if (localStorage.getItem("orderHistory") === null) {
         historicoPedidos = { itens: [] };
     } else {
         historicoPedidos = JSON.parse(localStorage.getItem("orderHistory"));
     }
-    historicoPedidos.itens.push('nome: ' + c + ',quantidade: '+ b + ',valor: ' + valor);
+    historicoPedidos.itens.push('nome: ' + c + ',quantidade: ' + b + ',valor: ' + valor);
     localStorage.setItem("orderHistory", JSON.stringify(historicoPedidos));
-}
+}/*
 //fechar o model de confirma add itens
 function fecharModel() {
     let modelItemPro = document.getElementById("modelItemPro")
     modelItemPro.remove();
     pegaritens();
-}
+}*/
 //função acionada ao clicar no botao adicionar produto no model de confirmação
-function adicionarProdutoNoCarrinho(id) {
-    let modalItem = document.getElementById('modalItem'+id);
-    console.log(modalItem)
-    /*
-
+function adicionarProdutoNoCarrinho(id, nome, categoria, descricao, valor) {
+    let modalItem = document.getElementById('modalItem1');
     let valorItem = document.getElementById("valorItem").innerText;
     let numberItem = document.getElementById("numberItem").innerText;
     let nomeProd = document.getElementById("modalItem1Label").innerText;
     let listaItens = document.getElementById("listaItens");
-    addNaArray(valorItem, numberItem, nomeProd)
-    var textHtml = "";
-    textHtml += `
-            <div class="restaurant-cart-item sidebar-pedido-line" >
-                <div class="sidebar-pedido-item-description sidebar-pedido-justify">
-                    <span>${numberItem}</span>
-                    <span>${nomeProd}</span><span>R$ ${valorItem}</span>
-                </div>
-                <div class="sidebar-pedido-item-tags"></div>
-                <div class="sidebar-pedido-item-buttons-wrapper"><button type="button"
+    let quantidadeItens = document.getElementById("numberItem").innerText;
+    let valorFinal = (parseInt(quantidadeItens) * parseFloat(valor))
+    let itemJaExistente = false;
+    let itensNaLista = listaItens.getElementsByClassName('restaurant-cart-item');
+
+    for (let i = 0; i < itensNaLista.length; i++) {
+        let item = itensNaLista[i];
+        let nomeItem = item.getElementsByTagName('span')[1].innerText;
+        
+        if (nomeItem === nomeProd) {
+            // O item já existe na lista, atualize a quantidade e o valor
+            let quantidadeSpan = item.getElementsByTagName('span')[0].innerHTML;
+            let valorSpan = item.getElementsByTagName('span')[2].innerHTML;
+            console.log(valorSpan)
+            console.log(quantidadeSpan)
+            let quantidadeExistente = parseInt(quantidadeSpan.innerText);
+            let valorExistente = parseFloat(valorSpan.innerText.replace("R$ ", ""));
+
+            let novaQuantidade = quantidadeExistente + quantidadeItens;
+            let novoValor = (novaQuantidade * parseFloat(valorItem));
+            console.log(novaQuantidade)
+            console.log(novoValor)
+            quantidadeSpan.innerText = novaQuantidade;
+            valorSpan.innerText = "R$ " + novoValor.toFixed(2);
+
+            itemJaExistente = true;
+            break;
+        }
+    }
+
+    // Se o item não existe na lista, adicione um novo item
+    if (!itemJaExistente) {
+        let textHtml = `
+        <div class="restaurant-cart-item sidebar-pedido-line">
+            <div class="sidebar-pedido-item-description sidebar-pedido-justify">
+                <span>${quantidadeItens}</span>
+                <span>${nomeProd}</span><span>R$ ${valorFinal.toFixed(2)}</span>
+            </div>
+            <div class="sidebar-pedido-item-tags"></div>
+            <div class="sidebar-pedido-item-buttons-wrapper">
+                <button type="button"
                     role="button"
                     class="btn btn-link-edit btn-size-m sidebar-pedido-button-item-button"
                     theme="link" variant="sidebar-pedido-button-item-button" label="Editar"
-                    data-test-id="restaurant-cart-item_edit-button" color="primary"
-                    target="" rel="" onclick="editarDiv(this)"><span
-                        class="btn-label">Editar</span></button><button type="button"
-                            role="button"
-                            class="btn btn-link-edit btn-gray btn-size-m sidebar-pedido-button-item-button"
-                            theme="link" color="gray" variant="sidebar-pedido-button-item-button"
-                            label="Remover" data-test-id="restaurant-cart-item__remove-button"
-                            target="" rel="" onclick="removerDiv(this)"><span
-                                class="btn-label">Remover</span></button>
-                </div>
-            </div >`;
-            listaItens.innerHTML += textHtml;
-*/
+                    data-test-id="restaurant-cart-item__edit-button" color="primary"
+                    data-bs-toggle="modal" data-bs-target="#modalItem1">
+                    <span class="btn-label">Editar</span>
+                </button>
+                <button type="button"
+                    role="button"
+                    class="btn btn-link-edit btn-gray btn-size-m sidebar-pedido-button-item-button"
+                    theme="link" color="gray" variant="sidebar-pedido-button-item-button"
+                    label="Remover" data-test-id="restaurant-cart-item__remove-button"
+                    target="" rel="" onclick="removerDiv(this)">
+                    <span class="btn-label">Remover</span>
+                </button>
+            </div>
+        </div>`;
+
+        listaItens.innerHTML += textHtml;
+    }
 }
 
 //função de mudar quantidade de produtos no model confirmação

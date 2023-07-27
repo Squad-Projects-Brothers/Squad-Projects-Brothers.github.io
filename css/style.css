@@ -358,15 +358,15 @@ h4 {
 .btn--default {
   background: #ea1d2c;
   color: #fff;
-  transition: background-color 0.2s; /* Adiciona uma transição suave para a mudança de cor */
+  transition: background-color 0.2s;
+  /* Adiciona uma transição suave para a mudança de cor */
 }
 
 /* Estilo quando o botão está ativo (quando clicado) */
 .btn--default:active {
-  background-color: #d0192b; /* Cor vermelha mais escura para indicar que o botão está ativo */
+  background-color: #d0192b;
+  /* Cor vermelha mais escura para indicar que o botão está ativo */
 }
-
-
 
 .modal-footer-pedido {
   display: flex;
@@ -380,15 +380,26 @@ h4 {
   border-top: solid 1px;
   border-top-color: #dadadb48;
 }
+
 /*cardapio*/
 .activo {
-  color: red;
+  background: #FFDA85;
   display: flex;
+  color: #000 !important;
+  border-radius: 8px !important;
+  border-top: 2px solid #000 !important;
+  border-bottom: 0px solid transparent !important;
+  border-left: 0px solid transparent !important;
+  border-right: 0px solid transparent !important;
+  border-bottom-right-radius: 0px !important;
+  border-bottom-left-radius: 0px !important;
+
 }
 
 .activo .modal {
   animation: modal .4s;
 }
+
 @keyframes modal {
   from {
     opacity: 0;
