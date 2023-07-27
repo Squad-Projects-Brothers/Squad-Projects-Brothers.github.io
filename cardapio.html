@@ -3,12 +3,12 @@
     <div class="card cardapio-color card-custom">
         <div class="card-header">
             <ul class="nav nav-tabs card-header-tabs" id="myTabs" role="tablist">
-                <li class="nav-item " role="presentation">
-                    <button class="nav-link tab-color menu-itens" id="entrada-tab" data-bs-toggle="tab"
-                        data-bs-target="#entrada" type="button" role="tab" aria-controls="entrada" aria-selected="false"
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link tab-color menu-itens" id="todos-tab" data-bs-toggle="tab"
+                        data-bs-target="#todos" type="button" role="tab" aria-controls="todos" aria-selected="false"
                         onclick="selecionarTodosItens(this, 'todos')">Todos</button>
                 </li>
-                <li class="nav-item " role="presentation">
+                <li class="nav-item" role="presentation">
                     <button class="nav-link tab-color menu-itens" id="comida-tab" data-bs-toggle="tab"
                         data-bs-target="#comida" type="button" role="tab" aria-controls="comida" aria-selected="false"
                         onclick="activeModel(this, 'comida')">Comidas</button>
@@ -28,19 +28,20 @@
         <div class="card-body mb-3 mb-sm-0 bar-scroll">
 
             <div class="tab-content" id="myTabsContent">
-                <div class="tab-pane fade show active" id="entrada" role="tabpanel" aria-labelledby="entrada-tab">
-
+                <div class="tab-pane fade show active" id="todos" role="tabpanel" aria-labelledby="todos-tab">
                     <div class="row" id="cardapio"> <!-- Criar nova linha -->
                         <!-- Adicione mais colunas de acordo com a quantidade de itens do cardápio -->
                     </div>
-
+                </div>
+                <div class="tab-pane fade" id="comida" role="tabpanel" aria-labelledby="comida-tab">
+                        <!-- Adicione mais colunas de acordo com a quantidade de itens do cardápio -->
                 </div>
 
-                <div class="tab-pane fade" id="principal" role="tabpanel" aria-labelledby="principal-tab">
-                    <!-- Conteúdo da aba de Prato Principal -->
-                </div>
                 <div class="tab-pane fade" id="sobremesas" role="tabpanel" aria-labelledby="sobremesas-tab">
-                    <!-- Conteúdo da aba de Sobremesas -->
+                    <!-- Conteúdo da aba de sobremesas -->
+                </div>
+                <div class="tab-pane fade" id="bebidas" role="tabpanel" aria-labelledby="bebidas-tab">
+                    <!-- Conteúdo da aba de bebidas -->
                 </div>
             </div>
         </div>
@@ -58,7 +59,6 @@
             <div class="modal-body">
                 <!-- Conteúdo do modal - detalhes do item -->
                 <p id="descricao-produto">Nome do produto</p>
-
                 <!-- Campos de observação -->
                 <div class="mb-3">
                     <label for="observacaoItem1" class="form-label">Observação:</label>
@@ -79,5 +79,4 @@
             </div>
         </div>
     </div>
-</div>
 </div>

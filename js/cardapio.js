@@ -20,14 +20,14 @@ function montadorHtml(itensMenu) {
 
     for (itemMenu of itensMenu) {
         textHtml += `
-        <div class="col-sm-4 mb-3 itens-menu"  data-category="${itemMenu.categoria}"> 
+        <div class="col-sm-4 mb-3 itens-menu" data-category="${itemMenu.categoria}"> 
                 <div class="card">
                     <img src="${itemMenu.imagem}" class="card-img-top custom-image" alt="Item 1">
                     <div class="card-body">
                         <h5 class="card-title">${itemMenu.nome}</h5>
                         <div class="text-center">
                             <button class="btn btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#modalItem1" onclick="atualizarModal('${itemMenu.id}','${itemMenu.nome}','${itemMenu.categoria}','${itemMenu.descricao}','${itemMenu.valor}')" id="${itemMenu.id}">Adicionar ao Pedido</button>
+                                data-bs-target="#modalItem${itemMenu.id}" onclick="atualizarModal('${itemMenu.id}','${itemMenu.nome}','${itemMenu.categoria}','${itemMenu.descricao}','${itemMenu.valor}', mudarIdModal(${itemMenu.id}))" id="${itemMenu.id}">Adicionar ao Pedido</button>
                                 </div>
                     </div>
                 </div>
@@ -42,15 +42,16 @@ function atualizarModal(id, nome, categoria, descricao, valor) {
     let titulo = document.getElementById("modalItem1Label");
     let valorProduto = document.getElementById("valorItem");
     let addItem = document.getElementById("addItem");
+    let observacaoItem1 = document.getElementById("observacaoItem1");
     titulo.innerText = nome;
     addDescricao.innerText = descricao;
     valorProduto.innerText = 'R$' + valor;
     let função = `adicionarProdutoNoCarrinho(${id})`;
-    addItem.setAttribute('onclick', função)
-}
-function adicionarProdutoNoCarrinho(idProduto){
-
-}
+    addItem.setAttribute('onclick', função);
+}/*
+function mudarIdModal(idM){
+    document.getElementById('modalItem1').classList.replace('modalItem1','modalItem'+idM);
+}*/
 // função de quantidade de itens no model de cada produto
 
 const itemEmEdicao = null; // Variável para armazenar o item em edição
@@ -128,6 +129,7 @@ function selecionarTodosItens(elemento) {
     let itensMenu = document.getElementsByClassName("itens-menu");
     for (itemMenu of itensMenu) {
         itemMenu.classList.remove("inactive")
+        document.getElementById("todos-tab").classList.remove("active")
     }
 }
 //função de remover os produtos que não são da categoria escolhida no cardapio

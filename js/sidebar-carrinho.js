@@ -40,7 +40,7 @@ function chamarModelAddCarrinho(id, nome, valor, descricao) {
     filhoDiv.innerHTML = textHtml;
 }
 //função de adiconar os produtos em uma array que fica no localStorage(desenvolvendo ainda)
-/*function addNaArray(a,b,c){
+function addNaArray(a,b,c){
     let valor = a.substring(2, 6);
     if (localStorage.getItem("orderHistory") === null) {
         historicoPedidos = { itens: [] };
@@ -49,7 +49,7 @@ function chamarModelAddCarrinho(id, nome, valor, descricao) {
     }
     historicoPedidos.itens.push('nome: ' + c + ',quantidade: '+ b + ',valor: ' + valor);
     localStorage.setItem("orderHistory", JSON.stringify(historicoPedidos));
-}*/
+}
 //fechar o model de confirma add itens
 function fecharModel() {
     let modelItemPro = document.getElementById("modelItemPro")
@@ -57,7 +57,11 @@ function fecharModel() {
     pegaritens();
 }
 //função acionada ao clicar no botao adicionar produto no model de confirmação
-function addItensCarrinho() {
+function adicionarProdutoNoCarrinho(id) {
+    let modalItem = document.getElementById('modalItem'+id);
+    console.log(modalItem)
+    /*
+
     let valorItem = document.getElementById("valorItem").innerText;
     let numberItem = document.getElementById("numberItem").innerText;
     let nomeProd = document.getElementById("modalItem1Label").innerText;
@@ -87,9 +91,10 @@ function addItensCarrinho() {
                 </div>
             </div >`;
             listaItens.innerHTML += textHtml;
-
+*/
 }
-//função de mudar quantidade de produtos no mdoel confirmação
+
+//função de mudar quantidade de produtos no model confirmação
 function addNumeroDeItens() {
     let numberItem = document.getElementById("numberItem");
     let currentValue = parseInt(numberItem.innerText);
