@@ -39,11 +39,12 @@ function montadorHtml(itensMenu) {
 
     }
 }
+//função auxiliar para poder chamar mais de uma função no onclick do produto
 function atualizarModalEChamarOutraFuncao(id, nome, categoria, descricao, valor) {
     atualizarModal(id, nome, categoria, descricao, valor);
     mudarIdModal(id);
 }
-
+//função atualizar as informações do modalItem1 quando chamado
 function atualizarModal(id, nome, categoria, descricao, valor) {
     let addDescricao = document.getElementById("descricao-produto");
     let titulo = document.getElementById("modalItem1Label");
@@ -56,58 +57,15 @@ function atualizarModal(id, nome, categoria, descricao, valor) {
     let função = `adicionarProdutoNoCarrinho(${id},'${nome}','${categoria}','${descricao}','${valor}')`;
     addItem.setAttribute('onclick', função);
 }
+//função para mudar o atributo name do modalItem1
 function mudarIdModal(id){
-    let getModalId = document.getElementById('modalItem1')//.classList.replace('modalItem','modalItem'+id);
+    let getModalId = document.getElementById('modalItem1')
     let nomeModal = getModalId.getAttribute('name')
-    let getModalT = document.getElementsByName(nomeModal)//.classList.replace('modalItem','modalItem'+id);
+    let getModalT = document.getElementsByName(nomeModal)
     getModalT[0].setAttribute('name', 'modalItem'+id)
 }
 // função de quantidade de itens no model de cada produto
 
-const itemEmEdicao = null; // Variável para armazenar o item em edição
-// função de editar item no "carrinho"
-function editarDiv(button) {
-    // Obtém o elemento pai do botão clicado, que é a div com a classe "restaurant-cart-item sidebar-pedido-line"
-    let divItem = button.closest(".restaurant-cart-item");
-
-    // Obtém o texto do item do pedido e o preço
-    let itemTexto = divItem.querySelector(".sidebar-pedido-item-description span:first-child").innerText;
-    let itemPreco = divItem.querySelector(".sidebar-pedido-item-description span:last-child").innerText;
-
-    // Preenche o formulário de edição com os detalhes do item
-    document.getElementById("quantidade").value = parseInt(itemTexto);
-
-    // Exibe o formulário de edição
-    document.querySelector(".modal-form-edit").style.display = "block";
-
-    // Armazena o item em edição para posterior atualização
-    itemEmEdicao = divItem;
-}
-//salva a edição do item no "carrinho"
-function salvarEdicao() {
-    let novaQuantidade = document.getElementById("quantidade").value;
-
-    // Atualiza o texto do item com a nova quantidade
-    let descricaoItem = itemEmEdicao.querySelector(".sidebar-pedido-item-description span:first-child");
-    let valor = document.querySelector('.restaurant-cart-item .sidebar-pedido-item-description span:last-child').textContent;
-    descricaoItem.innerText = novaQuantidade + "x";
-    console.log(valor);
-    valor.innerText = novaQuantidade * valor;
-    console.log(valor);
-    // Fecha o formulário de edição
-    document.querySelector(".modal-form-edit").style.display = "none";
-
-    // Limpa a variável de item em edição
-    itemEmEdicao = null;
-}
-//cancela a edição do item no "carrinho"
-function cancelarEdicao() {
-    // Fecha o formulário de edição
-    document.querySelector(".modal-form-edit").style.display = "none";
-
-    // Limpa a variável de item em edição
-    itemEmEdicao = null;
-}
 //remove item do "carrinho"
 function removerDiv(button) {
     // Obtém o elemento pai do botão clicado, que é a div com a classe "restaurant-cart-item sidebar-pedido-line"

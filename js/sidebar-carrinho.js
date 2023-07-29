@@ -1,43 +1,3 @@
-//função para chamar o model de confirmar adcionar item
-function chamarModelAddCarrinho(id, nome, valor, descricao) {
-    let divInicial = document.getElementById("cardapio");
-    var textHtml = ""
-    //add div model confirmação
-    textHtml += `
-    <div class="modal-dialog modal-dialog-centered" id="modelItemPro">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalItem1Label">${nome}</h5>
-                    <button type="button" class="btn-close"  aria-label="Close" onclick="fecharModel()">
-                        <span class="sr-only">Fechar</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <!-- Conteúdo do modal - detalhes do item -->
-                    <p style="width: 250px" id="descricao-produto">${descricao}</p>
-
-                    <!-- Campos de observação -->
-                    <div class="mb-3">
-                        <label for="observacaoItem1" class="form-label">Observação:</label>
-                        <textarea class="form-control" id="observacaoItem1" rows="3"></textarea>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <span class="modal-quantidade" id="valorItem">R$${valor}</span>
-                    <button type="button" class="btn btn-danger rounded-pill">
-                        <i onclick="removeNumeroDeItens()" id="i-remove-item" class="bi bi-dash"></i>
-                    </button>
-                    <span class="modal-quantidade" id="numberItem">1</span>
-                    <button type="button" class="btn btn-primary rounded-pill">
-                        <i onclick="addNumeroDeItens()" id="i-add-item" class="bi bi-plus"></i>
-                    </button>
-                    <a href="#" onclick="addItensCarrinho()" class="btn btn-primary" id="addItem"
-                        >Adicionar ao Pedido</a>
-                </div>
-            </div>
-        </div>`;
-    divInicial.innerHTML = textHtml;
-}
 //função de adiconar os produtos em uma array que fica no localStorage(desenvolvendo ainda)
 function addNaArray(a, b, c) {
     let valor = a.substring(2, 6);
@@ -48,16 +8,10 @@ function addNaArray(a, b, c) {
     }
     historicoPedidos.itens.push('nome: ' + c + ',quantidade: ' + b + ',valor: ' + valor);
     localStorage.setItem("orderHistory", JSON.stringify(historicoPedidos));
-}/*
-//fechar o model de confirma add itens
-function fecharModel() {
-    let modelItemPro = document.getElementById("modelItemPro")
-    modelItemPro.remove();
-    pegaritens();
-}*/
+}
+
 //função acionada ao clicar no botao adicionar produto no model de confirmação
 function adicionarProdutoNoCarrinho(id, nome, categoria, descricao, valor) {
-    let modalItem = document.getElementById('modalItem1');
     let valorItem = document.getElementById("valorItem").textContent.replace("R$ ", "").replace(",", ".");
     let numberItem = document.getElementById("numberItem").innerText;
     let nomeProd = document.getElementById("modalItem1Label").innerText;
@@ -65,7 +19,6 @@ function adicionarProdutoNoCarrinho(id, nome, categoria, descricao, valor) {
     let quantidadeItens = parseInt(numberItem);
 
     let valorFinal = (parseFloat(quantidadeItens) * parseFloat(valorItem.substring(2)));
-    console.log(valorFinal, valorItem +' 1')
     // Verificar se o item já existe na lista
     let itemJaExistente = false;
     let itensNaLista = listaItens.getElementsByClassName('restaurant-cart-item');
@@ -73,23 +26,17 @@ function adicionarProdutoNoCarrinho(id, nome, categoria, descricao, valor) {
     for (let i = 0; i < itensNaLista.length; i++) {
         let item = itensNaLista[i];
         let nomeItem = item.getElementsByTagName('span')[1].innerText;
-       
+
         if (nomeItem === nomeProd) {
             // O item já existe na lista, atualize a quantidade e o valor
-            let quantidadeSpan = item.getElementsByTagName('span')[0].innerText;
-            console.log(quantidadeSpan + ' 3')
-            console.log(item.getElementsByTagName('span')[0].innerText)
-            let valorSpan = parseFloat(item.getElementsByTagName('span')[2].innerText.substring(2));
-            console.log(valorSpan + ' 2')
+            let quantidadeSpan = item.getElementsByTagName('span')[0];
+            let setarOValor = item.getElementsByTagName('span')[2];
+            let valorSpan = item.getElementsByTagName('span')[2].innerText.replace("R$ ", "").replace(",", ".");
             let quantidadeExistente = parseInt(quantidadeSpan.innerText);
-            let valorExistente = parseFloat(valorSpan.innerText);
-
-            let novaQuantidade = quantidadeExistente + quantidadeItens;
+            let novaQuantidade = (quantidadeExistente + (quantidadeItens - quantidadeExistente));
             let novoValor = (novaQuantidade * parseFloat(valorItem.substring(2)));
-
             quantidadeSpan.innerText = novaQuantidade;
-            valorSpan.innerText = "R$ " + novoValor.toFixed(2);
-
+            setarOValor.innerText = 'R$ ' + novoValor.toFixed(2).replace(".", ",");
             itemJaExistente = true;
             break;
         }
@@ -101,7 +48,8 @@ function adicionarProdutoNoCarrinho(id, nome, categoria, descricao, valor) {
     <div class="restaurant-cart-item sidebar-pedido-line">
         <div class="sidebar-pedido-item-description sidebar-pedido-justify">
             <span>${quantidadeItens}</span>
-            <span>${nomeProd}</span><span>R$ ${valorFinal.toFixed(2)}</span>
+            <span >${nomeProd}</span>
+            <span>R$ ${valorFinal.toFixed(2).replace(".", ",")}</span>
         </div>
         <div class="sidebar-pedido-item-tags"></div>
         <div class="sidebar-pedido-item-buttons-wrapper">
@@ -126,33 +74,54 @@ function adicionarProdutoNoCarrinho(id, nome, categoria, descricao, valor) {
 
         listaItens.innerHTML += textHtml;
     }
+    calcularValorTotal();
+    calcularQuantidadeTotal();
+}
+//calcular o valor total do carrinho 
+function calcularValorTotal() {
+    let listaItens = document.getElementById("listaItens");
+    let itensNaLista = listaItens.getElementsByClassName('restaurant-cart-item');
+    let valorTotalCarrinho = document.getElementById("valorTotalCarrinho");
+    let valorTotalCarrinhoBotao = document.getElementById("valorTotalCarrinhoBotao");
+    let valorTotal = parseFloat(0);
+    for (let i = 0; i < itensNaLista.length; i++) {
+        let item = itensNaLista[i];
+        let valorItem = item.getElementsByTagName('span')[2].innerText.replace("R$ ", "").replace(",", ".");
+        valorTotal = parseFloat(valorTotal) + parseFloat(valorItem);
+    }
+    valorTotalCarrinho.innerText = 'R$ ' + valorTotal.toFixed(2).replace(".", ",");
+    valorTotalCarrinhoBotao.innerText = 'R$ ' + valorTotal.toFixed(2).replace(".", ",");
+    
+}
+//calcula a quantidade toda de itens pedido e jogar no botão do carrinho
+function calcularQuantidadeTotal() {
+    let listaItens = document.getElementById("listaItens");
+    let itensNaLista = listaItens.getElementsByClassName('restaurant-cart-item');
+    let quantidadeTotalCarrinhoBotao = document.getElementById("quantidadeTotalCarrinhoBotao");
+    let quantidadeTotal = parseInt(0);
+    for (let i = 0; i < itensNaLista.length; i++) {
+        let item = itensNaLista[i];
+        let quantidadeDeItens = item.getElementsByTagName('span')[0].innerText;
+        quantidadeTotal = parseInt(quantidadeDeItens) + parseInt(quantidadeTotal);
+    }
+    quantidadeTotalCarrinhoBotao.innerText = quantidadeTotal + ' itens';
+    
 }
 
-    //função de mudar quantidade de produtos no model confirmação
-    function addNumeroDeItens() {
-        let numberItem = document.getElementById("numberItem");
-        let currentValue = parseInt(numberItem.innerText);
-        numberItem.innerHTML = currentValue + 1;
+// Exemplo de uso:
+let total = calcularValorTotal();
+//função de mudar quantidade de produtos no model confirmação
+function addNumeroDeItens() {
+    let numberItem = document.getElementById("numberItem");
+    let currentValue = parseInt(numberItem.innerText);
+    numberItem.innerHTML = currentValue + 1;
 
-    }
-    //função de mudar quantidade de produtos no mdoel confirmação
-    function removeNumeroDeItens() {
-        let numberItem = document.getElementById("numberItem");
-        let currentValue = parseInt(numberItem.innerText);
-        if (currentValue > 0) {
-            numberItem.innerText = currentValue - 1;
-        }
-    }/*
-function salvarUltimoPedido(pedido) {
-    localStorage.setItem("lastOrder", JSON.stringify(pedido));
 }
-
-function salvarHistoricoPedidos(pedido) {
-    if (localStorage.getItem("orderHistory") === null) {
-        historicoPedidos = { itens: [] };
-    } else {
-        historicoPedidos = JSON.parse(localStorage.getItem("orderHistory"));
+//função de mudar quantidade de produtos no mdoel confirmação
+function removeNumeroDeItens() {
+    let numberItem = document.getElementById("numberItem");
+    let currentValue = parseInt(numberItem.innerText);
+    if (currentValue > 0) {
+        numberItem.innerText = currentValue - 1;
     }
-    historicoPedidos.itens.push(pedido);
-    localStorage.setItem("orderHistory", JSON.stringify(historicoPedidos));
-}*/
+}

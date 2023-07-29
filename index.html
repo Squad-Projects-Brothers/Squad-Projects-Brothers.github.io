@@ -92,8 +92,8 @@
                                             <i class="fas fa-utensils fa-lg me-2"></i>
                                         </div>
                                         <div>
-                                            <span class="d-block header-cart__cost">R$ 0,00</span>
-                                            <span class="d-block header-cart__items">0 itens</span>
+                                            <span id="valorTotalCarrinhoBotao" class="d-block header-cart__cost">R$ 0,00</span>
+                                            <span id="quantidadeTotalCarrinhoBotao" class="d-block header-cart__items">0 itens</span>
                                         </div>
                                     </div>
                                 </button>
@@ -116,34 +116,13 @@
                                 <div class="modal-body sidebar-pedido-wrapper--scroll" id="listaItens">
                                     <!-- Coloque aqui o conteúdo do seu pedido, como os itens selecionados -->
 
-                                    <div class="restaurant-cart-item sidebar-pedido-line">
-                                        <div class="sidebar-pedido-item-description sidebar-pedido-justify">
-                                            <span>4x</span>
-                                            <span>
-                                                Chopp Pet 1litro</span><span>R$ 51,60</span>
-                                        </div>
-                                        <div class="sidebar-pedido-item-tags"></div>
-                                        <div class="sidebar-pedido-item-buttons-wrapper"><button type="button"
-                                                role="button"
-                                                class="btn btn-link-edit btn-size-m sidebar-pedido-button-item-button"
-                                                theme="link" variant="sidebar-pedido-button-item-button" label="Editar"
-                                                data-test-id="restaurant-cart-item__edit-button" color="primary"
-                                                data-bs-toggle="modal" data-bs-target="#modalItem1"><span
-                                                    class="btn-label">Editar</span></button><button type="button"
-                                                role="button"
-                                                class="btn btn-link-edit btn-gray btn-size-m sidebar-pedido-button-item-button"
-                                                theme="link" color="gray" variant="sidebar-pedido-button-item-button"
-                                                label="Remover" data-test-id="restaurant-cart-item__remove-button"
-                                                target="" rel="" onclick="removerDiv(this)"><span
-                                                    class="btn-label">Remover</span></button>
-                                        </div>
-                                    </div>
+                                    
                                 </div>
                                 <div class="modal-footer-pedido">
                                     <div class="sidebar-item-footer">
                                         <div class="sidebar-pedido-footer__total sidebar-pedido-justify">
                                             <span class="sidebar-pedido-footer__info-description">Total</span>
-                                            <span data-test-id="total-price" id>R$ 130,23</span>
+                                            <span data-test-id="total-price" id="valorTotalCarrinho">R$ 0,00</span>
                                         </div>
                                         <div class="sidebar-pedido-footer-button-wrapper">
                                             <a class="btn btn--default btn-size-m btn--full-width restaurant-cart-footer__button"
