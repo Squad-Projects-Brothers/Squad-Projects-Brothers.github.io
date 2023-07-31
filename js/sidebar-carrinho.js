@@ -47,9 +47,9 @@ function adicionarProdutoNoCarrinho(id, nome, categoria, descricao, valor) {
         let textHtml = `
     <div class="restaurant-cart-item sidebar-pedido-line">
         <div class="sidebar-pedido-item-description sidebar-pedido-justify">
-            <span>${quantidadeItens}</span>
-            <span >${nomeProd}</span>
-            <span>R$ ${valorFinal.toFixed(2).replace(".", ",")}</span>
+            <span id="qtdPedido">${quantidadeItens}</span>
+            <span id="descProdutoPedido">${nomeProd}</span>
+            <span id="valorTotalPedido">R$ ${valorFinal.toFixed(2).replace(".", ",")}</span>
         </div>
         <div class="sidebar-pedido-item-tags"></div>
         <div class="sidebar-pedido-item-buttons-wrapper">
@@ -58,7 +58,7 @@ function adicionarProdutoNoCarrinho(id, nome, categoria, descricao, valor) {
                 class="btn btn-link-edit btn-size-m sidebar-pedido-button-item-button"
                 theme="link" variant="sidebar-pedido-button-item-button" label="Editar"
                 data-test-id="restaurant-cart-item__edit-button" color="primary"
-                data-bs-toggle="modal" data-bs-target="#modalItem1">
+                data-bs-toggle="modal" data-bs-target="#modalItem${id}">
                 <span class="btn-label">Editar</span>
             </button>
             <button type="button"
@@ -73,25 +73,49 @@ function adicionarProdutoNoCarrinho(id, nome, categoria, descricao, valor) {
     </div>`;
 
         listaItens.innerHTML += textHtml;
+        
     }
     calcularValorTotal();
     calcularQuantidadeTotal();
 }
-//calcular o valor total do carrinho 
+
+//remove item do "carrinho"
+function removerDiv(button) {
+    // Obtém o elemento pai do botão clicado, que é a div com a classe "restaurant-cart-item sidebar-pedido-line"
+    let divItem = button.closest(".restaurant-cart-item");
+
+    // Remove a div inteira do DOM
+    divItem.remove();
+    calcularValorTotal()
+    calcularQuantidadeTotal()
+
+}
+
+
 function calcularValorTotal() {
     let listaItens = document.getElementById("listaItens");
     let itensNaLista = listaItens.getElementsByClassName('restaurant-cart-item');
-    let valorTotalCarrinho = document.getElementById("valorTotalCarrinho");
-    let valorTotalCarrinhoBotao = document.getElementById("valorTotalCarrinhoBotao");
-    let valorTotal = parseFloat(0);
-    for (let i = 0; i < itensNaLista.length; i++) {
-        let item = itensNaLista[i];
-        let valorItem = item.getElementsByTagName('span')[2].innerText.replace("R$ ", "").replace(",", ".");
-        valorTotal = parseFloat(valorTotal) + parseFloat(valorItem);
-    }
-    valorTotalCarrinho.innerText = 'R$ ' + valorTotal.toFixed(2).replace(".", ",");
-    valorTotalCarrinhoBotao.innerText = 'R$ ' + valorTotal.toFixed(2).replace(".", ",");
     
+    if (itensNaLista.length != null) { // Verifica se há algum item na lista
+        let valorTotalCarrinho = document.getElementById("valorTotalCarrinho");
+        let valorTotalCarrinhoBotao = document.getElementById("valorTotalCarrinhoBotao");
+        let valorTotal = parseFloat(0);
+
+        for (let i = 0; i < itensNaLista.length; i++) {
+            let item = itensNaLista[i];
+            let valorItem = item.getElementsByTagName('span')[2].innerText.replace("R$ ", "").replace(",", ".");
+            valorTotal = parseFloat(valorTotal) + parseFloat(valorItem);
+        }
+
+        valorTotalCarrinho.innerText = 'R$ ' + valorTotal.toFixed(2).replace(".", ",");
+        valorTotalCarrinhoBotao.innerText = 'R$ ' + valorTotal.toFixed(2).replace(".", ",");
+    } else {
+        // Caso não haja itens na lista, você pode fazer algo aqui, por exemplo:
+        let valorTotalCarrinho = document.getElementById("valorTotalCarrinho");
+        valorTotalCarrinho.innerText = 'R$ 0,00';
+        let valorTotalCarrinhoBotao = document.getElementById("valorTotalCarrinhoBotao");
+        valorTotalCarrinhoBotao.innerText = 'R$ 0,00';
+    }
 }
 //calcula a quantidade toda de itens pedido e jogar no botão do carrinho
 function calcularQuantidadeTotal() {
@@ -110,18 +134,28 @@ function calcularQuantidadeTotal() {
 
 // Exemplo de uso:
 let total = calcularValorTotal();
-//função de mudar quantidade de produtos no model confirmação
-function addNumeroDeItens() {
-    let numberItem = document.getElementById("numberItem");
-    let currentValue = parseInt(numberItem.innerText);
-    numberItem.innerHTML = currentValue + 1;
 
-}
-//função de mudar quantidade de produtos no mdoel confirmação
-function removeNumeroDeItens() {
-    let numberItem = document.getElementById("numberItem");
-    let currentValue = parseInt(numberItem.innerText);
-    if (currentValue > 0) {
-        numberItem.innerText = currentValue - 1;
+//função de mudar quantidade de produtos no model confirmação
+function alterarQtd(acao) {
+    const valor = document.getElementById("valorItem").innerHTML
+    console.log(valor)
+    const qtd = document.getElementById("numberItem")
+    const valorTotalAtualizado = fomatarValor(valor)
+    console.log(valor)
+    if(acao == '-' && qtd.innerHTML == 1) {
+
+    } else {
+    acao == '+' ? qtd.innerHTML++ : qtd.innerHTML--
+    const valorTotal = qtd.innerHTML * valorTotalAtualizado
+    console.log(valorTotal)    
     }
 }
+
+function somenteNumeros(n) {
+    return n.replace(/\D/g, '')
+}
+
+function fomatarValor(n) {
+    return n.toLocaleString('pt-br', {style:"currency", currency:"BRL" })
+}
+

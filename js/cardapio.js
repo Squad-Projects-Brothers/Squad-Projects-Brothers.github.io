@@ -27,7 +27,7 @@ function montadorHtml(itensMenu) {
                         <h5 class="card-title">${itemMenu.nome}</h5>
                         <div class="text-center">
                             <button class="btn btn-primary" data-bs-toggle="modal"
-                            <button data-bs-target="#modalItem1"
+                            <button data-bs-target="#modalItem${itemMenu.id}"
                             onclick="atualizarModalEChamarOutraFuncao(${itemMenu.id},'${itemMenu.nome}','${itemMenu.categoria}','${itemMenu.descricao}','${itemMenu.valor}')"
                             id="${itemMenu.id}">Adicionar ao Pedido</button>
                                 </div>
@@ -35,8 +35,6 @@ function montadorHtml(itensMenu) {
                 </div>
             </div>`;
         divInitial.innerHTML = textHtml;
-
-
     }
 }
 //função auxiliar para poder chamar mais de uma função no onclick do produto
@@ -49,6 +47,7 @@ function atualizarModal(id, nome, categoria, descricao, valor) {
     let addDescricao = document.getElementById("descricao-produto");
     let titulo = document.getElementById("modalItem1Label");
     let valorProduto = document.getElementById("valorItem");
+    console.log(valorProduto)
     let addItem = document.getElementById("addItem");
     let observacaoItem1 = document.getElementById("observacaoItem1");
     titulo.innerText = nome;
@@ -56,25 +55,30 @@ function atualizarModal(id, nome, categoria, descricao, valor) {
     valorProduto.innerText = 'R$' + valor;
     let função = `adicionarProdutoNoCarrinho(${id},'${nome}','${categoria}','${descricao}','${valor}')`;
     addItem.setAttribute('onclick', função);
+    console.log(modais)
 }
 //função para mudar o atributo name do modalItem1
-function mudarIdModal(id){
-    let getModalId = document.getElementById('modalItem1')
-    let nomeModal = getModalId.getAttribute('name')
-    let getModalT = document.getElementsByName(nomeModal)
-    getModalT[0].setAttribute('name', 'modalItem'+id)
+function mudarIdModal(id) {
+    const newModalId = "modalItem" + id;
+
+    // Obtém todos os elementos com o atributo 'name' igual a 'modalItem'
+    const modals = document.getElementsByName("modalItem");
+
+    // Loop para verificar cada modal
+    for (const modal of modals) {
+        if (modal.id === newModalId) {
+            // O modal já tem o ID correto, então não precisamos fazer nada
+            console.log(modal);
+        } else {
+            // Atualiza o ID do modal
+            modal.setAttribute("id", newModalId);
+            console.log(modal);
+        }
+    }
 }
 // função de quantidade de itens no model de cada produto
 
-//remove item do "carrinho"
-function removerDiv(button) {
-    // Obtém o elemento pai do botão clicado, que é a div com a classe "restaurant-cart-item sidebar-pedido-line"
-    let divItem = button.closest(".restaurant-cart-item");
 
-    // Remove a div inteira do DOM
-    divItem.remove();
-
-}
 //função de separar cada item na sua categoria ex sobremesa, comidas. no cardapio
 function activeModel(elemento, categoria) {
     let elementosAtivos = document.getElementsByClassName("activo");

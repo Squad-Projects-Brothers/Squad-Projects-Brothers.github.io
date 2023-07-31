@@ -25,8 +25,8 @@
     <div class="main-container d-flex bg-dark">
         <div class="sidebar sidebar-content" id="side_nav">
             <div class="text-center p-2 mx-1">
-                <img src="img/Ravin.png" alt=" Logo do restaurante ravin"
-                    class="img-fluid rounded-circle my-2 p-1 d-md-block shadow" />
+               <a href="#img" onclick="loadContent('home')"><img src="img/Ravin.png" alt=" Logo do restaurante ravin"
+                    class="img-fluid rounded-circle my-2 p-1 d-md-block shadow" /></a>
             </div>
             <ul class="list-unstyled px-2">
                 <li class=""><a href="#" onclick="loadContent('cardapio')"
@@ -43,7 +43,7 @@
             <hr class="h-color mx-3">
 
             <ul class="list-unstyled px-2">
-                <li class="active">
+                <li class="">
                     <a href="#" class="text-decoration-none px-3 py-2 d-block" onclick="loadContent('profile')">
                         <i class="bi bi-graph-up me-2"></i>Dashboard</a>
                 </li>
@@ -92,8 +92,10 @@
                                             <i class="fas fa-utensils fa-lg me-2"></i>
                                         </div>
                                         <div>
-                                            <span id="valorTotalCarrinhoBotao" class="d-block header-cart__cost">R$ 0,00</span>
-                                            <span id="quantidadeTotalCarrinhoBotao" class="d-block header-cart__items">0 itens</span>
+                                            <span id="valorTotalCarrinhoBotao" class="d-block header-cart__cost">R$
+                                                0,00</span>
+                                            <span id="quantidadeTotalCarrinhoBotao" class="d-block header-cart__items">0
+                                                itens</span>
                                         </div>
                                     </div>
                                 </button>
@@ -116,7 +118,7 @@
                                 <div class="modal-body sidebar-pedido-wrapper--scroll" id="listaItens">
                                     <!-- Coloque aqui o conteúdo do seu pedido, como os itens selecionados -->
 
-                                    
+
                                 </div>
                                 <div class="modal-footer-pedido">
                                     <div class="sidebar-item-footer">
@@ -140,11 +142,6 @@
             </div>
         </div>
     </div>
-
-
-
-
-
     <script>
 
         // Variável para armazenar o conteúdo pré-carregado da página inicial
@@ -152,7 +149,7 @@
 
         // Função para pré-carregar o conteúdo da página inicial
         function preloadHomeContent() {
-            var url = 'profile.html';
+            var url = 'home.html';
 
             // Faz uma solicitação AJAX para buscar o conteúdo da página inicial
             $.ajax({
@@ -198,26 +195,10 @@
                             // Atualiza o conteúdo principal
                             document.getElementById('main-content').innerHTML = response;
                             pegaritens();
-
-
-                            if ($("#cep").length > 0) {
-                                $("#cep").inputmask("99999-999");
-                                $("#cep").blur(function () {
-                                    pesquisacep();
-                                });
-                            }
                         },
                         error: function (xhr, status, error) {
                             console.log('Erro na solicitação AJAX:', error);
-                            if (target === 'activity/exercicioThree') {
-                                $("#cepErrorModal").modal("show");
-                            }
-                        },
-                        complete: function () {
-                            // Ao fechar o modal de erro, remover a classe modal-open do elemento body
-                            $("#cepErrorModal").on("hidden.bs.modal", function () {
-                                $("body").removeClass("modal-open");
-                            });
+
                         }
                     });
                 }
