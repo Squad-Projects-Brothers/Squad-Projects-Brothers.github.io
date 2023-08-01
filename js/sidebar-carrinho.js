@@ -58,7 +58,9 @@ function adicionarProdutoNoCarrinho(id, nome, categoria, descricao, valor) {
                 class="btn btn-link-edit btn-size-m sidebar-pedido-button-item-button"
                 theme="link" variant="sidebar-pedido-button-item-button" label="Editar"
                 data-test-id="restaurant-cart-item__edit-button" color="primary"
-                data-bs-toggle="modal" data-bs-target="#modalItem${id}">
+                data-bs-toggle="modal" data-bs-target="#modalItem1"
+                onclick="atualizarModalEChamarOutraFuncao(${itemMenu.id},'${itemMenu.nome}','${itemMenu.categoria}','${itemMenu.descricao}','${itemMenu.valor}')"
+                id="${itemMenu.id}">
                 <span class="btn-label">Editar</span>
             </button>
             <button type="button"
@@ -73,7 +75,7 @@ function adicionarProdutoNoCarrinho(id, nome, categoria, descricao, valor) {
     </div>`;
 
         listaItens.innerHTML += textHtml;
-        
+
     }
     calcularValorTotal();
     calcularQuantidadeTotal();
@@ -95,7 +97,7 @@ function removerDiv(button) {
 function calcularValorTotal() {
     let listaItens = document.getElementById("listaItens");
     let itensNaLista = listaItens.getElementsByClassName('restaurant-cart-item');
-    
+
     if (itensNaLista.length != null) { // Verifica se há algum item na lista
         let valorTotalCarrinho = document.getElementById("valorTotalCarrinho");
         let valorTotalCarrinhoBotao = document.getElementById("valorTotalCarrinhoBotao");
@@ -116,6 +118,8 @@ function calcularValorTotal() {
         let valorTotalCarrinhoBotao = document.getElementById("valorTotalCarrinhoBotao");
         valorTotalCarrinhoBotao.innerText = 'R$ 0,00';
     }
+    addProdutosNaComanda();
+
 }
 //calcula a quantidade toda de itens pedido e jogar no botão do carrinho
 function calcularQuantidadeTotal() {
@@ -129,7 +133,7 @@ function calcularQuantidadeTotal() {
         quantidadeTotal = parseInt(quantidadeDeItens) + parseInt(quantidadeTotal);
     }
     quantidadeTotalCarrinhoBotao.innerText = quantidadeTotal + ' itens';
-    
+
 }
 
 // Exemplo de uso:
@@ -142,12 +146,12 @@ function alterarQtd(acao) {
     const qtd = document.getElementById("numberItem")
     const valorTotalAtualizado = fomatarValor(valor)
     console.log(valor)
-    if(acao == '-' && qtd.innerHTML == 1) {
+    if (acao == '-' && qtd.innerHTML == 1) {
 
     } else {
-    acao == '+' ? qtd.innerHTML++ : qtd.innerHTML--
-    const valorTotal = qtd.innerHTML * valorTotalAtualizado
-    console.log(valorTotal)    
+        acao == '+' ? qtd.innerHTML++ : qtd.innerHTML--
+        const valorTotal = qtd.innerHTML * valorTotalAtualizado
+        console.log(valorTotal)
     }
 }
 
@@ -156,6 +160,54 @@ function somenteNumeros(n) {
 }
 
 function fomatarValor(n) {
-    return n.toLocaleString('pt-br', {style:"currency", currency:"BRL" })
+    return n.toLocaleString('pt-br', { style: "currency", currency: "BRL" });
 }
 
+function addProdutosNaComanda() {
+
+}
+function escolherMesa() {
+    var mesas = ['Mesa 1', 'Mesa 2', 'Mesa 3', 'Mesa 4', 'Mesa 5'];
+    var escolha = window.prompt('Escolha uma mesa: \n' + mesas.join('\n'));
+
+    // Verifica se o usuário escolheu uma mesa válida
+    if (escolha !== null && escolha !== '') {
+        if (mesas.includes(escolha)) {
+            alert('Você escolheu a ' + escolha + '.');
+        } else {
+            alert('Mesa inválida. Por favor, escolha uma mesa entre 1 e 5.');
+        }
+    } else {
+        alert('Você não fez uma escolha de mesa.');
+    }
+}
+
+/*teste alerta aula js*/
+function escolherMesa() {
+    var alerta = document.getElementById("alerta");
+    alerta.style.display = "block";
+
+}
+
+function fecharAlerta() {
+    var alerta = document.getElementById("alerta");
+    alerta.style.display = "none";
+}
+function verificaStorage(num) {
+    let storage = localStorage.getItem('mesaSetada')
+    if (storage === null) {
+        addMesa(num)
+    } else (
+        alert(storage[2])
+    )
+}
+function addMesa(num) {
+    let valor = num;
+    if (localStorage.getItem("mesaSetada") === null) {
+        historicoPedidos = { itens: [] }
+    } else {
+        historicoPedidos = JSON.parse(localStorage.getItem("mesaSetada"));
+    }
+    historicoPedidos.itens.push('valor: ' + valor);
+    localStorage.setItem("mesaSetada", JSON.stringify(historicoPedidos));
+}

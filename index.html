@@ -22,11 +22,23 @@
 </head>
 
 <body>
+    <div>
+         <div class="custom-alert" id="alerta">
+            <div class="custom-alert-content">
+                <span class="close-btn" onclick="fecharAlerta()">&times;</span>
+                <h2>Escolha a sua mesa</h2>
+                <span onclick="verificaStorage('1')">Mesa 1</span>
+                <span onclick="verificaStorage('2')">Mesa 2</span>
+                <span onclick="verificaStorage('3')">Mesa 3</span>
+                <span onclick="verificaStorage('4')">Mesa 4</span>
+            </div>
+        </div>
+    </div>
     <div class="main-container d-flex bg-dark">
         <div class="sidebar sidebar-content" id="side_nav">
             <div class="text-center p-2 mx-1">
-               <a href="#img" onclick="loadContent('home')"><img src="img/Ravin.png" alt=" Logo do restaurante ravin"
-                    class="img-fluid rounded-circle my-2 p-1 d-md-block shadow" /></a>
+                <a href="#img" onclick="loadContent('home')"><img src="img/Ravin.png" alt=" Logo do restaurante ravin"
+                        class="img-fluid rounded-circle my-2 p-1 d-md-block shadow" /></a>
             </div>
             <ul class="list-unstyled px-2">
                 <li class=""><a href="#" onclick="loadContent('cardapio')"
@@ -42,7 +54,8 @@
 
             <hr class="h-color mx-3">
 
-            <ul class="list-unstyled px-2">
+            <!--
+                <ul class="list-unstyled px-2">
                 <li class="">
                     <a href="#" class="text-decoration-none px-3 py-2 d-block" onclick="loadContent('profile')">
                         <i class="bi bi-graph-up me-2"></i>Dashboard</a>
@@ -67,7 +80,8 @@
                         <span class="bg-danger rounded-pill text-white py-0 px-2">06</span>
                     </a>
                 </li>
-            </ul>
+            </ul> 
+        -->
         </div>
         <div class="content">
             <nav class="navbar navbar-expand-md navbar-light">
@@ -86,7 +100,7 @@
                         <ul class="navbar-nav mb-2 mb-lg-0">
                             <li class="nav-item">
                                 <!-- Botão que abre o modal -->
-                                <button class="btn btn-primary" type="button" id="openPedidoModal">
+                                <button class="btn btn-primary btn-modal-comanda" type="button" id="openPedidoModal">
                                     <div class="d-flex align-items-center">
                                         <div class="mr-2">
                                             <i class="fas fa-utensils fa-lg me-2"></i>
@@ -108,10 +122,10 @@
                         aria-labelledby="pedidoModalLabel">
                         <div
                             class="modal-dialog modal-dialog-pedido modal-dialog-slidein-pedido  modal-md modal-bottom">
-                            <div class="modal-content modal-content-pedido">
+                            <div class="modal-content modal-content-pedido modal-pedido-comanda">
                                 <!-- Conteúdo do modal aqui -->
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="cartModalLabel">Seus Pedidos</h5>
+                                    <h5 class="modal-title" id="cartModalLabel">Comanda</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>
@@ -129,7 +143,7 @@
                                         <div class="sidebar-pedido-footer-button-wrapper">
                                             <a class="btn btn--default btn-size-m btn--full-width restaurant-cart-footer__button"
                                                 role="button" target="" rel="" href="#modal-footer">
-                                                <span class="btn-label">Realizar pedido</span>
+                                                <span onclick="escolherMesa()" class="btn-label">Realizar pedido</span>
                                             </a>
                                         </div>
                                     </div>
@@ -142,6 +156,8 @@
             </div>
         </div>
     </div>
+   
+
     <script>
 
         // Variável para armazenar o conteúdo pré-carregado da página inicial

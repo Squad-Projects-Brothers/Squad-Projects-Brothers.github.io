@@ -97,6 +97,11 @@ h4 {
   height: 620px;
 }
 
+.card-cardapio {
+  background-color: #FFDA85;
+  
+}
+
 .bar-scroll {
   display: block;
   height: 716px;
@@ -174,6 +179,9 @@ h4 {
   background-color: var(--bs-backdrop-bg);
 }
 
+.modal-pedido-comanda{
+  background-color: #fff;
+}
 
 /* CSS para animação do novo modal */
 .modal-dialog-slideout-pedido {
@@ -381,6 +389,30 @@ h4 {
   border-top-color: #dadadb48;
 }
 
+.btn-cardapio{
+    background-color: #644E4E;
+    border-color: #FFDA85;
+    color: #faeccd
+}
+
+.btn-cardapio:hover{
+  background-color: #9e7373;
+  border-color: #FFDA85;
+  color: #faeccd
+}
+
+.btn-modal-comanda{
+  background-color: #FFDA85;
+  border-color: #644E4E;
+  color: #000000
+}
+
+.btn-modal-comanda:hover{
+  background-color: #faeccd;
+  border-color: #644E4E;
+  color: #000000
+}
+
 /*cardapio*/
 .activo {
   background: #FFDA85;
@@ -415,4 +447,39 @@ h4 {
 .inactive {
   color: #000;
   display: none !important;
+}
+
+
+/*teste alerta aula js*/
+.custom-alert {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #f5dcba; /* Amarelo */
+  border: 2px solid #9e8044; /* Marrom */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 999;
+}
+
+.custom-alert-content {
+  text-align: center;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  cursor: pointer;
+}
+.custom-alert-content h2{
+  color: red;
+}
+.custom-alert-content span{
+  color: red;
+  border: 2px red solid;
 }

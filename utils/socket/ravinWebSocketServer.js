@@ -64,9 +64,45 @@ wsServer.on('request', function(request) {
             }
 
             console.log(message);
+            const action = dados.action;
+            switch(action){
+                case "login":
+                    // {"action" : "login", "params":{"table":"nome da mesa"}}
+                    clientToLogin = getIndexByConnection(connection);
+                    // Efetuar o login --> Atribuir uma MESA para a CONEXAO
+                    doLogin(dados.params.table, connection);
+                break;
+            }
+
         }
     });
 });
+
+function getIndexByConnection(connection){
+    let index;
+    clientsConnected.forEach(function(valor, chave) {
+        if (connection == valor){
+            index = chave;
+        }
+    });
+
+    return index;
+}
+
+function doLogin(tableName, index){
+    const index = getIndexByConnection(connection);
+
+    if(index === false){
+        mensagem = formatMessage("erro", 'Erro de Login');
+                connection.sendUTF(mensagem);
+                console.log('Erro de Login');
+    } else {
+        clientsConnected[index]['table'] = tableName;
+        console.log("Mesa online: " + tableName);
+        mensagem = formatMessage("pong", 'Sucesso!! Seu ping fez um pong');
+                connection.sendUTF(mensagem);
+    }
+}
 
 function formatMessage(action, data) {
 	
@@ -75,6 +111,9 @@ function formatMessage(action, data) {
     switch(action) {
         case 'erro':
             mensagem = {"action":action,"params":{"msg":data}};
+        break;
+        case 'pong':
+            mensagem = {"action":action,"params":{"status":data}};
         break;
     }
 

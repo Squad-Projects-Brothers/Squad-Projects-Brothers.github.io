@@ -20,17 +20,15 @@ function montadorHtml(itensMenu) {
 
     for (itemMenu of itensMenu) {
         textHtml += `
-        <div class="col-sm-4 mb-3 itens-menu" data-category="${itemMenu.categoria}"> 
-                <div class="card">
+        <div class="col-sm-4 mb-3 itens-menu" data-bs-toggle="modal" data-category="${itemMenu.categoria}" data-bs-target="#modalItem1"
+        onclick="atualizarModalEChamarOutraFuncao(${itemMenu.id},'${itemMenu.nome}','${itemMenu.categoria}','${itemMenu.descricao}','${itemMenu.valor}')"
+        id="${itemMenu.id}"> 
+                <div class="card card-cardapio" type="button">
                     <img src="${itemMenu.imagem}" class="card-img-top custom-image" alt="Item 1">
                     <div class="card-body">
                         <h5 class="card-title">${itemMenu.nome}</h5>
                         <div class="text-center">
-                            <button class="btn btn-primary" data-bs-toggle="modal"
-                            <button data-bs-target="#modalItem${itemMenu.id}"
-                            onclick="atualizarModalEChamarOutraFuncao(${itemMenu.id},'${itemMenu.nome}','${itemMenu.categoria}','${itemMenu.descricao}','${itemMenu.valor}')"
-                            id="${itemMenu.id}">Adicionar ao Pedido</button>
-                                </div>
+                        </div>
                     </div>
                 </div>
             </div>`;
@@ -40,7 +38,7 @@ function montadorHtml(itensMenu) {
 //função auxiliar para poder chamar mais de uma função no onclick do produto
 function atualizarModalEChamarOutraFuncao(id, nome, categoria, descricao, valor) {
     atualizarModal(id, nome, categoria, descricao, valor);
-    mudarIdModal(id);
+   // mudarIdModal(id);
 }
 //função atualizar as informações do modalItem1 quando chamado
 function atualizarModal(id, nome, categoria, descricao, valor) {
@@ -55,27 +53,8 @@ function atualizarModal(id, nome, categoria, descricao, valor) {
     valorProduto.innerText = 'R$' + valor;
     let função = `adicionarProdutoNoCarrinho(${id},'${nome}','${categoria}','${descricao}','${valor}')`;
     addItem.setAttribute('onclick', função);
-    console.log(modais)
 }
-//função para mudar o atributo name do modalItem1
-function mudarIdModal(id) {
-    const newModalId = "modalItem" + id;
 
-    // Obtém todos os elementos com o atributo 'name' igual a 'modalItem'
-    const modals = document.getElementsByName("modalItem");
-
-    // Loop para verificar cada modal
-    for (const modal of modals) {
-        if (modal.id === newModalId) {
-            // O modal já tem o ID correto, então não precisamos fazer nada
-            console.log(modal);
-        } else {
-            // Atualiza o ID do modal
-            modal.setAttribute("id", newModalId);
-            console.log(modal);
-        }
-    }
-}
 // função de quantidade de itens no model de cada produto
 
 
