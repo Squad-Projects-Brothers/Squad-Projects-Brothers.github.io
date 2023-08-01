@@ -13,6 +13,11 @@ function preloadHomeContent() {
             document.getElementById('openPedidoModal').addEventListener('click', function () {
                 $('#pedidoModal').modal('show');
             });
+
+            $(".sidebar ul li").on('click', function () {
+                $(".sidebar ul li.active").removeClass('active');
+                $(this).addClass('active');
+            });
     
         },
         error: function (xhr, status, error) {
@@ -51,9 +56,6 @@ function loadPedidoContent() {
             // Armazena o conteúdo do pedido.html na variável
             document.getElementById('modalContentCustom').innerHTML = response;
             
-            // Após carregar o conteúdo do pedido.html, você pode chamar o modal aqui, se necessário.
-            // Por exemplo, se você quiser abrir o modal imediatamente após carregar o conteúdo:
-            // $('#pedidoModal').modal('show');
         },
         error: function (xhr, status, error) {
             console.log('Erro na solicitação AJAX:', error);

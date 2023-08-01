@@ -54,7 +54,7 @@
     <div class="main-container d-flex bg-dark" id="body-content">
     </div>
 
-    <div class="modalContentCustom"></div>
+    <div id="modalContentCustom"></div>
 
 
 
@@ -63,23 +63,6 @@
         // Pré-carrega o conteúdo da página inicial
         preloadHomeContent();
         loadPedidoContent();
-
-        $(".sidebar ul li").on('click', function () {
-            $(".sidebar ul li.active").removeClass('active');
-            $(this).addClass('active');
-        });
-
-        $('.open-btn').on('click', function (e) {
-            e.stopPropagation(); // Evita a propagação do evento de clique
-            $('.sidebar').addClass('active');
-        });
-
-        $('.close-btn').on('click', function (e) {
-            e.stopPropagation(); // Evita a propagação do evento de clique
-            $('.sidebar').removeClass('active');
-        });
-
-
 
 
         $(document).on('click', function (e) {
