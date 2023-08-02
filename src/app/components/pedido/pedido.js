@@ -92,6 +92,35 @@ function adicionarProdutoNoCarrinho(id, nome, categoria, descricao, valor) {
     calcularQuantidadeTotal();
 }
 
+function addStoragerrr() {
+    let valor = num;
+    if (localStorage.getItem("mesaSetada") === null) {
+        historicoPedidos = { itens: [] }
+    } else {
+        historicoPedidos = JSON.parse(localStorage.getItem("mesaSetada"));
+    }
+    historicoPedidos.itens.push('valor: ' + valor);
+    localStorage.setItem("mesaSetada", JSON.stringify(historicoPedidos));
+}
+
+
+function addStorage(prodCarrinho){
+    let storage = localStorage.setItem('produto', prodCarrinho);
+    return storage;
+}
+
+function salvarProdutoCarrinho(){
+    let valorItem = document.getElementById("valorItem").textContent.replace("R$ ", "").replace(",", ".");
+    let numberItem = document.getElementById("numberItem").innerText;
+    let nomeProd = document.getElementById("modalItem1Label").innerText;
+    let listaItens = document.getElementById("listaItens");
+    let quantidadeItens = parseInt(numberItem);
+    let valorFinal = (parseFloat(quantidadeItens) * parseFloat(valorItem.substring(2)));
+
+    listaItens.push(addStorage())
+
+
+}
 
 
 //remove item do "carrinho"

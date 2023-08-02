@@ -2,7 +2,7 @@
 
 var WebSocketServer = require('websocket').server;
 var http = require('http');
-var fetch = require("node-fetch");
+var fetch = import("node-fetch");
 
 var tablesConnected = [];
 var kitchenConnected = {};
