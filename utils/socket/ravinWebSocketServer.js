@@ -2,20 +2,19 @@
 
 var WebSocketServer = require('websocket').server;
 var http = require('http');
-const axios = require('axios');
-const crypto = require('crypto');
 
 var clientsConnected = [];
+var kitchenConnected = [];
 
 //Cria o server
-var server = http.createServer(function(request, response) {
+var server = http.createServer(function (request, response) {
     console.log((new Date()) + ' Recebida requisição para ' + request.url);
     response.writeHead(404);
     response.end();
 });
 
 //Inicia o server
-server.listen(3000, function() {
+server.listen(3000, function () {
     console.log((new Date()) + ' WebSocket Server rodando na porta 3000');
 });
 
@@ -33,7 +32,7 @@ wsServer.on('upgrade', function (req, socket) {
     }
     const acceptKey = req.headers['sec-websocket-key'];
     const hash = generateAcceptValue(acceptKey);
-    const responseHeaders = [ 'HTTP/1.1 101 Web Socket Protocol Handshake', 'Upgrade: WebSocket', 'Connection: Upgrade', `Sec-WebSocket-Accept: ${hash}` ];
+    const responseHeaders = ['HTTP/1.1 101 Web Socket Protocol Handshake', 'Upgrade: WebSocket', 'Connection: Upgrade', `Sec-WebSocket-Accept: ${hash}`];
 
     const protocol = req.headers['sec-websocket-protocol'];
     const protocols = !protocol ? [] : protocol.split(',').map(s => s.trim());
@@ -45,13 +44,13 @@ wsServer.on('upgrade', function (req, socket) {
 });
 
 //Leitura das requests para o websocket
-wsServer.on('request', function(request) {
+wsServer.on('request', function (request) {
 
     var connection = request.accept();
     clientsConnected.push(connection);
 
     //Quando recebe mensagem
-    connection.on('message', function(message) {
+    connection.on('message', function (message) {
 
         if (message.type === 'utf8') {
             try {
@@ -63,58 +62,61 @@ wsServer.on('request', function(request) {
                 return;
             }
 
-            console.log(message);
             const action = dados.action;
-            switch(action){
+            switch (action) {
                 case "login":
-                    // {"action" : "login", "params":{"table":"nome da mesa"}}
-                    clientToLogin = getIndexByConnection(connection);
-                    // Efetuar o login --> Atribuir uma MESA para a CONEXAO
-                    doLogin(dados.params.table, connection);
-                break;
+                    doLogin(data.params.table, connection);
+                    answerMessage = formatMessage("loginAnswer", 'success');
+                    connection.sendUTF(answerMessage);
+                    break;
             }
-
         }
     });
 });
 
-function getIndexByConnection(connection){
+function getIndexByConnection(connection) {
     let index;
-    clientsConnected.forEach(function(valor, chave) {
-        if (connection == valor){
+    clientsConnected.forEach(function (valor, chave) {
+        if (connection == valor) {
             index = chave;
         }
     });
 
     return index;
 }
+function getConnectionByTable(tableName){
+    
+}
 
-function doLogin(tableName, index){
-    const index = getIndexByConnection(connection);
-
-    if(index === false){
-        mensagem = formatMessage("erro", 'Erro de Login');
-                connection.sendUTF(mensagem);
-                console.log('Erro de Login');
+function doLogin(table, connection) {
+    var index = getIndexByConnection(connection);
+    if (index === false) {
+        let mensagem = formatMessage("erro", "Erro ao efetuar login");
+        connection.sendUTF(mensagem);
+        console.log('Erro ao efetuar login, MESA ' + table);
     } else {
-        clientsConnected[index]['table'] = tableName;
-        console.log("Mesa online: " + tableName);
-        mensagem = formatMessage("pong", 'Sucesso!! Seu ping fez um pong');
-                connection.sendUTF(mensagem);
+        if (table === "kitchen") {
+            kitchenConnected = connection;
+        } else {
+            connectedTables[index]['table'] = table;
+            console.log('Mesa online ' + table);
+        }
     }
 }
 
 function formatMessage(action, data) {
-	
+
     let mensagem;
 
-    switch(action) {
+    switch (action) {
         case 'erro':
-            mensagem = {"action":action,"params":{"msg":data}};
-        break;
-        case 'pong':
-            mensagem = {"action":action,"params":{"status":data}};
-        break;
+        case 'loginAnswer':
+            mensagem = { "action": action, "params": { "msg": data } };
+            break;
+        case 'Hello kitchen':
+            mensagem = { "action": action, "params": { "msg": data } };
+            break;
+        case 'newOrder':
     }
 
     return JSON.stringify(mensagem);

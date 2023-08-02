@@ -49,7 +49,11 @@ function atualizarModal(id, nome, categoria, descricao, valor) {
     valorProduto.innerText = 'R$' + valor;
     let função = `adicionarProdutoNoCarrinho(${id},'${nome}','${categoria}','${descricao}','${valor}')`;
     addItem.setAttribute('onclick', função);
+    console.log(id, nome, categoria, descricao, valor)
 }
+
+
+
 
 // função de quantidade de itens no model de cada produto
 

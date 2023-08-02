@@ -1,0 +1,30 @@
+.card-cardapio {
+    background-color: #FFDA85;
+
+}
+
+.cardapio-color {
+    background: #725d5d;
+}
+
+.card-header-tabs .nav-link.active {
+    background: #FFDA85;
+    border-color: transparent;
+}
+
+
+.tab-color {
+    color: #FFDA85;
+}
+
+.btn-cardapio {
+    background-color: #644E4E;
+    border-color: #FFDA85;
+    color: #faeccd
+}
+
+.btn-cardapio:hover {
+    background-color: #9e7373;
+    border-color: #FFDA85;
+    color: #faeccd
+}
