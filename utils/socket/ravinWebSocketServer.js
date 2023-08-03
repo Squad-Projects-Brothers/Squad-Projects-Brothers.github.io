@@ -2,21 +2,20 @@
 
 var WebSocketServer = require('websocket').server;
 var http = require('http');
-var fetch = import("node-fetch");
 
 var tablesConnected = [];
 var kitchenConnected = {};
 var orders = [];
 
 //Cria o server
-var server = http.createServer(function(request, response) {
+var server = http.createServer(function (request, response) {
     console.log((new Date()) + ' Recebida requisição para ' + request.url);
     response.writeHead(404);
     response.end();
 });
 
 //Inicia o server
-server.listen(3000, function() {
+server.listen(3000, function () {
     console.log((new Date()) + ' WebSocket Server rodando na porta 3000');
 });
 
@@ -34,7 +33,7 @@ wsServer.on('upgrade', function (req, socket) {
     }
     const acceptKey = req.headers['sec-websocket-key'];
     const hash = generateAcceptValue(acceptKey);
-    const responseHeaders = [ 'HTTP/1.1 101 Web Socket Protocol Handshake', 'Upgrade: WebSocket', 'Connection: Upgrade', `Sec-WebSocket-Accept: ${hash}` ];
+    const responseHeaders = ['HTTP/1.1 101 Web Socket Protocol Handshake', 'Upgrade: WebSocket', 'Connection: Upgrade', `Sec-WebSocket-Accept: ${hash}`];
 
     const protocol = req.headers['sec-websocket-protocol'];
     const protocols = !protocol ? [] : protocol.split(',').map(s => s.trim());
@@ -46,13 +45,13 @@ wsServer.on('upgrade', function (req, socket) {
 });
 
 //Leitura das requests para o websocket
-wsServer.on('request', function(request) {
+wsServer.on('request', function (request) {
 
     var connection = request.accept();
     tablesConnected.push(connection);
 
     //Quando recebe mensagem
-    connection.on('message', function(message) {
+    connection.on('message', function (message) {
 
         if (message.type === 'utf8') {
             try {
@@ -72,22 +71,22 @@ wsServer.on('request', function(request) {
                     connection.sendUTF(answerMessage);
                     break;
                 case "helloKitchen":
-                    message = formatMessage("helloKitchen", {"table": data.params.table, "message": "Hello Kitchen"});
+                    message = formatMessage("helloKitchen", { "table": data.params.table, "message": "Hello Kitchen" });
                     kitchenConnected.sendUTF(message);
                     console.log("Mensagem enviada para a COZINHA, pela MESA " + data.params.table);
                     break;
                 case "helloClient":
                     const tableConnection = getConnectionByTable(data.params.table);
-                    message = formatMessage("helloClient", {"message": "Hello Client"});
+                    message = formatMessage("helloClient", { "message": "Hello Client" });
                     tableConnection.sendUTF(message);
-                    console.log("Mensagem enviada para a MESA "+ data.params.table +", pela COZINHA");
+                    console.log("Mensagem enviada para a MESA " + data.params.table + ", pela COZINHA");
                     break;
                 case "newOrder":
                     const resultRequest = sendRequestOrder(data.params);
                     resultRequest
                         .then(() => {
                             addNewTableOrder(data.params);
-                            message = formatMessage("newOrder", {"table": data.params.table, "item": data.params.item, "value": data.params.value, "quantity": data.params.quantity});
+                            message = formatMessage("newOrder", { "table": data.params.table, "item": data.params.item, "value": data.params.value, "quantity": data.params.quantity });
                             kitchenConnected.sendUTF(message);
                             console.log("Pedido da MESA " + data.params.table + " enviado a COZINHA");
                         })
@@ -96,21 +95,24 @@ wsServer.on('request', function(request) {
                             connection.send(mesagem);
                             console.log(error);
                         })
-                    ;
+                        ;
+                case "minhaNovaAcao":
+                    minhaNovaFuncao(data.params); // Aqui chamamos a nova função e passamos os parâmetros recebidos no objeto JSON.
+                    break;
             }
         }
     });
 });
 
 function getIndexByConnection(connection) {
-  let index;
-  tablesConnected.forEach(function(valor, chave) {
-    if (connection == valor) {
-      index = chave;
-    }
-  });
+    let index;
+    tablesConnected.forEach(function (valor, chave) {
+        if (connection == valor) {
+            index = chave;
+        }
+    });
 
-  return index;
+    return index;
 }
 
 function getConnectionByTable(tableName) {
@@ -130,7 +132,7 @@ async function sendRequestOrder(order) {
         },
         body: JSON.stringify(order)
     })
-    
+
     return request.json();
 }
 
@@ -156,23 +158,23 @@ function doLogin(table, connection) {
 }
 
 function formatMessage(action, data) {
-	
+
     let message;
 
-    switch(action) {
+    switch (action) {
         case 'erro':
         case 'loginAnswer':
-            message = {"action": action, "params": {"msg": data}};
+            message = { "action": action, "params": { "msg": data } };
             break;
         case 'helloKitchen':
         case 'helloClient':
-            message = {"action": action, "params": {"table": data.table, "msg": data.message}}
+            message = { "action": action, "params": { "table": data.table, "msg": data.message } }
             break;
         case 'newOrder':
-            message = {"action": action, "params": data};
+            message = { "action": action, "params": data };
             break;
         case 'rollBackOrder':
-            message = {"action": action, "params": {"item": data}};
+            message = { "action": action, "params": { "item": data } };
             break;
     }
 

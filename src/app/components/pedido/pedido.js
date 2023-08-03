@@ -1,27 +1,5 @@
 //função acionada ao clicar no botao adicionar produto no modal de confirmação
 function adicionarProdutoNoCarrinho(id, nome, categoria, descricao, valor) {
-    // BOOTSTRAP MODAL - DOCUMENTAÇÃO ULTIMO MODAL
-    // BOOTSTRAP MODAL - DOCUMENTAÇÃO ULTIMO MODAL
-    // BOOTSTRAP MODAL - DOCUMENTAÇÃO ULTIMO MODAL
-    // BOOTSTRAP MODAL - DOCUMENTAÇÃO ULTIMO MODAL
-    // BOOTSTRAP MODAL - DOCUMENTAÇÃO ULTIMO MODAL
-    // BOOTSTRAP MODAL - DOCUMENTAÇÃO ULTIMO MODAL
-    // BOOTSTRAP MODAL - DOCUMENTAÇÃO ULTIMO MODAL
-    // BOOTSTRAP MODAL - DOCUMENTAÇÃO ULTIMO MODAL
-    // BOOTSTRAP MODAL - DOCUMENTAÇÃO ULTIMO MODAL
-    // BOOTSTRAP MODAL - DOCUMENTAÇÃO ULTIMO MODAL
-    // BOOTSTRAP MODAL - DOCUMENTAÇÃO ULTIMO MODAL
-    // BOOTSTRAP MODAL - DOCUMENTAÇÃO ULTIMO MODAL
-    // BOOTSTRAP MODAL - DOCUMENTAÇÃO ULTIMO MODAL
-    // BOOTSTRAP MODAL - DOCUMENTAÇÃO ULTIMO MODAL
-    // BOOTSTRAP MODAL - DOCUMENTAÇÃO ULTIMO MODAL
-    // BOOTSTRAP MODAL - DOCUMENTAÇÃO ULTIMO MODAL
-    // BOOTSTRAP MODAL - DOCUMENTAÇÃO ULTIMO MODAL
-    // BOOTSTRAP MODAL - DOCUMENTAÇÃO ULTIMO MODAL
-    // BOOTSTRAP MODAL - DOCUMENTAÇÃO ULTIMO MODAL
-    // BOOTSTRAP MODAL - DOCUMENTAÇÃO ULTIMO MODAL
-    // BOOTSTRAP MODAL - DOCUMENTAÇÃO ULTIMO MODAL
-    // BOOTSTRAP MODAL - DOCUMENTAÇÃO ULTIMO MODAL
 
     let valorItem = document.getElementById("valorItem").textContent.replace("R$ ", "").replace(",", ".");
     let numberItem = document.getElementById("numberItem").innerText;
@@ -50,6 +28,8 @@ function adicionarProdutoNoCarrinho(id, nome, categoria, descricao, valor) {
             quantidadeSpan.innerText = novaQuantidade;
             setarOValor.innerText = 'R$ ' + novoValor.toFixed(2).replace(".", ",");
             itemJaExistente = true
+
+            listaStorage.push(localStorage.getItem('produto', ))
             break;
         }
     }
@@ -66,12 +46,12 @@ function adicionarProdutoNoCarrinho(id, nome, categoria, descricao, valor) {
         <div class="sidebar-pedido-item-buttons-wrapper">
             <button type="button"
                 role="button"
-                class="btn btn-link-edit btn-size-m sidebar-pedido-button-item-button"
+                class="btn btn-link-edit btn-size-l sidebar-pedido-button-item-button"
                 theme="link" variant="sidebar-pedido-button-item-button" label="Editar"
                 data-test-id="restaurant-cart-item__edit-button" color="primary"
-                data-bs-togg le="modal" data-bs-target="#modalItem1"
-                id="${id}">
-                <span class="btn-label">Editar</span>
+                data-bs-toggle="modal" data-bs-target="#modalItem1" 
+                onclick="atualizarModalEChamarOutraFuncao(${id},'${nome}','${categoria}','${descricao}','${valor}')"
+                id="${id}">Editar
             </button>
             <button type="button"
                 role="button"
@@ -87,40 +67,48 @@ function adicionarProdutoNoCarrinho(id, nome, categoria, descricao, valor) {
         listaItens.innerHTML += textHtml;
 
     }
+
+    document.getElementById('numberItem').innerText = '1';
     
     calcularValorTotal();
     calcularQuantidadeTotal();
 }
 
-function addStoragerrr() {
-    let valor = num;
-    if (localStorage.getItem("mesaSetada") === null) {
-        historicoPedidos = { itens: [] }
-    } else {
-        historicoPedidos = JSON.parse(localStorage.getItem("mesaSetada"));
-    }
-    historicoPedidos.itens.push('valor: ' + valor);
-    localStorage.setItem("mesaSetada", JSON.stringify(historicoPedidos));
+function atualizarModalEChamarOutraFuncao(id, nome, categoria, descricao, valor) {
+    atualizarModal(id, nome, categoria, descricao, valor);
+   // mudarIdModal(id);
 }
 
+//função atualizar as informações do modalItem1 quando chamado
+function atualizarModal(id, nome, categoria, descricao, valor) {
+    let addDescricao = document.getElementById("descricao-produto");
+    let titulo = document.getElementById("modalItem1Label");
+    let valorProduto = document.getElementById("valorItem");
+    console.log(valorProduto)
+    let addItem = document.getElementById("addItem");
+    let observacaoItem1 = document.getElementById("observacaoItem1");
+    titulo.innerText = nome;
+    addDescricao.innerText = descricao;
+    valorProduto.innerText = 'R$' + valor;
+    let função = `adicionarProdutoNoCarrinho(${id},'${nome}','${categoria}','${descricao}','${valor}')`;
+    //let função = `adicionarProdutoNoCarrinho(${JSON.stringify(id,nome,categoria,descricao,valor)})`;
+    addItem.setAttribute('onclick', função);
 
-function addStorage(prodCarrinho){
-    let storage = localStorage.setItem('produto', prodCarrinho);
-    return storage;
 }
 
-function salvarProdutoCarrinho(){
-    let valorItem = document.getElementById("valorItem").textContent.replace("R$ ", "").replace(",", ".");
-    let numberItem = document.getElementById("numberItem").innerText;
-    let nomeProd = document.getElementById("modalItem1Label").innerText;
-    let listaItens = document.getElementById("listaItens");
-    let quantidadeItens = parseInt(numberItem);
-    let valorFinal = (parseFloat(quantidadeItens) * parseFloat(valorItem.substring(2)));
+function salvarUltimoPedido(pedido) {
+    localStorage.setItem("lastOrder", JSON.stringify(pedido));
+  }
+
+
+function salvarProdutoCarrinho(pedido){
+    
 
     listaItens.push(addStorage())
 
-
 }
+
+
 
 
 //remove item do "carrinho"

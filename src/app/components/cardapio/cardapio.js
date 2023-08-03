@@ -36,6 +36,10 @@ function montadorHtml(itensMenu) {
     }
 }
 
+function resetItemValue() {
+    document.getElementById('numberItem').textContent = '1';
+}
+
 //função atualizar as informações do modalItem1 quando chamado
 function atualizarModal(id, nome, categoria, descricao, valor) {
     let addDescricao = document.getElementById("descricao-produto");
@@ -47,9 +51,11 @@ function atualizarModal(id, nome, categoria, descricao, valor) {
     titulo.innerText = nome;
     addDescricao.innerText = descricao;
     valorProduto.innerText = 'R$' + valor;
+    console.log(id, nome, categoria, descricao, valor)
     let função = `adicionarProdutoNoCarrinho(${id},'${nome}','${categoria}','${descricao}','${valor}')`;
     addItem.setAttribute('onclick', função);
-    console.log(id, nome, categoria, descricao, valor)
+    
+    
 }
 
 
