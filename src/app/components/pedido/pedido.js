@@ -29,7 +29,7 @@ function adicionarProdutoNoCarrinho(id, nome, categoria, descricao, valor) {
             setarOValor.innerText = 'R$ ' + novoValor.toFixed(2).replace(".", ",");
             itemJaExistente = true
 
-            listaStorage.push(localStorage.getItem('produto', ))
+            listaStorage.push(localStorage.getItem('produto',))
             break;
         }
     }
@@ -69,14 +69,14 @@ function adicionarProdutoNoCarrinho(id, nome, categoria, descricao, valor) {
     }
 
     document.getElementById('numberItem').innerText = '1';
-    
+
     calcularValorTotal();
     calcularQuantidadeTotal();
 }
 
 function atualizarModalEChamarOutraFuncao(id, nome, categoria, descricao, valor) {
     atualizarModal(id, nome, categoria, descricao, valor);
-   // mudarIdModal(id);
+    // mudarIdModal(id);
 }
 
 //função atualizar as informações do modalItem1 quando chamado
@@ -84,7 +84,6 @@ function atualizarModal(id, nome, categoria, descricao, valor) {
     let addDescricao = document.getElementById("descricao-produto");
     let titulo = document.getElementById("modalItem1Label");
     let valorProduto = document.getElementById("valorItem");
-    console.log(valorProduto)
     let addItem = document.getElementById("addItem");
     let observacaoItem1 = document.getElementById("observacaoItem1");
     titulo.innerText = nome;
@@ -98,11 +97,11 @@ function atualizarModal(id, nome, categoria, descricao, valor) {
 
 function salvarUltimoPedido(pedido) {
     localStorage.setItem("lastOrder", JSON.stringify(pedido));
-  }
+}
 
 
-function salvarProdutoCarrinho(pedido){
-    
+function salvarProdutoCarrinho(pedido) {
+
 
     listaItens.push(addStorage())
 
@@ -170,16 +169,15 @@ function calcularQuantidadeTotal() {
 //função de mudar quantidade de produtos no model confirmação
 function alterarQtd(acao) {
     const valor = document.getElementById("valorItem").innerHTML
-    console.log(valor)
+
     const qtd = document.getElementById("numberItem")
     const valorTotalAtualizado = fomatarValor(valor)
-    console.log(valor)
+
     if (acao == '-' && qtd.innerHTML == 1) {
 
     } else {
         acao == '+' ? qtd.innerHTML++ : qtd.innerHTML--
         const valorTotal = qtd.innerHTML * valorTotalAtualizado
-        console.log(valorTotal)
     }
 }
 
@@ -191,18 +189,54 @@ function fomatarValor(n) {
     return n.toLocaleString('pt-br', { style: "currency", currency: "BRL" });
 }
 
-function escolherMesa() {
-    var mesas = ['Mesa 1', 'Mesa 2', 'Mesa 3', 'Mesa 4', 'Mesa 5'];
-    var escolha = window.prompt('Escolha uma mesa: \n' + mesas.join('\n'));
+function enviarPedidoParaCozinha() {
+    var socket = io('http://localhost:3001');
+   
 
-    // Verifica se o usuário escolheu uma mesa válida
-    if (escolha !== null && escolha !== '') {
-        if (mesas.includes(escolha)) {
-            alert('Você escolheu a ' + escolha + '.');
-        } else {
-            alert('Mesa inválida. Por favor, escolha uma mesa entre 1 e 5.');
-        }
-    } else {
-        alert('Você não fez uma escolha de mesa.');
+    function renderMessage(message) {
     }
+
+    socket.on('previousMessagens', function (messages) {
+        for (var i = 0; i < messages.length; i++) {
+            renderMessage(messages[i]);
+        }
+    });
+
+    socket.on('receivedMessage', function (message) {
+        renderMessage(message);
+    });
+
+    document.getElementById('alerta').addEventListener('submit', function (event) {
+        event.preventDefault(); // Previne de enviar alguma mensagem quando clica no botão
+        var mesa = localStorage.getItem('mesaSetada');
+        var listaProdutos = document.querySelectorAll('#listaItens .sidebar-pedido-line'); // Use the DOM method to get the elements correctly
+        var listaObjProduto = [];
+
+        function addLista() {
+            listaProdutos.forEach(function (item) {
+                var nomeProduto = item.querySelector('span:nth-child(2)').textContent;
+                var quantidadeProduto = item.querySelector('span:nth-child(1)').textContent;
+                var produtoFormatado = {
+                    nome: nomeProduto,
+                    quantidade: quantidadeProduto,
+                    status: 'solicitado'
+
+                };
+                listaObjProduto.push(produtoFormatado);
+            });
+            return listaObjProduto;
+        }
+
+        listaObjProduto = addLista();
+
+        if (mesa) {
+            var mensageObject = {
+                mesa: mesa,
+                produtos: listaObjProduto,
+            };
+            socket.emit('sendMessage', mensageObject); // Evento envia o objeto message + autor
+            // Chama a função para mostrar a mensagem passando o mensageObject
+            renderMessage(mensageObject);
+        }
+    });
 }

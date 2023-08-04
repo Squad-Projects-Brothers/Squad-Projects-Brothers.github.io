@@ -1,0 +1,30 @@
+body {
+  background: #373131;
+  color: #FFDA85;
+}
+.display-1{
+  color: #FFDA85;
+  align-items: center;
+  text-align: center;
+}
+.col{
+  background: --bs-warning-bg-subtle;
+  width: 33.3%;
+}
+.message{
+  background-color: #725d5d !important;
+}
+table {
+  color: #FFDA85;
+}
+.titulo-mesa{
+  background-color: #FFDA85 !important;
+  color: var(--bs-card-title-color) !important;
+  font-weight: bolder;
+}
+.btn-atualizar{
+  width: 100%;
+  text-align: center;
+  align-items: center;
+  font-weight: bolder;
+}

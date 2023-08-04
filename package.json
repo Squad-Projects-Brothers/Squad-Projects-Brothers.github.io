@@ -1,6 +1,10 @@
 {
   "dependencies": {
+    "cjs": "^0.0.11",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
     "node-fetch": "^3.3.2",
+    "socket.io": "^4.7.2",
     "websocket": "^1.0.34"
   },
   "devDependencies": {
