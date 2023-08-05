@@ -219,7 +219,7 @@ function enviarPedidoParaCozinha() {
                 var produtoFormatado = {
                     nome: nomeProduto,
                     quantidade: quantidadeProduto,
-                    status: 'solicitado'
+                    status: 'Aguardando'
 
                 };
                 listaObjProduto.push(produtoFormatado);
