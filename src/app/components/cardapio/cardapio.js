@@ -1,16 +1,44 @@
+document.addEventListener("DOMContentLoaded", function () {
+  //exibirUltimoPedido();
+});
+
 //função de conectar no json **NÃO APAGAR A URL LOCALHOST**
 function pegaritens() {
   url = "https://ravinristorant.000webhostapp.com/json/server-itens.php";
   //url = "http://localhost/Squad-Projects-Brothers.github.io/json/server-itens.php";
 
-  fetch(url)
-    .then((dados) => {
-      return dados.json();
-    })
-    .then((data) => {
-      const respostaJson = data;
-      montadorHtml(data);
-    });
+  // Verifica se o cardápio já foi carregado anteriormente
+  const cardapioCarregado = localStorage.getItem("cardapioCarregado");
+
+  if (cardapioCarregado) {
+    // O cardápio já foi carregado, obtém os dados do localStorage
+    const dadosArmazenados = localStorage.getItem("cardapio");
+    const data = JSON.parse(dadosArmazenados);
+
+    // Monta o HTML com os dados já armazenados
+    montadorHtml(data);
+  } else {
+    // O cardápio ainda não foi carregado, faz a chamada fetch para obter os dados
+    fetch(url)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Erro ao obter os dados do servidor.");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        const respostaJson = data;
+        localStorage.setItem("cardapio", JSON.stringify(data));
+        localStorage.setItem("cardapioCarregado", "true"); // Indica que o cardápio foi carregado
+
+        // Chama a função para montar o HTML com os dados obtidos
+        montadorHtml(data);
+      })
+      .catch((error) => {
+        console.error(error);
+        // Aqui você pode tratar o erro, por exemplo, exibindo uma mensagem de erro na página
+      });
+  }
 }
 
 //função de adicionar listar os itens do json

@@ -4,7 +4,7 @@
         <div class="card-header">
             <ul class="nav nav-tabs card-header-tabs" id="myTabs" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link tab-color menu-itens " id="todos-tab" data-bs-toggle="tab"
+                    <button class="nav-link tab-color menu-itens" id="todos-tab" data-bs-toggle="tab"
                         data-bs-target="#todos" type="button" role="tab" aria-controls="todos" aria-selected="false"
                         onclick="selecionarTodosItens(this, 'todos')">Todos</button>
                 </li>
@@ -23,20 +23,23 @@
                         data-bs-target="#bebidas" type="button" role="tab" aria-controls="bebidas" aria-selected="false"
                         onclick="activeModel(this, 'bebida')">Bebidas</button>
                 </li>
+                <!-- Botão "Últimos Pedidos" -->
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link tab-color menu-itens" id="ultimo-pedido-tab" type="button" role="tab" aria-controls="ultimoPedido" aria-selected="false" onclick="exibirModalItemUltimoPedido()">Últimos Pedidos</button>
+                </li>
             </ul>
         </div>
         <div class="card-body mb-3 mb-sm-0 bar-scroll">
 
             <div class="tab-content" id="myTabsContent">
                 <div class="tab-pane fade show active" id="todos" role="tabpanel" aria-labelledby="todos-tab">
-                    <div class="row" id="cardapio"> <!-- Criar nova linha -->
-                        <!-- Adicione mais colunas de acordo com a quantidade de itens do cardápio -->
+                    <div class="row" id="cardapio">
+                        <!-- Conteúdo do cardápio será adicionado dinamicamente aqui -->
                     </div>
                 </div>
                 <div class="tab-pane fade" id="comida" role="tabpanel" aria-labelledby="comida-tab">
-                        <!-- Adicione mais colunas de acordo com a quantidade de itens do cardápio -->
+                    <!-- Conteúdo da aba de comidas -->
                 </div>
-
                 <div class="tab-pane fade" id="sobremesas" role="tabpanel" aria-labelledby="sobremesas-tab">
                     <!-- Conteúdo da aba de sobremesas -->
                 </div>
@@ -47,13 +50,16 @@
         </div>
     </div>
 </div>
-<div class="modal fade modal-custom" id="modalItem1" data-id-produto-modal="modalItemIdAux" name="modalItem" tabindex="-1" aria-labelledby="modalItem1Label" aria-hidden="true">
+
+<!-- Modal do Item -->
+<div class="modal fade modal-custom" id="modalItem1" data-id-produto-modal="modalItemIdAux" name="modalItem"
+    tabindex="-1" aria-labelledby="modalItem1Label" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="modalItem1Label">Nome do item</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                   
+
                 </button>
             </div>
             <div class="modal-body">
@@ -75,8 +81,27 @@
                 <button type="button" class="btn btn-primary rounded-pill">
                     <i onclick="alterarQtd('+')" id="i-add-item" class="bi bi-plus"></i>
                 </button>
-                <a href="#" class="btn btn-primary" id="addItem"
-                    data-bs-dismiss="modal">Adicionar ao Pedido</a>
+                <a href="#" class="btn btn-primary" id="addItem" data-bs-dismiss="modal">Adicionar ao Pedido</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal do Último Pedido-->
+<div class="modal fade modal-custom" id="modalUltimoPedido" tabindex="-1" aria-labelledby="modalUltimoPedidoLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalUltimoPedidoLabel">Último Pedido</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="ultimoPedido">
+                <!--CONTEUDO ULTIMO PEDIDO-->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-primary" onclick="exibirModalItemUltimoPedido()">Detalhes do Item</button>
             </div>
         </div>
     </div>

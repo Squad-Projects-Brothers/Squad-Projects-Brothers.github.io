@@ -63,7 +63,7 @@ h4 {
 }
 
 .custom-button::before {
-  background-color: #4e17e6;
+  background-color: khaki;
 }
 
 .custom-button:hover::before {
@@ -130,4 +130,14 @@ h4 {
 .inactive {
   color: #000;
   display: none !important;
+}
+
+body {
+  opacity: 1; /* Inicialmente com opacidade 0 para o efeito de fade-in */
+  transition: opacity 1s; /* Define a duração do efeito de transição */
+}
+
+/* Estilização do efeito de fade-in quando a classe "fade-in" é aplicada */
+.fade-in-body {
+  opacity: 1;
 }

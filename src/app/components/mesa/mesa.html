@@ -1,0 +1,14 @@
+<div class="custom-alert" id="alerta">
+  <form class="custom-alert-content">
+    <span class="close-btn" onclick="fecharAlerta()">&times;</span>
+    <h2>Escolha uma mesa</h2>
+    <input
+      type="number"
+      id="numeroMesa"
+      name="mesa"
+      placeholder="Número da mesa"
+    />
+    <button onclick="verificaStorage()">escolher</button>
+  </form>
+</div>
+<!-- NÃO MUDA DE FORM PARA DIV, QUEBRA A FUNÇÃO DE ENVIAR PARA API -->

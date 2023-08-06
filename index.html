@@ -20,12 +20,17 @@
     <link rel="stylesheet" href="style.css" />
 
     <!-- Arquivos de estilização dos components -->
+    <link rel="stylesheet" href="src/app/components/home/home.css" />
     <link rel="stylesheet" href="src/app/components/cardapio/cardapio.css" />
     <link rel="stylesheet" href="src/app/components/comanda/comanda.css" />
-    <link rel="stylesheet" href="src/app/components/home/home.css" />
     <link rel="stylesheet" href="src/app/components/pedido/pedido.css" />
     <link rel="stylesheet" href="src/app/components/nav/nav.css" />
     <link rel="stylesheet" href="src/app/components/mesa/mesa.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
 
     <!-- link para o favicon, icone que fica aparecendo quando acessamos a página -->
     <link
@@ -56,51 +61,33 @@
 
     <!-- Arquivo principal do index para carregar as páginas main.js -->
     <script src="main.js"></script>
+
     <!-- Link socket.io e jquery -->
 
     <title>Ravin Ristorant</title>
   </head>
 
   <body>
-    <div>
-      <form class="custom-alert" id="alerta">
-        <div class="custom-alert-content">
-          <span class="close-btn" onclick="fecharAlerta()">&times;</span>
-          <h2>Escolha a sua mesa</h2>
-          <input
-            id="numeroMesa"
-            type="number"
-            name="mesa"
-            placeholder="Digite o numero da mesa"
-          />
-          <button onclick="verificaStorage()">escolher</button>
-        </div>
-      </form>
+    <div id="homeContent">
     </div>
-    <div class="main-container d-flex bg-dark" id="body-content"></div>
+    <div id="mesaMenu"></div>
 
+    <div class="main-container d-flex bg-dark" id="body-content"></div>
     <div id="modalContentCustom"></div>
+    <!-- Aqui estão os caminhos para os arquivos JS do prejeto-->
+    <script src="src/app/components/home/home.js"></script>
+    <script src="src/app/components/cardapio/cardapio.js"></script>
+    <script src="src/app/components/comanda/comanda.js"></script>
+    <script src="src/app/components/nav/nav.js"></script>
+    <script src="src/app/components/mesa/mesa.js"></script>
+    <script src="src/app/components/pedido/pedido.js"></script>
 
     <script>
       // Pré-carrega o conteúdo da página inicial
       preloadHomeContent();
       loadPedidoContent();
-
-      $(document).on("click", function (e) {
-        var sidebar = $(".sidebar");
-        var target = $(e.target);
-
-        // Verifica se o clique ocorreu fora do sidebar
-        if (!target.closest(sidebar).length && !target.hasClass("open-btn")) {
-          sidebar.removeClass("active");
-        }
-      });
+      loadMesaContent();
     </script>
-    <!-- Aqui estão os caminhos para os arquivos JS do prejeto-->
-    <script src="src/app/components/cardapio/cardapio.js"></script>
-    <script src="src/app/components/comanda/comanda.js"></script>
-    <script src="src/app/components/nav/nav.js"></script>
-    <script src="src/app/components/pedido/pedido.js"></script>
-    <script src="src/app/components/mesa/mesa.js"></script>
+
   </body>
 </html>

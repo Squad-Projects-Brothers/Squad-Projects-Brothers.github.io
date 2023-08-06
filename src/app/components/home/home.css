@@ -1,0 +1,62 @@
+/* Estilização do fundo da pré-tela */
+#preTela {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #725d5d;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+/* Estilização do efeito de fade-in quando a classe "show" é aplicada */
+#preTela.show {
+  opacity: 1;
+}
+
+/* Animação do título slide da esquerda para a direita */
+.slide-from-left {
+  animation: slideLeftToRight 1s ease-in-out;
+}
+
+@keyframes slideLeftToRight {
+  from {
+      transform: translateX(-100%);
+  }
+  to {
+      transform: translateX(0);
+  }
+}
+
+/* Animação da imagem slide de baixo para cima */
+.slide-from-bottom {
+  animation: slideBottomToTop 3s ease-in-out;
+}
+
+@keyframes slideBottomToTop {
+  from {
+      transform: translateY(100%);
+  }
+  to {
+      transform: translateY(0);
+  }
+}
+
+/* Animação de fade out na página toda */
+.fade-out {
+  animation: fadeOut 1s ease-in-out;
+}
+
+@keyframes fadeOut {
+  from {
+      opacity: 1;
+  }
+  to {
+      opacity: 0;
+  }
+}

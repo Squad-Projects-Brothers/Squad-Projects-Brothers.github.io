@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cozinha Ravin</title>
+    <!-- Framework bootstrap - arquivos CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.slim.min.js"
+      integrity="sha512-5NqgLBAYtvRsyAzAvEBWhaW+NoB+vARl6QiA02AFMhCWvPpi7RWResDcTGYvQtzsHVCfiUhwvsijP+3ixUk1xw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.2/socket.io.js"
+      integrity="sha512-zoJXRvW2gC8Z0Xo3lBbao5+AS3g6YWr5ztKqaicua11xHo+AvE1b0lT9ODgrHTmNUxeCw0Ry4BGRYZfXu70weg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <!-- Framework bootstrap - arquivos JS-->
+    <script src="https://unpkg.com/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="cozinha.js">
+      aaa();
+      liveToast();
+    </script>
+
+    <link rel="stylesheet" href="cozinha.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <div>
+        <h1 class="display-1">Cozinha Ravin</h1>
+      </div>
+      <div class="messages"></div>
+      <div>
+        <button class="btn btn-atualizar btn-outline-warning" onclick="aaa()">
+          Atualizar lista
+        </button>
+      </div>
+    </div>
+
+    <!-- O botão para mostrar o toast -->
+    <button type="button" class="btn btn-primary" id="liveToastBtn">
+      Mostrar toast
+    </button>
+
+    <!-- O container dos toasts -->
+    <div
+      class="toast-container position-fixed bottom-0 end-0 p-3"
+      id="toastContainer"
+    ></div>
+
+    <script>
+      // Função para criar e mostrar um novo toast
+      function showToast(message) {
+        var toastContainer = document.getElementById("toastContainer");
+
+        // Criar o elemento do toast
+        var toast = document.createElement("div");
+        toast.classList.add("toast");
+        toast.setAttribute("role", "alert");
+        toast.setAttribute("aria-live", "assertive");
+        toast.setAttribute("aria-atomic", "true");
+
+        // Definir o conteúdo do toast
+        toast.innerHTML = `
+          <div class="toast-header">
+            <img src="" class="rounded me-2" alt="">
+            <strong class="me-auto">Bootstrap</strong>
+            <small>11 mins ago</small>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close" data-bs-delay="10000"></button>
+          </div>
+          <div class="toast-body">
+            ${message}
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </div>
+        `;
+
+        // Adicionar o toast ao container
+        toastContainer.appendChild(toast);
+
+        // Mostrar o toast
+        var toastInstance = new bootstrap.Toast(toast);
+        toastInstance.show();
+
+        // Iniciar a animação da barra de progresso
+        var progressBar = toast.querySelector(".progress-bar");
+        var width = 100; // 100% para começar
+        var interval = setInterval(function () {
+          width -= 1;
+          progressBar.style.width = width + "%";
+          if (width <= 0) {
+            clearInterval(interval);
+            toastInstance.hide(); // Esconder o toast quando a barra de progresso chegar a 0
+          }
+        }, 40); // Intervalo de atualização da barra de progresso (100ms)
+      }
+
+      // Evento de clique no botão
+      document
+        .getElementById("liveToastBtn")
+        .addEventListener("click", function () {
+          showToast("Hello, world! This is a new toast message.");
+        });
+    </script>
+  </body>
+</html>

@@ -1,58 +1,103 @@
 <div class="sidebar sidebar-content" id="side_nav">
-    <div class="text-center p-2 mx-1">
-        <a href="#img" onclick="loadContent('home')"><img src="src/assets/img/Ravin.png"
-                alt=" Logo do restaurante ravin" class="img-fluid rounded-circle my-2 p-1 d-md-block shadow" /></a>
-    </div>
-    <ul class="list-unstyled px-2">
-        <li class=""><a href="#" onclick="loadContent('src/app/components/cardapio/cardapio')"
-                class="text-decoration-none px-3 py-2 d-block"><i class="bi bi-card-list me-2"></i>Cardapio</a>
-        </li>
-        <li class="">
-            <a href="#" class="text-decoration-none px-3 py-2 d-block accordion-button collapsed"
-                onclick="loadContent('src/app/components/comanda/comanda')" type="button" data-bs-toggle="collapse"
-                data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne"><i
-                    class="bi bi-journal-arrow-up me-2"></i>Comanda</a>
-        </li>
-    </ul>
+  <div class="text-center p-2 mx-1">
+    <a href="#img" onclick="loadContent('src/app/components/home/home')"
+      ><img
+        src="src/assets/img/Ravin.png"
+        alt=" Logo do restaurante ravin"
+        class="img-fluid rounded-circle my-2 p-1 d-md-block shadow"
+    /></a>
+  </div>
+  <ul class="list-unstyled px-2">
+    <li class="">
+      <a
+        href="#"
+        onclick="loadContent('src/app/components/cardapio/cardapio')"
+        class="text-decoration-none px-3 py-2 d-block"
+        ><i class="bi bi-card-list me-2"></i>Cardapio</a
+      >
+    </li>
+    <li class="">
+      <a
+        href="#"
+        class="text-decoration-none px-3 py-2 d-block accordion-button collapsed"
+        onclick="loadContent('src/app/components/comanda/comanda')"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#flush-collapseOne"
+        aria-expanded="false"
+        aria-controls="flush-collapseOne"
+        ><i class="bi bi-journal-arrow-up me-2"></i>Comanda</a
+      >
+    </li>
+  </ul>
 
-    <hr class="h-color mx-3">
-    
+  <hr class="h-color mx-3" />
 </div>
 <div class="content">
-    <nav class="navbar navbar-expand-md navbar-light">
-        <div class="container-fluid">
-            <div class="d-flex justify-content-between d-md-none d-block">
-                <button class="btn px-1 px-0 open-btn me-2"><i class="fa-solid fa-bars-staggered"></i></button>
-                <a class="navbar-brand" href="#"><span class="bg-dark rounded px-2 py-0 text-white">
-                        Ravin Ristorant</span></a>
-            </div>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <i class="bi bi-list"></i>
+  <nav class="navbar navbar-expand-md navbar-light">
+    <div class="container-fluid">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mb-2 mb-lg-0">
+          <li class="nav-item">
+            <!-- Botão que abre o modal -->
+            <button
+              class="btn btn-primary btn-mesa"
+              type="button"
+              onclick="loadContent('src/app/components/comanda/comanda')"
+            >
+              <div class="d-flex align-items-center">
+                <div class="mr-2">
+                  <span class="material-icons me-2">
+                    table_bar
+                    </span>
+                </div>
+                <div class="d-flex align-items-center">
+                  <div>
+                    <span
+                      id="idMesa"
+                      class="d-block comand-cost"
+                      >M: 1</span
+                    >
+                    <span
+                      id="qtdTotalConsumida"
+                      class="d-block "
+                      >R$ 0,00</span
+                    >
+                  </div>
+                </div>
+              </div>
             </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-                <ul class="navbar-nav mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <!-- Botão que abre o modal -->
-                        <button class="btn btn-primary btn-modal-comanda" type="button" id="openPedidoModal">
-                            <div class="d-flex align-items-center">
-                                <div class="mr-2">
-                                    <i class="fas fa-utensils fa-lg me-2"></i>
-                                </div>
-                                <div>
-                                    <span id="valorTotalCarrinhoBotao" class="d-block header-cart__cost">R$
-                                        0,00</span>
-                                    <span id="quantidadeTotalCarrinhoBotao" class="d-block header-cart__items">0
-                                        itens</span>
-                                </div>
-                            </div>
-                        </button>
-
-                    </li>
-                </ul>
-            </div>
-    </nav>
-    <div class="dashboard-content px-3 pt-4" id="main-content">
+          </li>
+          <li class="nav-item">
+            <!-- Botão que abre o modal -->
+            <button
+              class="btn btn-modal-comanda"
+              type="button"
+              id="openPedidoModal"
+            >
+              <div class="d-flex align-items-center">
+                <div class="mr-2">
+                  <span class="material-icons me-2">restaurant_menu</span>
+                </div>
+                <div>
+                  <span
+                    id="valorTotalCarrinhoBotao"
+                    class="d-block header-cart__cost"
+                    >R$ 0,00</span
+                  >
+                  <span
+                    id="quantidadeTotalCarrinhoBotao"
+                    class="d-block header-cart__items"
+                    >0 itens</span
+                  >
+                </div>
+              </div>
+            </button>
+          </li>
+        </ul>
+      </div>
     </div>
+  </nav>
+
+  <div class="dashboard-content px-3 pt-4" id="main-content"></div>
 </div>

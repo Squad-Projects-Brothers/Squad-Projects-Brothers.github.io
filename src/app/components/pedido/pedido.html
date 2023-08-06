@@ -1,28 +1,68 @@
 <!-- Modal Pedidos -->
-<div class="modal modal-backdrop-pedido" tabindex="-1" id="pedidoModal" aria-labelledby="pedidoModalLabel">
-    <div class="modal-dialog modal-dialog-pedido modal-dialog-slidein-pedido  modal-md modal-bottom">
-        <div class="modal-content modal-content-pedido modal-pedido-comanda">
-            <!-- Conteúdo do modal aqui -->
+<div
+  class="modal modal-backdrop-pedido"
+  tabindex="-1"
+  id="pedidoModal"
+  aria-labelledby="pedidoModalLabel"
+>
+  <div
+    class="modal-dialog modal-dialog-pedido modal-dialog-slidein-pedido modal-md modal-bottom"
+  >
+    <div class="modal-content modal-content-pedido modal-pedido-comanda">
+      <!-- Conteúdo do modal aqui -->
+      <div class="modal-header">
+        <h5 class="modal-title" id="cartModalLabel">Comanda</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body sidebar-pedido-wrapper--scroll" id="listaItens">
+        <!-- Coloque aqui o conteúdo do seu pedido, como os itens selecionados -->
+      </div>
+      <div class="modal-footer-pedido">
+        <div class="sidebar-item-footer">
+          <div class="sidebar-pedido-footer__total sidebar-pedido-justify">
+            <span class="sidebar-pedido-footer__info-description">Total</span>
+            <span data-test-id="total-price" id="valorTotalCarrinho"
+              >R$ 0,00</span
+            >
+          </div>
+          <div class="sidebar-pedido-footer-button-wrapper">
+            <a
+              onclick="escolherMesa()"
+              class="btn btn--default btn-size-m btn--full-width restaurant-cart-footer__button"
+              role="button"
+              target=""
+              rel=""
+              href="#"
+              id="realizarPedidoButton"
+            >
+              <span class="btn-label">Realizar pedido</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal do Realizar Pedido-->
+<div class="modal fade modal-custom" id="Pedido" tabindex="-1" aria-labelledby="PedidoLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="cartModalLabel">Comanda</h5>
+                <h5 class="modal-title" id="PedidoLabel">Último Pedido</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body sidebar-pedido-wrapper--scroll" id="listaItens">
-                <!-- Coloque aqui o conteúdo do seu pedido, como os itens selecionados -->
+            <div class="modal-body" id="ultimoPedido">
+                <!--CONTEUDO ULTIMO PEDIDO-->
             </div>
-            <div class="modal-footer-pedido">
-                <div class="sidebar-item-footer">
-                    <div class="sidebar-pedido-footer__total sidebar-pedido-justify">
-                        <span class="sidebar-pedido-footer__info-description">Total</span>
-                        <span data-test-id="total-price" id="valorTotalCarrinho">R$ 0,00</span>
-                    </div>
-                    <div class="sidebar-pedido-footer-button-wrapper">
-                        <a onclick="escolherMesa()" class="btn btn--default btn-size-m btn--full-width restaurant-cart-footer__button"
-                            role="button" target="" rel="" href="#">
-                            <span  class="btn-label">Realizar pedido</span>
-                        </a>
-                    </div>
-                </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>
