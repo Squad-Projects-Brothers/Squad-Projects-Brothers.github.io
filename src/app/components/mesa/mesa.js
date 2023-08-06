@@ -2,7 +2,7 @@ function escolherMesa() {
   var checkPedido = document.getElementById("valorTotalCarrinho").innerHTML;
 
   if (checkPedido === 'R$ 0,00') {
-    alert("é necessário ao menos um pedido");
+    $('pedido').modal('show');
   } else {
     var alerta = document.getElementById("alerta");
     alerta.style.display = "block";

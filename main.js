@@ -22,7 +22,7 @@ function preloadNavContent() {
       });
 
       setMesaId();
-      loadContent('src/app/components/cardapio/cardapio');
+      loadContent("src/app/components/cardapio/cardapio");
     },
     error: function (xhr, status, error) {
       console.log("Erro na solicitação AJAX:", error);
@@ -45,7 +45,7 @@ function loadContent(target) {
       document.addEventListener("DOMContentLoaded", function () {
         // Conteúdo totalmente carregado, adiciona a classe "fade-in" ao <body>
         document.body.classList.add("fade-in-body");
-      
+
         // Após um pequeno atraso, remova a classe "fade-in" para exibir o conteúdo gradualmente
         setTimeout(function () {
           document.body.classList.remove("fade-in-body");
@@ -91,4 +91,3 @@ function loadMesaContent() {
     },
   });
 }
-

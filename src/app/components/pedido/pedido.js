@@ -1,7 +1,8 @@
 //função acionada ao clicar no botao adicionar produto no modal de confirmação
-
 function adicionarProdutoNoCarrinho(id, nome, categoria, descricao, valor) {
-  let quantidadeItens = parseInt(document.getElementById("numberItem").innerText);
+  let quantidadeItens = parseInt(
+    document.getElementById("numberItem").innerText
+  );
   let nomeProd = document.getElementById("modalItem1Label").innerText;
   let listaItens = document.getElementById("listaItens");
 
@@ -40,13 +41,16 @@ function adicionarProdutoNoCarrinho(id, nome, categoria, descricao, valor) {
 
   // Se o item não existe na lista, adicione um novo item
   if (!itemJaExistente) {
-    let valorFinal = quantidadeItens * parseFloat(valor.replace("R$ ", "").replace(",", "."));
+    let valorFinal =
+      quantidadeItens * parseFloat(valor.replace("R$ ", "").replace(",", "."));
     let textHtml = `
     <div class="restaurant-cart-item sidebar-pedido-line">
         <div class="sidebar-pedido-item-description sidebar-pedido-justify">
             <span id="qtdPedido">${quantidadeItens}</span>
             <span id="descProdutoPedido">${nomeProd}</span> 
-            <span id="valorTotalPedido">R$ ${valorFinal.toFixed(2).replace(".", ",")}</span>
+            <span id="valorTotalPedido">R$ ${valorFinal
+              .toFixed(2)
+              .replace(".", ",")}</span>
         </div>
         <div class="sidebar-pedido-item-tags"></div>
         <div class="sidebar-pedido-item-buttons-wrapper">
@@ -77,12 +81,11 @@ function adicionarProdutoNoCarrinho(id, nome, categoria, descricao, valor) {
       nome: nome,
       categoria: categoria,
       descricao: descricao,
-      valor: parseFloat(valor.replace("R$ ", "").replace(",", "."))
+      valor: parseFloat(valor.replace("R$ ", "").replace(",", ".")),
     };
     localStorage.setItem("ultimoPedido", JSON.stringify(ultimoPedido));
 
     //exibirModalUltimoPedido();
-
   }
 
   document.getElementById("numberItem").innerText = "1";
@@ -91,56 +94,16 @@ function adicionarProdutoNoCarrinho(id, nome, categoria, descricao, valor) {
 }
 
 //ÚLTIMO PEDIDO
-
-
-
-/*function exibirModalItemUltimoPedido() {
-  const ultimoPedido = localStorage.getItem('ultimoPedido');
-  if (ultimoPedido) {
-      const { id, nome, categoria, descricao, valor } = JSON.parse(ultimoPedido);
-      atualizarModal(id, nome, categoria, descricao, valor);
-      $('#modalItem1').modal('show'); // Abre o modal do item
-  }else{
-    const modalBody = document.querySelector('#modalItem1 .modal-body');
-    modalBody.innerHTML = '<p>Nenhum pedido registrado ainda.</p>';
-    $('#modalItem1').modal('show'); // Abre o modal vazio com a mensagem
-  }
-  }
-  
-  function exibirModalItemUltimoPedido() {
+function exibirModalItemUltimoPedido() {
     const ultimoPedido = localStorage.getItem('ultimoPedido');
     if (ultimoPedido) {
       const { id, nome, categoria, descricao, valor } = JSON.parse(ultimoPedido);
-      atualizarModal(id, nome, categoria, descricao, valor);
-      $('#modalItem1').modal('show'); // Abre o modal do item
+      
     } else {
-      // Caso não haja último pedido registrado, exibe a mensagem "Nenhum pedido registrado ainda."
-      const modalBody = document.querySelector('#modalItem1 .modal-body');
-      modalBody.innerHTML = '<p>Nenhum pedido registrado ainda.</p>';
-      const modalTitle = document.querySelector('#modalItem1 .modal-title');
-      modalTitle.textContent = 'Último Pedido';
-      const modalFooter = document.querySelector('#modalItem1 .modal-footer');
-      modalFooter.innerHTML = `
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-      `;
-      $('#modalItem1').modal('show'); // Abre o modal vazio com a mensagem
-    }
-  }*/
-  
-  function exibirModalItemUltimoPedido() {
-    const ultimoPedido = localStorage.getItem('ultimoPedido');
-    if (ultimoPedido) {
-      const { id, nome, categoria, descricao, valor } = JSON.parse(ultimoPedido);
-      atualizarModal(id, nome, categoria, descricao, valor);
-      $('#modalItem1').modal('show'); // Abre o modal do item
-    } else {
-      // Aguarda 500ms antes de exibir o alerta
-      setTimeout(() => {
-        alert('Não existe histórico de pedidos.');
-      }, 100);
+      $("#modalUltimoPedido").modal("show");
     }
   }
-
+  
 
 function atualizarModalEChamarOutraFuncao(
   id,
@@ -166,7 +129,6 @@ function atualizarModal(id, nome, categoria, descricao, valor) {
   let função = `adicionarProdutoNoCarrinho(${id},'${nome}','${categoria}','${descricao}','${valor}')`;
 
   addItem.setAttribute("onclick", função);
-
 }
 
 //remove item do "carrinho"
@@ -260,63 +222,66 @@ function fomatarValor(n) {
 function enviarPedidoParaCozinha() {
   //var socket = io('http://localhost:3001');
   var socket = io("http://138.36.206.61:3001");
-  console.log('aqui')
+  console.log("aqui");
   function renderMessage(messages) {
-    console.log(messages)
+    console.log(messages);
   }
 
   socket.on("previousMessagens", function (messages) {
     for (var i = 0; i < messages.length; i++) {
       renderMessage(messages[i]);
-    }console.log(messages)
+    }
+    console.log(messages);
   });
 
   socket.on("receivedMessage", function (message) {
     renderMessage(message);
-    console.log(message)
+    console.log(message);
   });
 
-  document.getElementById('alerta').addEventListener('submit', function (event) {
-    event.preventDefault(); // Previne de enviar alguma mensagem quando clica no botão
-    var mesa = localStorage.getItem('mesaSetada');
-    var listaProdutos = document.querySelectorAll('#listaItens .sidebar-pedido-line'); // Use the DOM method to get the elements correctly
-    var listaObjProduto = [];
-    function addLista() {
+  document
+    .getElementById("alerta")
+    .addEventListener("submit", function (event) {
+      event.preventDefault(); // Previne de enviar alguma mensagem quando clica no botão
+      var mesa = localStorage.getItem("mesaSetada");
+      var listaProdutos = document.querySelectorAll(
+        "#listaItens .sidebar-pedido-line"
+      ); // Use the DOM method to get the elements correctly
+      var listaObjProduto = [];
+      function addLista() {
         listaProdutos.forEach(function (item) {
-            var nomeProduto = item.querySelector('span:nth-child(2)').textContent;
-            var quantidadeProduto = item.querySelector('span:nth-child(1)').textContent;
-            function generateNumericId() {
-              const randomNumber = Math.random(); // Gera um número aleatório entre 0 e 1
-              const numericId = Math.floor(randomNumber * 100); // Converte e arredonda para um número inteiro de até 6 dígitos
-              return numericId;
-            }
-            const geradorId = generateNumericId()
-            var produtoFormatado = {
-                id: geradorId,
-                nome: nomeProduto,
-                quantidade: quantidadeProduto,
-                status: 'solicitado'
-
-            };
-            listaObjProduto.push(produtoFormatado);
+          var nomeProduto = item.querySelector("span:nth-child(2)").textContent;
+          var quantidadeProduto =
+            item.querySelector("span:nth-child(1)").textContent;
+          function generateNumericId() {
+            const randomNumber = Math.random(); // Gera um número aleatório entre 0 e 1
+            const numericId = Math.floor(randomNumber * 100); // Converte e arredonda para um número inteiro de até 6 dígitos
+            return numericId;
+          }
+          const geradorId = generateNumericId();
+          var produtoFormatado = {
+            id: geradorId,
+            nome: nomeProduto,
+            quantidade: quantidadeProduto,
+            status: "solicitado",
+          };
+          listaObjProduto.push(produtoFormatado);
         });
         return listaObjProduto;
       }
       listaObjProduto = addLista();
 
       if (mesa) {
-        
         var mensageObject = {
           mesa: mesa,
           produtos: listaObjProduto,
         };
 
-          // Salvar o último pedido no Local Storage
-          localStorage.setItem("ultimoPedido", JSON.stringify(mensageObject));
+        // Salvar o último pedido no Local Storage
+        localStorage.setItem("ultimoPedido", JSON.stringify(mensageObject));
 
         socket.emit("sendMessage", mensageObject);
         renderMessage(mensageObject);
       }
     });
 }
-

@@ -75,13 +75,11 @@ function atualizarModal(id, nome, categoria, descricao, valor) {
   let addDescricao = document.getElementById("descricao-produto");
   let titulo = document.getElementById("modalItem1Label");
   let valorProduto = document.getElementById("valorItem");
-  console.log(valorProduto);
   let addItem = document.getElementById("addItem");
   let observacaoItem1 = document.getElementById("observacaoItem1");
   titulo.innerText = nome;
   addDescricao.innerText = descricao;
   valorProduto.innerText = "R$" + valor;
-  console.log(id, nome, categoria, descricao, valor);
   let função = `adicionarProdutoNoCarrinho(${id},'${nome}','${categoria}','${descricao}','${valor}')`;
   addItem.setAttribute("onclick", função);
 }
