@@ -4,7 +4,6 @@ const app = express();
 const server = require("http").createServer(app);
 const io = require("socket.io")(server);
 const axios = require("axios"); // Importar a biblioteca Axios (se estiver usando Node.js)
-
 // Fazer uma solicitação GET
 
 // Define em qual pasta o usuário consegue 'acessar'

@@ -231,7 +231,7 @@ function generateNumericId() {
 
 function enviarPedidoParaCozinha() {
   //var socket = io('http://localhost:3001');
-  var socket = io("http://138.36.206.61:3001");
+  var socket = io("http://ravin.ddns.net:3001");
   console.log("aqui");
   function renderMessage(messages) {
     console.log(messages);

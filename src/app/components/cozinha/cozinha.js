@@ -1,5 +1,5 @@
 function aaa() {
-  var socket = io("http://138.36.206.61:3001");
+  var socket = io("http://ravin.ddns.net:3001");
 
   socket.on("itemsArray", (itemm) => {
     // Limpa o conteúdo atual do elemento com a classe "messages"
