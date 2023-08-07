@@ -98,6 +98,8 @@ function exibirModalItemUltimoPedido() {
   const ultimoPedido = localStorage.getItem("ultimoPedido");
   if (ultimoPedido) {
     const { id, nome, categoria, descricao, valor } = JSON.parse(ultimoPedido);
+    atualizarModal(id, nome, categoria, descricao, valor);
+    $('modalitem1').modal('show');//abre o modal do item
   } else {
     $("#modalUltimoPedido").modal("show");
   }
