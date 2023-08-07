@@ -93,7 +93,7 @@ function adicionarProdutoNoCarrinho(id, nome, categoria, descricao, valor) {
   calcularQuantidadeTotal();
 }
 
-//ÚLTIMO PEDIDO
+/*//ÚLTIMO PEDIDO
 function exibirModalItemUltimoPedido() {
     const ultimoPedido = localStorage.getItem('ultimoPedido');
     if (ultimoPedido) {
@@ -102,8 +102,21 @@ function exibirModalItemUltimoPedido() {
     } else {
       $("#modalUltimoPedido").modal("show");
     }
+  }*/
+
+  //ÚLTIMO PEDIDO
+function exibirModalItemUltimoPedido() {
+  const ultimoPedido = localStorage.getItem('ultimoPedido');
+  if (ultimoPedido) {
+    const { id, nome, categoria, descricao, valor } = JSON.parse(ultimoPedido);
+    atualizarModal(id, nome, categoria, descricao, valor);
+    $('#modalItem1').modal('show'); // Abre o modal do item
+  } else {
+    $("#modalUltimoPedido").modal("show");
   }
-  
+}
+
+
 
 function atualizarModalEChamarOutraFuncao(
   id,
