@@ -21,7 +21,7 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "http://138.36.206.61:5500/"); // Pode especificar domínios permitidos em vez de '*'
+  res.header("Access-Control-Allow-Origin", "*"); // Pode especificar domínios permitidos em vez de '*'
   res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE, OPTIONS");
   res.header(
     "Access-Control-Allow-Headers",
