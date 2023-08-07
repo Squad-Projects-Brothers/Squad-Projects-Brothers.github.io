@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="src/app/components/pedido/pedido.css" />
     <link rel="stylesheet" href="src/app/components/nav/nav.css" />
     <link rel="stylesheet" href="src/app/components/mesa/mesa.css" />
+    <!-- <link rel="stylesheet" href="src/app/components/pagamento/pagamento.css" /> -->
 
     <link
       rel="stylesheet"
@@ -68,12 +69,13 @@
   </head>
 
   <body>
-    <div id="homeContent">
-    </div>
+    <div id="homeContent"></div>
     <div id="mesaMenu"></div>
+    
 
     <div class="main-container d-flex bg-dark" id="body-content"></div>
     <div id="modalContentCustom"></div>
+    
     <!-- Aqui estão os caminhos para os arquivos JS do prejeto-->
     <script src="src/app/components/home/home.js"></script>
     <script src="src/app/components/pedido/pedido.js"></script>
@@ -81,7 +83,7 @@
     <script src="src/app/components/comanda/comanda.js"></script>
     <script src="src/app/components/nav/nav.js"></script>
     <script src="src/app/components/mesa/mesa.js"></script>
-    
+    <script src="src/app/components/pagamento/pagamento.js"></script>
 
     <script>
       // Pré-carrega o conteúdo da página inicial
@@ -89,6 +91,5 @@
       loadPedidoContent();
       loadMesaContent();
     </script>
-
   </body>
 </html>

@@ -1,0 +1,27 @@
+
+    
+ 
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <button
+              type="button"
+              class="btn-close"
+              id="closeModalButton"
+              onclick="closeModalPamento()"
+            ></button>
+            <h2>Opções de Pagamento</h2>
+          <label>
+            <input type="radio" name="paymentOption" value="pix"/> PIX
+          </label>
+          <label>
+            <input type="radio" name="paymentOption" value="cartao"/> Cartão
+          </label>
+          <label>
+            <input type="radio" name="paymentOption" value="dinheiro"/> Dinheiro
+          </label>
+          <button id="confirmPayment" onclick="pagar()" >Confirmar Pagamento</button>
+        </div>
+    </div>
+  </div>
+</div>
+<!-- onclick="enviarPedidoParaCozinha(); -->

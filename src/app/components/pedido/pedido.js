@@ -95,15 +95,13 @@ function adicionarProdutoNoCarrinho(id, nome, categoria, descricao, valor) {
 
 //ÚLTIMO PEDIDO
 function exibirModalItemUltimoPedido() {
-    const ultimoPedido = localStorage.getItem('ultimoPedido');
-    if (ultimoPedido) {
-      const { id, nome, categoria, descricao, valor } = JSON.parse(ultimoPedido);
-      
-    } else {
-      $("#modalUltimoPedido").modal("show");
-    }
+  const ultimoPedido = localStorage.getItem("ultimoPedido");
+  if (ultimoPedido) {
+    const { id, nome, categoria, descricao, valor } = JSON.parse(ultimoPedido);
+  } else {
+    $("#modalUltimoPedido").modal("show");
   }
-  
+}
 
 function atualizarModalEChamarOutraFuncao(
   id,
@@ -142,12 +140,20 @@ function removerDiv(button) {
   calcularQuantidadeTotal();
 }
 
-function calcularValorTotal() {
+function verificaItensNaLista() {
   let listaItens = document.getElementById("listaItens");
   let itensNaLista = listaItens.getElementsByClassName("restaurant-cart-item");
 
-  if (itensNaLista.length != null) {
-    // Verifica se há algum item na lista
+  return itensNaLista.length > 0;
+}
+
+function calcularValorTotal() {
+  if (verificaItensNaLista()) {
+    let listaItens = document.getElementById("listaItens");
+    let itensNaLista = listaItens.getElementsByClassName(
+      "restaurant-cart-item"
+    );
+
     let valorTotalCarrinho = document.getElementById("valorTotalCarrinho");
     let valorTotalCarrinhoBotao = document.getElementById(
       "valorTotalCarrinhoBotao"
@@ -168,7 +174,7 @@ function calcularValorTotal() {
     valorTotalCarrinhoBotao.innerText =
       "R$ " + valorTotal.toFixed(2).replace(".", ",");
   } else {
-    // Caso não haja itens na lista, você pode fazer algo aqui, por exemplo:
+    // Caso não haja itens na lista
     let valorTotalCarrinho = document.getElementById("valorTotalCarrinho");
     valorTotalCarrinho.innerText = "R$ 0,00";
     let valorTotalCarrinhoBotao = document.getElementById(
@@ -194,9 +200,6 @@ function calcularQuantidadeTotal() {
   quantidadeTotalCarrinhoBotao.innerText = quantidadeTotal + " itens";
 }
 
-// Exemplo de uso:
-//let total = calcularValorTotal();
-
 //função de mudar quantidade de produtos no model confirmação
 function alterarQtd(acao) {
   const valor = document.getElementById("valorItem").innerHTML;
@@ -218,6 +221,11 @@ function somenteNumeros(n) {
 function fomatarValor(n) {
   return n.toLocaleString("pt-br", { style: "currency", currency: "BRL" });
 }
+function generateNumericId() {
+  const randomNumber = Math.random(); // Gera um número aleatório entre 0 e 1
+  const numericId = Math.floor(randomNumber * 100); // Converte e arredonda para um número inteiro de até 6 dígitos
+  return numericId;
+}
 
 function enviarPedidoParaCozinha() {
   //var socket = io('http://localhost:3001');
@@ -238,50 +246,47 @@ function enviarPedidoParaCozinha() {
     renderMessage(message);
     console.log(message);
   });
-
-  document
-    .getElementById("alerta")
-    .addEventListener("submit", function (event) {
-      event.preventDefault(); // Previne de enviar alguma mensagem quando clica no botão
-      var mesa = localStorage.getItem("mesaSetada");
-      var listaProdutos = document.querySelectorAll(
-        "#listaItens .sidebar-pedido-line"
-      ); // Use the DOM method to get the elements correctly
-      var listaObjProduto = [];
-      function addLista() {
-        listaProdutos.forEach(function (item) {
-          var nomeProduto = item.querySelector("span:nth-child(2)").textContent;
-          var quantidadeProduto =
-            item.querySelector("span:nth-child(1)").textContent;
-          function generateNumericId() {
-            const randomNumber = Math.random(); // Gera um número aleatório entre 0 e 1
-            const numericId = Math.floor(randomNumber * 100); // Converte e arredonda para um número inteiro de até 6 dígitos
-            return numericId;
-          }
-          const geradorId = generateNumericId();
-          var produtoFormatado = {
-            id: geradorId,
-            nome: nomeProduto,
-            quantidade: quantidadeProduto,
-            status: "solicitado",
-          };
-          listaObjProduto.push(produtoFormatado);
-        });
-        return listaObjProduto;
-      }
-      listaObjProduto = addLista();
-
-      if (mesa) {
-        var mensageObject = {
-          mesa: mesa,
-          produtos: listaObjProduto,
-        };
-
-        // Salvar o último pedido no Local Storage
-        localStorage.setItem("ultimoPedido", JSON.stringify(mensageObject));
-
-        socket.emit("sendMessage", mensageObject);
-        renderMessage(mensageObject);
-      }
+  var mesa = localStorage.getItem("mesaEscolhida");
+  var listaProdutos = document.querySelectorAll(
+    "#listaItens .sidebar-pedido-line"
+  ); // Use the DOM method to get the elements correctly
+  var listaObjProduto = [];
+  function addLista() {
+    listaProdutos.forEach(function (item) {
+      var nomeProduto = item.querySelector("span:nth-child(2)").textContent;
+      var quantidadeProduto =
+        item.querySelector("span:nth-child(1)").textContent;
+      
+      const geradorId = generateNumericId();
+      var produtoFormatado = {
+        id: geradorId,
+        nome: nomeProduto,
+        quantidade: quantidadeProduto,
+        status: "solicitado",
+      };
+      listaObjProduto.push(produtoFormatado);
     });
+    return listaObjProduto;
+  }
+  listaObjProduto = addLista();
+
+  if (mesa) {
+    var mensageObject = {
+      mesa: mesa,
+      produtos: listaObjProduto,
+    };
+
+    // Salvar o último pedido no Local Storage
+    localStorage.setItem("ultimoPedido", JSON.stringify(mensageObject));
+
+    socket.emit("sendMessage", mensageObject);
+    renderMessage(mensageObject);
+  }
+}
+//quando clica no botão realizar pedido no modal pedido, faz a verificação se tem item na lista, chama o modal pagamento
+function modalPgamento() {
+  if (verificaItensNaLista()) {
+    loadPaymentModalContent();
+  } else {
+  }
 }

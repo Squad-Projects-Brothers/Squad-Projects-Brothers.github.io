@@ -13,7 +13,7 @@ function fecharAlerta() {
   alerta.style.display = "none";
 }
 function verificaStorage() {
-  let storage = localStorage.getItem("mesaSetada");
+  let storage = localStorage.getItem("mesaEscolhida");
   if (storage === null) {
     addMesa();
     escolherMesa();
@@ -25,6 +25,6 @@ function verificaStorage() {
 }
 function addMesa() {
   let valor = document.getElementById("numeroMesa");
-  localStorage.setItem("mesaSetada", valor.value);
+  localStorage.setItem("mesaEscolhida", valor.value);
   enviarPedidoParaCozinha();
 }

@@ -91,3 +91,21 @@ function loadMesaContent() {
     },
   });
 }
+function loadPaymentModalContent() {
+  var url = "src/app/components/pagamento/pagamento.html";
+
+  // Faz uma solicitação AJAX para buscar o conteúdo do modal-payment.html
+  $.ajax({
+    url: url,
+    type: "GET",
+    success: function (response) {
+      // Armazena o conteúdo do modal-payment.html na variável
+      document.getElementById("paymentModal").innerHTML = response;
+      
+    },
+    error: function (xhr, status, error) {
+      console.log("Erro na solicitação AJAX:", error);
+    },
+  });
+}
+

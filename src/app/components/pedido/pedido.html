@@ -9,6 +9,7 @@
     class="modal-dialog modal-dialog-pedido modal-dialog-slidein-pedido modal-md modal-bottom"
   >
     <div class="modal-content modal-content-pedido modal-pedido-comanda">
+      
       <!-- Conteúdo do modal aqui -->
       <div class="modal-header">
         <h5 class="modal-title" id="cartModalLabel">Comanda</h5>
@@ -30,9 +31,10 @@
               >R$ 0,00</span
             >
           </div>
+          <div id="paymentModal"></div>
           <div class="sidebar-pedido-footer-button-wrapper">
             <a
-              onclick="escolherMesa()"
+              onclick=" modalPgamento()"
               class="btn btn--default btn-size-m btn--full-width restaurant-cart-footer__button"
               role="button"
               target=""
@@ -46,24 +48,37 @@
         </div>
       </div>
     </div>
+    
   </div>
 </div>
 
 <!-- Modal do Realizar Pedido-->
-<div class="modal" id="PedidoFinalizado" tabindex="-1" aria-labelledby="PedidoLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="PedidoLabel">Último Pedido</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-               <p>Teste</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-            </div>
-        </div>
+<div
+  class="modal"
+  id="PedidoFinalizado"
+  tabindex="-1"
+  aria-labelledby="PedidoLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="PedidoLabel">Último Pedido</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <p>Teste</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Fechar
+        </button>
+      </div>
     </div>
+  </div>
 </div>

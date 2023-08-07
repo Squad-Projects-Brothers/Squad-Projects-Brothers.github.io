@@ -7,7 +7,7 @@ function aaa() {
 
     // Percorre cada item do array
     itemm.forEach((item) => {
-      const idPedido = item.id;
+      let idPedido;
       const produtos = item.produtos;
 
       // Cria um elemento de div para cada item
@@ -19,62 +19,68 @@ function aaa() {
       );
 
       // Cria um elemento de lista não ordenada para os produtos do item
-      const produtosList = $('<table class=" table "></table>');
+      const produtosList = $('<table class="table "></table>');
       const tabelaList = $(
-        `<tr>
-          <th class="col text-center">id</th>
-          <th class="col text-center">Produto</th>
-          <th class="col text-center">Quantidade</th>
-          <th class="col text-center">Status</th>
+        `<tr class="row"> 
+          <th class="col ">id</th>
+          <th class="col ">Produto</th>
+          <th class="col ">Quantidade</th>
+          <th class="col ">Status</th>
+          <th class="col-5 ">Atualizar status pedido</th>
         </tr>`
       );
       produtosList.append(tabelaList);
       // Percorre a lista de produtos do item e cria elementos de lista para cada produto
       produtos.forEach((produto) => {
         const produtoElement = $(
-          `<tr type="checkbox" class="btn btn-primary" name="options" id="${produto.id}">
+          `<tr type="checkbox" class="row" name="options" id="${produto.id}">
                 <td class="col"> ${produto.id}</td>
                 <td class="col"> ${produto.nome}</td>
                 <td class="col"> ${produto.quantidade}</td>
                 <td class="col"> ${produto.status}</td>
-          </tr>
           `
         );
         produtosList.append(produtoElement);
+        const iniciarPedidoBtn = $(
+          `<td class="col">
+            <button class="btn btn-outline-primary">Iniciar Pedido</button></td>
+          `
+        );
+        const cancelarrPedidoBtn = $(
+          `<td class="col">
+            <button class="btn btn-outline-danger">Cancelar Pedido</button></td>
+          `
+        );
+        const concluirPedidoBtn = $(
+            `<td class="col">
+              <button class="btn btn-outline-success">Concluir Pedido</button>
+            </td>
+          </tr>`
+        );
+        produtoElement.append(iniciarPedidoBtn);
+        produtoElement.append(cancelarrPedidoBtn);
+        produtoElement.append(concluirPedidoBtn);
+        iniciarPedidoBtn.click(() => {
+          // Envia a solicitação ao servidor para concluir o pedido
+          idPedido = produto.id;
+          socket.emit("iniciarPedido", idPedido);
+          console.log(idPedido)
+        });
+        cancelarrPedidoBtn.click(() => {
+          // Envia a solicitação ao servidor para concluir o pedido
+          idPedido = produto.id;
+          socket.emit("cancelarPedido", idPedido);
+          console.log(idPedido)
+        });
+        concluirPedidoBtn.click(() => {
+          // Envia a solicitação ao servidor para concluir o pedido
+          idPedido = produto.id;
+          socket.emit("concluirPedido", idPedido);
+          console.log(idPedido)
+        });
       });
 
-      // Adiciona a lista de produtos do item à div do item
       itemDiv.append(produtosList);
-
-      // Cria o botão "Concluir Pedido" para o item
-      const iniciarPedidoBtn = $(
-        '<button class="btn btn-outline-warning">Iniciar Pedido</button>'
-      );
-      const cancelarrPedidoBtn = $(
-        '<button class="btn btn-outline-warning">Cancelar Pedido</button>'
-      );
-      const concluirPedidoBtn = $(
-        '<button class="btn btn-outline-warning">Concluir Pedido</button>'
-      );
-
-      iniciarPedidoBtn.click(() => {
-        // Envia a solicitação ao servidor para concluir o pedido
-        socket.emit("iniciarPedido", idPedido);
-      });
-      cancelarrPedidoBtn.click(() => {
-        // Envia a solicitação ao servidor para concluir o pedido
-        socket.emit("cancelarPedido", idPedido);
-      });
-      concluirPedidoBtn.click(() => {
-        // Envia a solicitação ao servidor para concluir o pedido
-        socket.emit("concluirPedido", idPedido);
-      });
-      // Adiciona o botão "Concluir Pedido" à div do item
-      itemDiv.append(iniciarPedidoBtn);
-      itemDiv.append(cancelarrPedidoBtn);
-      itemDiv.append(concluirPedidoBtn);
-
-      // Adiciona a div do item ao elemento com a classe "messages"
       $(".messages").append(itemDiv);
     });
   });
