@@ -95,15 +95,16 @@ function adicionarProdutoNoCarrinho(id, nome, categoria, descricao, valor) {
 
 //ÚLTIMO PEDIDO
 function exibirModalItemUltimoPedido() {
-  const ultimoPedido = localStorage.getItem("ultimoPedido");
+  const ultimoPedido = localStorage.getItem('ultimoPedido');
   if (ultimoPedido) {
     const { id, nome, categoria, descricao, valor } = JSON.parse(ultimoPedido);
     atualizarModal(id, nome, categoria, descricao, valor);
-    $('modalitem1').modal('show');//abre o modal do item
+    $('#modalItem1').modal('show'); // Abre o modal do item
   } else {
     $("#modalUltimoPedido").modal("show");
   }
 }
+
 
 function atualizarModalEChamarOutraFuncao(
   id,
@@ -231,7 +232,8 @@ function generateNumericId() {
 
 function enviarPedidoParaCozinha() {
   //var socket = io('http://localhost:3001');
-  var socket = io("http://ravin.ddns.net:3001");
+  //var socket = io("http://ravin.ddns.net:3001");
+  var socket = io("http://187.85.120.71:3001");
   console.log("aqui");
   function renderMessage(messages) {
     console.log(messages);

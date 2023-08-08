@@ -41,3 +41,17 @@ function pagar() {
     alert("Selecione uma opção de pagamento");
   }
 }
+
+$(document.getElementById('collapseTwob')).ready(function () {
+  // Quando o botão Paypal é clicado
+  $('#collapseTwo').on('show.bs.collapse', function () {
+    // Adicione aqui o código para alterar o menu
+    console.log('Botão Paypal clicado');
+  });
+
+  // Quando o botão Credit card é clicado
+  $('#collapseOne').on('show.bs.collapse', function () {
+    // Adicione aqui o código para alterar o menu
+    console.log('Botão Credit card clicado');
+  });
+});
